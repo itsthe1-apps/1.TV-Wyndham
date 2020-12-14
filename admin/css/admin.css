@@ -1,0 +1,396 @@
+body {
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #000;
+    font-size: 10pt;
+    background: url(../images/bg_texture.png);
+}
+
+#wrapper {
+    width: 100%;
+}
+
+img {
+    outline: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+/*form input[type=text]{border:1px #000 solid;}
+form input[type=password]{border:1px #000 solid;}
+form input[type=file]{border:1px #000 solid;}
+form select{border:1px #000 solid;}
+form textarea{border:1px #000 solid; height: 60px; padding:5px; width:400px;}
+
+form input[type=submit]{outline:none;display:block;float:left;margin:0 7px 0 0;background-color:#f5f5f5;border:1px solid #999;font-size:12px;line-height:100%;text-decoration:none;font-weight:bold;color:#565656;cursor:pointer;padding:3px 10px 6px 7px; color:#000;  Links }
+form input[type=submit]:hover{background-color: #E8E8E8;border:1px solid #AAA;}
+div button{outline:none; border:0px;}*/
+
+#error {
+    color: #F00;
+    font-size: 12px;
+}
+
+.star {
+    color: #F00;
+    font-size: 12px;
+    margin-left: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+a {
+    outline: none;
+    color: #039;
+}
+
+h1 {
+    font-size: 15px;
+    margin-top: 0px;
+    text-transform: uppercase;
+}
+
+/* Header Part */
+
+/* Login */
+.full_login_box {
+    margin-top: 80px;
+}
+
+.box {
+    background-color: #000;
+    border: 0px solid #979ea0;
+    padding: 7px;
+    color: #FFF
+}
+
+.page_heading_small {
+    font-size: 22px;
+    color: #14555f;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.dark_box {
+    background-color: #D0ECF3;
+    border: 1px solid #356d79;
+    padding: 0px;
+    margin-top: 0px;
+}
+
+.login_text {
+    font-size: 11px;
+    color: #0f0c02;
+    font-weight: normal;
+    font-variant: normal;
+    text-decoration: none;
+    padding-left: 8px;
+}
+
+.login_title {
+    height: 23px;
+}
+
+/*.buttons a, .buttons button{outline:none;display:block;float:left;margin:0 7px 0 0;background-color:#f5f5f5;border:1px solid #999;font-size:12px;line-height:100%;text-decoration:none;font-weight:bold;color:#565656;cursor:pointer;padding:3px 10px 6px 7px; text-transform:uppercase; Links }*/
+.buttons button img, .buttons a img {
+    margin: 0 3px -3px 0 !important;
+    padding: 0;
+    border: none;
+    width: 16px;
+    height: 16px;
+}
+
+button.positive, .buttons a.positive {
+    color: #000;
+    outline: none;
+}
+
+.buttons a.positive:hover, button.positive:hover {
+    background-color: #E8E8E8;
+    border: 1px solid #AAA;
+}
+
+.buttons a.positive:active {
+    border: 1px solid #529214;
+    color: #fff;
+}
+
+/* Content */
+
+#table_form {
+    border-color: #CCC;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-style: solid;
+    border-right-width: 1px;
+}
+
+#table_form td {
+    font-size: 13px;
+    height: 33px;
+    border-color: #CCC;
+    border-left-style: solid;
+    border-left-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-top: 0px;
+    padding-left: 5px;
+    WORD-BREAK: BREAK-ALL;
+}
+
+#left_menu_text_selected {
+    text-align: center;
+    font-weight: bold;
+    color: #FFFFFF;
+    font-size: 15px;
+}
+
+#logout {
+    position: absolute;
+    right: 0;
+    top: 10px;
+    font-size: 11px;
+    margin-right: 10px;
+}
+
+#logout img {
+    width: 60px;
+    height: 60px;
+}
+
+#logout a {
+    color: #B6B7B8;
+    text-decoration: none;
+}
+
+#logout a:hover {
+    color: #FFF;
+}
+
+#msg {
+    color: #FF0000;
+}
+
+#page {
+    line-height: 30px;
+}
+
+.room_list {
+    list-style: none;
+    margin: 10px 0;
+    padding: 0;
+}
+
+.room_list li {
+    float: left;
+    padding-right: 10px;
+}
+
+.language {
+    border: #000000 solid 1px;
+    height: 20px;
+    width: 100px;
+    margin: 0 10px 0 0;
+}
+
+.image_size {
+    font-size: 11px;
+}
+
+.confirm {
+    padding: 3px 5px;
+    background: #F5F5F5;
+    border: 1px #999999 solid;
+    color: #333333 !important;
+    border-radius: 5px;
+}
+
+.confirm:hover {
+    text-decoration: none !important;
+}
+
+.messages {
+    color: #0066CC;
+}
+
+/*New Look & Feel Added By Lakshan*/
+
+/*login Page*/
+
+.row.container.login-form {
+    background: rgba(255, 255, 255, 0.83) none repeat scroll 0 0;
+    font-family: "ubuntu";
+    height: 420px;
+    margin: 8% auto 0;
+    width: 30%;
+    border: 1px solid #cccccc;
+}
+
+.row.container.login-form .container-fluid {
+    margin-top: 6%;
+}
+
+.copy-right {
+    position: relative;
+    margin-top: 5px;
+    text-align: center;
+}
+
+#login-title {
+    margin: 20px auto 0;
+    text-align: center;
+    width: 50%;
+}
+
+/*login Page End*/
+
+/*Header Section*/
+
+#header {
+    height: auto;
+}
+
+#header div#icons {
+    background-color: #d8dbde;
+    float: right;
+    height: 87px;
+    padding: 10px;
+    width: 78%;
+}
+
+#header div#icons img {
+    width: 60px;
+    height: 60px;
+}
+
+#header div#title {
+    float: left;
+    height: 87px;
+    width: 22%;
+}
+
+#title img {
+    left: 50%;
+    position: relative;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#left_main {
+    float: left;
+    padding: 20px;
+    width: 22%;
+    background-color: #ABADB0;
+    font-family: "ubuntu";
+    height: 800px;
+}
+
+/*Left Side-Bar*/
+
+#left_menu_text {
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+}
+
+#right_content {
+    float: right;
+    width: 78%;
+}
+
+.login-form button {
+    float: right;
+}
+
+/*content*/
+
+.roundedcornr_content_main #device_status {
+    font-family: "ubuntu";
+    margin-top: 5px;
+}
+
+.roundedcornr_content_main #device_status span {
+    color: #43adf1;
+}
+
+.page_title {
+    font-family: "ubuntu";
+}
+
+.table_select_all {
+    font-family: "ubuntu";
+    margin-bottom: 10px;
+}
+
+.main_control_btns {
+    font-family: "ubuntu";
+}
+
+.seperator_char {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+.group_first_label {
+    margin-bottom: 20px;
+    min-width: 134px;
+}
+
+.form-inline.form_elements_list .device_details {
+    font-family: "ubuntu";
+}
+
+.device_details .select_form_option {
+    min-width: 240px;
+}
+
+.table_glob {
+    font-family: "ubuntu";
+    width: 99%;
+}
+
+.upload_glob {
+    display: inline !important;
+    width: 240px;
+}
+
+.list-group.list_glob {
+    float: right;
+    margin-left: 2px;
+    min-width: 240px;
+}
+
+.preview_img {
+    float: right;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 15px;
+}
+
+.image_list_preview {
+    margin-left: 240px;
+}
+
+span.menu_borders {
+    background: #fff;
+    width: 1px;
+    position: absolute;
+    height: 60px;
+    margin: 0 -0.22%;
+}
+
+select#list1, select#list2 {
+    font-size: 20px;
+}
+
+textarea#message_body {
+    font-size: 20px;
+}
+
+tr#tv_row td {
+    line-height: 48px;
+    font-size: 17px;
+    font-weight: bold;
+}

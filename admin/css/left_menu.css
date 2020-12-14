@@ -1,0 +1,84 @@
+#left_main ul{
+	/*margin:0;*/
+	padding:0;
+}
+
+#left_main ul.container{
+/*	 The topmost UL */
+	width:240px;
+	margin-top: 55px;
+}
+
+#left_main li{
+	list-style:none;
+	text-align:left;
+}
+
+#left_main li.menu{
+/*	 The main list elements */
+	width:100%;
+}
+
+#left_main li.button a{
+/*	 The section titles */
+	display:block;
+	overflow:hidden;
+	position:relative;
+	width:240px;
+}
+
+#left_main li.button a:hover{
+/*	 Removing the inherited underline from the titles */
+	text-decoration:none;
+}
+
+#left_main li.button a span{
+/*	 This span acts as the right part of the section's background */
+	height:44px;
+	position:absolute;
+	right:0;
+	top:0;
+	width:4px;
+	display:block;
+}
+
+#left_main li.button a.bg_a{ border:1px #060 solid;}
+ The hover effects 
+
+#left_main li.button a:hover{ background-position:bottom left;}
+#left_main li.button a:hover span{ background-position:bottom right;}
+
+#left_main .dropdown{
+/*	 The expandable lists */
+	display:none;
+	padding-top:2px;
+	width:240px;
+}
+
+#left_main .dropdown li{
+/*	 Each element in the expandable list */
+	background-color:#ffffff;
+	border:1px solid #40392C;
+	color:#000;
+	margin:3px 0;
+	padding:4px 18px;
+	text-align:center;
+}
+#left_main .dropdown li a{
+	color:#F58220;
+	text-decoration:none;
+}
+
+#left_main .clear{
+	clear:both;
+}
+
+#left_main {
+  padding: 20px;
+}
+
+#left_main a:hover{
+	text-decoration:underline;
+}
+
+

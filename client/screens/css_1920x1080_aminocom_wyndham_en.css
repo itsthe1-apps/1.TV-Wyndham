@@ -1,0 +1,3542 @@
+@font-face {
+    font-family: 'Helvetica Neue LT Std';
+    src: url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-Cn.eot');
+    src: url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-Cn.eot?#iefix') format('embedded-opentype'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-Cn.woff2') format('woff2'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-Cn.woff') format('woff'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-Cn.ttf') format('truetype'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-Cn.svg#HelveticaNeueLTStd-Cn') format('svg');
+    font-weight: normal;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Helvetica Neue LT Std';
+    src: url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-MdCn.eot');
+    src: url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-MdCn.eot?#iefix') format('embedded-opentype'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-MdCn.woff2') format('woff2'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-MdCn.woff') format('woff'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-MdCn.ttf') format('truetype'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-MdCn.svg#HelveticaNeueLTStd-MdCn') format('svg');
+    font-weight: 500;
+    font-style: normal
+}
+
+@font-face {
+    font-family: 'Helvetica Neue LT Std';
+    src: url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-BdCn.eot');
+    src: url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-BdCn.eot?#iefix') format('embedded-opentype'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-BdCn.woff2') format('woff2'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-BdCn.woff') format('woff'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-BdCn.ttf') format('truetype'), url('../fonts/en-HelveticaNeueLTStd/HelveticaNeueLTStd-BdCn.svg#HelveticaNeueLTStd-BdCn') format('svg');
+    font-weight: bold;
+    font-style: normal
+}
+
+*, html {
+    font-family: "Helvetica Neue LT Std";
+    /*font-weight: normal;
+    font-style: normal*/
+}
+
+.bodyBG {
+    border: 0 solid;
+    top: 0;
+    width: 1920px;
+    height: 1080px;
+    position: absolute;
+    background-color: transparent;
+    left: 0;
+
+}
+
+.information {
+    background-color: rgba(255, 255, 255, 0.66);
+    color: #555555;
+    height: 490px;
+    left: 60px;
+    position: absolute;
+    top: 365px;
+    width: 860px;
+    border: 2px solid #df1820;
+}
+.restaurant_information, .localListDescription, .spaListDescription, .expListDescription, .newsnpromoListDescription {
+    background-color: rgba(235,235,234,0.85);
+    color: #555555;
+    height: 500px;
+    left: 60px;
+    position: absolute;
+    top: 365px;
+    width: 870px;
+}
+
+.chListSubMenuListContainer, .vodListSubMenuListContainer, .restrntListRestListContainer, .spaListContainer, .expListContainer, .localListContainer, .newsnpromoListContainer, .radioListSubMenuListContainer {
+    left: 60px;
+    position: absolute;
+    top: 265px;
+}
+
+.restrntListRestListItem, .spaListItem, .expListItem, .localListItem, .newsnpromoListItem, .chSubMenuListItem, .vodSubMenuListItem {
+    background: #86868a none repeat scroll 0 0;
+    color: #fff;
+    float: left;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    width: 538px;
+    min-width: auto;
+    padding: 0 30px;
+    border-right: 3px solid #efefef;
+    -moz-border-right: 3px solid #efefef;
+    -webkit-border-right: 3px solid #efefef;
+    font-size: 32px;
+}
+
+.restrntListRestListItem.active, .spaListItem.active, .expListItem.active, .localListItem.active, .newsnpromoListItem.active, .chSubMenuListItem.active, .vodSubMenuListItem.active {
+    color: #fff;
+    background-color: #df1820;
+    -webkit-transform: scale(1.1);  /* Chrome, Opera 15+, Safari 3.1+ */
+      -ms-transform: scale(1.1);  /* IE 9 */
+          transform: scale(1.1);  /* Firefox 16+, IE 10+, Opera */
+    border-right: none;
+    font-weight: bold;
+}
+
+.restrntListRestListItem:last-child, .spaListItem:last-child, .expListItem:last-child, .localListItem:last-child, .newsnpromoListItem:last-child, .radioListSubMenuListContainer div:last-child, .vodListSubMenuListContainer div:last-child {
+    border-right: medium none;
+}
+
+.vodListMovieInfo, .restrntListRestInfo, .spaListInfo, .expListInfo, .localListInfo, .newsnpromoListInfo {
+    height: 494px;
+    position: absolute;
+    right: 60px;
+    top: 365px;
+    width: 864px;
+    background-color: transparent;
+    border: 2px solid #df1820;
+}
+
+.globalClipScreen {
+    height: 500px;
+    position: absolute;
+    right: 60px;
+    top: 365px;
+    width: 870px;
+    /* border: 5px solid #055e32; */
+}
+
+.globalClipScreen.welcome {
+    height: 490px;
+    position: absolute;
+    right: 60px;
+    top: 365px;
+    width: 860px;
+    border: 2px solid #df1820;
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+img.restImage, img.promoImage, img.localListImage, img.newsnpromoListImage, img.expListImage, img.spaListImage {
+    width: 864px;
+    height: 490px;
+}
+
+.radioListChannelListHighlight, .chListChannelListHighlight, .chChooserChannelListHighlight, .vodListMovieListHighlight, .radioChooserChannelListHighlight, .vodChooserListHighlight {
+    border: 0 solid;
+    left: 55px;
+    position: absolute;
+    top: 360px;
+}
+
+.chListChannelListContainer, .chChooserChannelListContainer, .vodListMovieListContainer, .vodListGenreListContainer, .radioListChannelListContainer, .radioChooserChannelListContainer {
+    height: 545px;
+    left: 60px;
+    position: absolute;
+    top: 365px;
+    width: 915px;
+}
+
+#globalChannelZapper {
+    position: absolute;
+    top: 67px;
+    border: 0 solid;
+    left: 133px;
+    width: 125px;
+    height: 100px;
+    overflow: hidden;
+    z-index: 100;
+}
+
+p.globalChannelZapper {
+    color: #fff;
+    border: 0 solid;
+    font-size: 60px;
+    margin-left: 5px;
+    margin-top: 0;
+    z-index: 100;
+}
+
+#globalVolumeBar {
+    position: absolute;
+    bottom: 80px;
+    border: 0 solid;
+    margin: 0 auto;
+    left: 330px;
+    width: 700px;
+    height: 67px;
+    overflow: hidden;
+    z-index: 100;
+    visibility: hidden
+}
+
+p.globalVolumeBar {
+    color: gold;
+    border: 0 solid;
+    font-size: 60px;
+    margin-left: 5px;
+    margin-top: 0;
+    z-index: 100;
+    letter-spacing: 0
+}
+
+.globalMute {
+    position: absolute;
+    top: 50px;
+    border: 0 solid;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    z-index: 1000;
+    background-image: url(images/1080/coraldubai_en/mute.png);
+    background-repeat: no-repeat;
+    visibility: hidden
+}
+
+.globalMutePage {
+    position: absolute;
+    top: 10px;
+    border: 0 solid;
+    left: 200px;
+    width: 35px;
+    height: 35px;
+    overflow: hidden;
+    z-index: 100;
+    background-image: url(images/1080/coraldubai_en/mute.png);
+    background-repeat: no-repeat;
+    visibility: hidden
+}
+
+p.globalMutePageText {
+    color: red;
+    border: 0 solid;
+    font-size: 18px;
+    margin-left: 5px;
+    margin-top: 0;
+    z-index: 100
+}
+
+/*.messageBlock {*/
+    /*background-repeat: no-repeat;*/
+    /*background-image: url("images/1080/coraldubai_en/newmail.png");*/
+    /*height: 40px;*/
+    /*right: 44px;*/
+    /*overflow: hidden;*/
+    /*position: absolute;*/
+    /*top: 174px;*/
+    /*visibility: hidden;*/
+    /*width: 30px;*/
+    /*z-index: 100;*/
+/*}*/
+
+.messageBlock {
+    background-repeat: no-repeat;
+    background-image: url("images/1080/coraldubai_en/message/Message_Body.png");
+    height: 720px;
+    /* right: 44px; */
+    overflow: hidden;
+    position: relative;
+    top: 224px;
+    visibility: hidden;
+    width: 1280px;
+    z-index: 100;
+    background-color: #fff;
+    margin: 0 auto;
+}
+
+#messageBody {
+    padding-left: 60px;
+    padding-right: 60px;
+    top: 88px;
+    position: relative;
+    font-size: 22px;
+}
+
+.messageListRestListItem.active {
+    color: red;
+}
+
+/*.messageBlock {
+    background-color: rgb(232,28,27);
+    height: 280px;
+    overflow: hidden;
+    position: absolute;
+    top: 440px;
+    visibility: hidden;
+    width: 900px;
+    z-index: 100;
+    left: 435px;
+}*/
+
+body {
+    background: transparent
+}
+
+.hidden {
+    visibility: hidden
+}
+
+.header {
+    position: absolute;
+    width: 1920px;
+    height: 165px;
+    border: 0 solid;
+    background-color: rgba(255,255,255,0.9);
+    background-repeat: no-repeat;
+    background-position: right center;
+    z-index: 0;
+    top: 0;
+}
+
+.footer {
+    position: absolute;
+    width: 1920px;
+    height: 120px;
+    bottom: 0;
+    border: 0 solid;
+    left: 0;
+}
+
+.globalListHighlight {
+    width: 172px;
+    height: 136px;
+    background-image: url(images/1080/coraldubai_en/selected.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+    border: 0 solid
+}
+
+.videoClip {
+    position: absolute;
+    top: 163px;
+    left: 481px;
+    width: 304px;
+    height: 223px;
+    padding: 5px;
+    border: 0 solid
+}
+
+.videoFullScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px;
+    border: 0 solid
+}
+
+.globalLogo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 680px;
+    height: 180px;
+    border: 0 solid;
+    background-image: url("images/1080/coraldubai_en/logo_en.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.globalClock {
+    color: #845541;
+    font-size: 24px;
+    position: absolute;
+    right: 100px;
+    top: 58px;
+}
+
+.globalTitle {
+    background-color: #80594d;
+    color: #fff;
+    font-size: 22px;
+    height: 40px;
+    line-height: 35px;
+    display: none;
+}
+
+.globalTitle::before {
+    content: "\00a0\00a0\00a0\00a0\00a0\00a0"
+}
+
+.guestTitle {
+    font-size: 36px;
+    font-weight: bold;
+    padding: 30px;
+}
+
+.guestWelcome {
+    font-size: 27px;
+    font-weight: normal;
+    text-align: justify
+}
+
+.langListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 133px;
+    right: 280px;
+    width: 333px;
+    height: 33px
+}
+
+.langMainListItem {
+    border: 0 solid;
+    width: 113px;
+    height: 33px;
+    float: left
+}
+
+.RadioCliplogo {
+    position: relative;
+    margin: auto;
+    display: block;
+    top: 53px;
+    width: 267px;
+    height: 267px;
+    z-index: 1000
+}
+
+.epgProgramInfo {
+    border: 0 solid;
+    position: absolute;
+    top: 33px;
+    left: 191px;
+    width: 599px;
+    height: 98px;
+    background-repeat: no-repeat
+}
+
+.epgProgramInfoName {
+    border: 0 solid;
+    width: 433px;
+    height: 20px;
+    line-height: 20px;
+    color: #fff;
+    overflow: hidden;
+    float: left;
+    font-size: 18px;
+    padding-left: 7px;
+    padding-top: 3px
+}
+
+.epgProgramInfoDate {
+    border: 0 solid;
+    width: 1599px;
+    height: 20px;
+    line-height: 20px;
+    color: #fff;
+    overflow: hidden;
+    float: left;
+    font-size: 18px;
+    padding-top: 3px
+}
+
+.epgProgramInfoDescription {
+    border: 0 solid;
+    width: 589px;
+    height: 71px;
+    color: #fff;
+    overflow: hidden;
+    float: left;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 3px
+}
+
+.epgGridContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 167px;
+    left: 191px;
+    width: 599px;
+    height: 255px;
+    background-repeat: no-repeat
+}
+
+.epgGridDate {
+    border: 0 solid;
+    position: absolute;
+    top: 6px;
+    left: 13px;
+    width: 125px;
+    height: 25px;
+    line-height: 25px;
+    color: #eebf00;
+    text-align: center;
+    font-size: 16px
+}
+
+.epgGridTimeLine {
+    border: 0 solid;
+    position: absolute;
+    top: 7px;
+    left: 140px;
+    width: 500px;
+    height: 25px
+}
+
+.epgGridTimeLineItem {
+    border: 0 solid;
+    width: 100px;
+    height: 25px;
+    line-height: 25px;
+    float: left;
+    color: #eebf00;
+    font-size: 16px
+}
+
+.epgChannelListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 32px;
+    left: 10px;
+    width: 125px;
+    height: 213px
+}
+
+.epgChannelListItem {
+    border: 0 solid;
+    width: 122px;
+    height: 25px;
+    background-repeat: no-repeat;
+    line-height: 25px;
+    overflow: hidden;
+    color: #fff;
+    margin: 1px 0 1px 0;
+    padding-left: 3px
+}
+
+.epgProgramListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 32px;
+    left: 140px;
+    width: 450px;
+    height: 213px
+}
+
+.epgProgramsDiv {
+    border: 0 solid;
+    width: 450px;
+    height: 25px;
+    margin: 1px 0 1px 0
+}
+
+.epgProgramDiv {
+    height: 24px;
+    color: #fff;
+    float: left;
+    background-color: #742600;
+    border: 1px solid #fff;
+    margin-right: 2px;
+    line-height: 24px;
+    padding-left: 3px;
+    overflow: hidden
+}
+
+.epgProgramDivSelected {
+    height: 36px;
+    color: #fff;
+    float: left;
+    background-color: #b00;
+    border: 1px solid #fff;
+    margin-right: 1px;
+    line-height: 24px;
+    padding-left: 3px;
+    overflow: hidden
+}
+
+.epgFullIU {
+    width: 438px
+}
+
+.menuMainListContainer {
+    border: 0 solid;
+    width: 100%;
+    height: 60px;
+    float: left
+}
+
+.menuMainListItem {
+    border-right: 3px solid #efefef;
+    color: #fff;
+    float: left;
+    font-size: 32px;
+    max-height: 60px;
+    min-width: 176.7px;
+    min-height: 60px;
+    padding: 0 30px;
+    text-align: center;
+    line-height: 62px;
+    text-transform: uppercase;
+    background-color: #86868a;
+}
+
+.menuListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 165px;
+    left: 0;
+    background: #86868a;
+    width: 100%;
+    height: 60px;
+}
+
+.menuListCorner {
+    border: 0 solid;
+    position: absolute;
+    top: 167px;
+    left: 403px;
+    width: 14px;
+    height: 133px;
+    float: left
+}
+
+.menuTvIconSelected, .menuVodIconSelected, .menuBrowserIconSelected, .menuRadioIconSelected, .menuInternetIconSelected, .menuMessageIconSelected, .menuServiceIconSelected, .menuLocalIconSelected, .menuKeeperIconSelected, .menuRestrntIconSelected, .menuSpaIconSelected, .menuExperienceIconSelected, .menuNewsnpromoIconSelected, .menuScheduleIconSelected, .menuHomeIconSelected, .menuLanguageIconASelected, .menuLanguageIconESelected, .menuNewsnpromoIconSelected {
+    color: #fff;
+    background-color: #df1820;
+    -webkit-transform: scale(1.1);  /* Chrome, Opera 15+, Safari 3.1+ */
+      -ms-transform: scale(1.1);  /* IE 9 */
+          transform: scale(1.1);  /* Firefox 16+, IE 10+, Opera */
+    border-right: none;
+    font-weight: bold;
+}
+
+.menuTvIconSemi_selected, .menuVodIconSemi_selected, .menuBrowserIconSemi_selected, .menuRadioIconSemi_selected, .menuInternetIconSemi_selected, .menuMessageIconSemi_selected, .menuServiceIconSemi_selected, .menuLocalIconSemi_selected, .menuKeeperIconSemi_selected, .menuRestrntIconSemi_selected, .menuSpaIconSemi_selected, .menuExperienceIconSemi_selected, .menuNewsnpromoIconSemi_selected, .menuScheduleIconSemi_selected, .menuHomeIconSemi_selected, .menuLanguageIconASemi_selected, .menuLanguageIconESemi_selected, .menuNewsnpromoIconSemi_selected {
+    color: #fff;
+    background-color: #df1820;
+    -webkit-transform: scale(1);  /* Chrome, Opera 15+, Safari 3.1+ */
+      -ms-transform: scale(1);  /* IE 9 */
+          transform: scale(1);  /* Firefox 16+, IE 10+, Opera */
+    border-right: 3px solid #efefef;
+    font-weight: normal;
+}
+
+.menuMainListItem.menuLanguageIconA {
+    background-image: url("images/1080/coraldubai_en/lan/ArabIcon.png");
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
+    background-position: center center;
+}
+
+.menuMainListItem.menuLanguageIconASelected {
+    background-image: url("images/1080/coraldubai_en/lan/ArabIconSelect.png");
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
+    background-position: center center;
+}
+
+.menuMainListItem.menuLanguageIconE {
+    background-image: url("images/1080/coraldubai_en/lan/EnglishIcon.png");
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
+    background-position: center center;
+}
+
+.menuMainListItem.menuLanguageIconESelected {
+    background-image: url("images/1080/coraldubai_en/lan/EnglishIconSelect.png");
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
+    background-position: center center;
+}
+
+.menuNewsListContainer {
+    padding: 0 20px
+}
+
+.menuNewsListItemTitle {
+    font-size: 32px;
+    font-weight: bold
+}
+
+.menuNewsListItemSummary {
+    font-size: 28px;
+    font-weight: normal;
+    text-align: justify
+}
+
+.globalTVListHighlight {
+    border: 0 solid;
+    width: 210px;
+    height: 130px;
+    background-image: url(images/1080/coraldubai_en/tv/channel_select.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+}
+
+.globalTVGListHighlight {
+    border: 0 solid;
+    width: 210px;
+    height: 130px;
+    background-image: url(images/1080/coraldubai_en/tv/channel_select.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+}
+
+.globalInternetGListHighlight {
+    width: 220px;
+    height: 220px;
+    background-image: url(images/1080/coraldubai_en/internet/gselected.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+    border: 0 solid
+}
+
+.chListChannelListItem {
+    background-color: rgba(235,235,234,1);
+    color: #fff;
+    float: left;
+    height: 120px;
+    margin-bottom: 16px;
+    margin-right: 16px;
+    width: 200px;
+}
+
+img.chListChannelIMG {
+    width: 90px;
+    height: 90px;
+    border-radius: 13px;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
+    padding: 15px 60px;
+}
+
+.chChooserChannelListItem {
+    background-color: rgba(255,255,255,0.7);
+    color: #555555;
+    float: left;
+    height: 120px;
+    margin-bottom: 16px;
+    margin-right: 16px;
+    width: 200px;
+    text-align: center;
+    line-height: 120px;
+    font-size: 30px;
+}
+
+.chListChannelListTotal {
+    border: 0 solid;
+    color: #fff;
+    font-size: 15px;
+    height: 30px;
+    left: 0;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    top: 454px;
+    width: 600px;
+    display: none
+}
+
+.chListSubMenuListContainer div:last-child {
+    border-right: medium none
+}
+
+.chSubMenuAllIconSelected, .chSubMenuGenreIconSelected, .chSubMenuAlphabetIconSelected {
+    color: #fff;
+    background-color: #df1820;
+    -webkit-transform: scale(1.1);  /* Chrome, Opera 15+, Safari 3.1+ */
+      -ms-transform: scale(1.1);  /* IE 9 */
+          transform: scale(1.1);  /* Firefox 16+, IE 10+, Opera */
+    border-right: none;
+    font-weight: bold;
+}
+
+.chChooserGenreListTotal {
+    border: 0 solid;
+    color: #fff;
+    font-size: 20px;
+    height: 30px;
+    left: 0;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    top: 460px;
+    width: 600px;
+    display: none
+}
+
+.chName {
+    background-color: #df1820;
+    bottom: -31px;
+    color: #fff;
+    font-size: 18px;
+    height: 31px;
+    margin-right: 0;
+    position: absolute;
+    text-align: center;
+    width: 870px;
+    line-height: 28px;
+}
+.favInfobarContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 73px;
+    left: 347px;
+    width: 400px;
+    height: 70px;
+    visibility: hidden;
+    z-index: 10
+}
+
+.favContentName {
+    border: 0 solid;
+    position: absolute;
+    top: 0;
+    left: 40px;
+    color: #fff;
+    width: 400px;
+    height: 32px;
+    overflow: hidden;
+    font-size: 18px;
+    line-height: 32px
+}
+
+.alpha_order_right {
+    background-repeat: no-repeat;
+    width: 70px;
+    height: 70px;
+    float: right
+}
+
+.alpha_order_left {
+    background-repeat: no-repeat;
+    width: 70px;
+    height: 70px;
+    float: left
+}
+
+#vodChooserAlphaListContainer .alpha_order_left {
+    width: 71px
+}
+
+#vodChooserAlphaListContainer.vodListGenreListContainer:empty {
+    display: none
+}
+
+.vodChooserListItem {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #80594d;
+    height: 120px;
+    float: left;
+    line-height: 120px;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    width: 190px;
+    text-align: center
+}
+
+.vodListMovieListItem {
+    border: 0 solid;
+    width: 190px;
+    height: 120px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 133px;
+    text-align: center;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+    margin-bottom: 30px;
+    margin-right: 30px
+}
+
+img.vodMovieListItemIMG {
+    width: 100px;
+    height: 100px;
+    border-radius: 13px;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
+    padding: 10px 44px
+}
+
+.vodListMovieListTotal {
+    border: 0 solid;
+    position: absolute;
+    top: 509px;
+    left: 493px;
+    width: 67px;
+    height: 27px;
+    line-height: 27px;
+    color: #fff;
+    font-size: 20px;
+    text-align: right;
+    display: none
+}
+
+img.vodListMovieInfoPicture {
+    border: 0 solid;
+    width: 220px;
+    float: left;
+    margin-left: 12px;
+    border-radius: 2px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    margin-top: 15px
+}
+
+.vodListMovieInfoMetadataContainer {
+    border: 0 solid;
+    width: 235px;
+    height: 213px;
+    float: left;
+    padding-left: 13px;
+    margin-top: 15px
+}
+
+.vodListMovieInfoName {
+    border: 0 solid;
+    width: 237px;
+    color: #fff;
+    height: 27px;
+    line-height: 27px;
+    font-size: 16px
+}
+
+.vodListMovieInfoTitle {
+    border: 0 solid;
+    width: 237px;
+    color: #fff;
+    font-size: 13px;
+    height: 27px;
+    line-height: 27px
+}
+
+.vodListMovieInfoDescription {
+    border: 0 solid;
+    width: 237px;
+    color: #fff;
+    font-size: 13px;
+    height: 118px;
+    overflow: hidden
+}
+
+.vodSubMenuAllIconSelected, .vodSubMenuAlphabetIconSelected, .vodSubMenuGenreIconSelected {
+    color: #fff
+}
+
+.vodChooserGenreListTotal {
+    border: 0 solid;
+    position: absolute;
+    top: 495px;
+    right: 20px;
+    width: 67px;
+    height: 27px;
+    line-height: 27px;
+    color: #fff;
+    font-size: 20px;
+    text-align: right;
+    display: none
+}
+
+.vodPlayerContainer {
+    border: 0 solid;
+    height: 53px;
+    left: 1235px;
+    position: absolute;
+    top: 620px;
+    width: 460px
+}
+
+.vodPlayIcon {
+    border: 0 solid;
+    margin-left: 67px;
+    width: 192px;
+    height: 53px;
+    float: left;
+    background-image: url(images/1080/coraldubai_en/vod/movie_off.png);
+    background-repeat: no-repeat
+}
+
+.vodPlayIconSelected {
+    border: 0 solid;
+    margin-left: 67px;
+    width: 192px;
+    height: 53px;
+    float: left;
+    background-image: url(images/1080/coraldubai_en/vod/movie_on.png);
+    background-repeat: no-repeat
+}
+
+.vodTrailerIcon {
+    border: 0 solid;
+    width: 192px;
+    height: 53px;
+    float: left;
+    background-image: url(images/1080/coraldubai_en/vod/trailer_off.png);
+    background-repeat: no-repeat
+}
+
+.vodTrailerIconSelected {
+    border: 0 solid;
+    width: 192px;
+    height: 53px;
+    float: left;
+    background-image: url(images/1080/coraldubai_en/vod/trailer_on.png);
+    background-repeat: no-repeat
+}
+
+.fsvPlayerContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 400px
+}
+
+.fsvInfobarContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 313px;
+    left: 60px;
+    width: 733px;
+    height: 140px;
+    visibility: hidden
+}
+
+.fsvContentName {
+    border: 0 solid;
+    position: absolute;
+    top: 11px;
+    left: 17px;
+    color: #fff;
+    width: 433px;
+    height: 32px;
+    overflow: hidden;
+    font-size: 17px;
+    line-height: 32px;
+    z-index: 100
+}
+
+.fsvClock {
+    border: 0 solid;
+    position: absolute;
+    top: 9px;
+    left: 617px;
+    color: #fff;
+    font-size: 18px;
+    line-height: 32px;
+    height: 32px;
+    width: 167px
+}
+
+.fsvProgressBarContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 23px;
+    left: 447px;
+    width: 267px;
+    height: 16px
+}
+
+.fsvProgressBarCurrentPosition {
+    border: 0 solid;
+    float: left;
+    width: 60px;
+    height: 16px;
+    line-height: 16px;
+    color: #fff;
+    text-align: right;
+    padding-right: 7px
+}
+
+.fsvProgressBarCurrentPlayed {
+    border: 0 solid;
+    float: left;
+    background-color: #e23d28;
+    margin-top: 4px
+}
+
+.fsvProgressBarCurrentRemained {
+    border: 0 solid;
+    float: left;
+    background-color: #fff;
+    margin-top: 4px
+}
+
+.fsvProgramListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 53px;
+    left: 17px;
+    width: 705px;
+    height: 53px
+}
+
+.cfsvProgramListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 53px;
+    left: 17px;
+    width: 705px;
+    height: 53px
+}
+
+.fsvProgramListItemNow {
+    border: 0 solid;
+    width: 705px;
+    height: 27px;
+    line-height: 27px;
+    text-align: left;
+    font-size: 17px;
+    color: #f00
+}
+
+.fsvProgramListItemNext {
+    border: 0 solid;
+    width: 705px;
+    height: 27px;
+    line-height: 27px;
+    text-align: left;
+    font-size: 16px;
+    color: #fff
+}
+
+.fsvTrickPlayContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    width: 100px;
+    height: 100px
+}
+
+.fsvIdleButton {
+    border: 0 solid;
+    width: 100px;
+    height: 100px
+}
+
+.fsvStopButton {
+    border: 0 solid;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat
+}
+
+.fsvPlayButton {
+    border: 0 solid;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat
+}
+
+.fsvPauseButton {
+    border: 0 solid;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat
+}
+
+.fsvRewindButton {
+    border: 0 solid;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat
+}
+
+.fsvFFButton {
+    border: 0 solid;
+    width: 100px;
+    height: 100px;
+    background-repeat: no-repeat
+}
+
+.fsvChannelZapper {
+    border: 0 solid;
+    position: absolute;
+    top: 67px;
+    left: 67px;
+    width: 53px;
+    height: 53px;
+    font-size: 32px;
+    color: #fff
+}
+
+.globalRestListHighlight {
+    border: 0 solid;
+    width: 134px;
+    height: 56px;
+    background-image: url(images/1080/coraldubai_en/rest/selected.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+    padding: 0
+}
+
+.restrntListRestListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 29px;
+    left: 10px
+}
+
+#restaurant_information p {
+    margin: 0;
+    padding: 0 40px;
+    text-align: justify
+}
+
+#restaurant_information p:first-child {
+    margin-top: 40px
+}
+
+.restrntListRestInfoPicture {
+    border: 0 solid;
+    width: 617px;
+    height: 267px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    float: right
+}
+
+.restrntOrderRestInfo {
+    border: 0 solid;
+    position: absolute;
+    top: 133px;
+    left: 220px;
+    width: 504px;
+    height: 267px;
+    padding: 0
+}
+
+.restrntDetailRestInfo {
+    border: 0 solid;
+    position: absolute;
+    top: 35px;
+    left: 287px;
+    width: 867px
+}
+
+img.restDetailIMG {
+    width: 317px;
+    height: 400px;
+    border-top-left-radius: 8px;
+    -moz-border-top-left-radius: 8px;
+    -webkit-border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    -moz-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px
+}
+
+.restrntDetailListItem {
+    border: 0 solid;
+    width: 200px;
+    height: 57px;
+    background-image: url(images/1080/coraldubai_en/rest/itemBox.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 56px;
+    text-align: center;
+    color: #fff;
+    padding: 0 0 13px 0
+}
+
+.restrntDetailListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 29px;
+    left: 10px
+}
+
+.globalRestListHighlight {
+    display: none
+}
+
+.restrntDetailListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 35px;
+    left: 13px;
+    width: 200px;
+    height: 320px;
+    font-size: 28px
+}
+
+.restrntDetailEmptyList {
+    border: 0 solid;
+    color: #fff;
+    font-size: 18px
+}
+
+.restDetailRestInfoPicture {
+    border: 0 solid;
+    background-repeat: no-repeat;
+    background-position: top left;
+    float: left
+}
+
+img.restDetailRestInfoPicture {
+    width: 317px;
+    height: 465px;
+    border-top-left-radius: 8px;
+    -moz-border-top-left-radius: 8px;
+    -webkit-border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px
+}
+
+.restDetailListRestInfo_desc {
+    float: left;
+    border: 0 solid;
+    width: 593px;
+    height: 380px;
+    margin-top: 0;
+    padding: 13px 7px 7px 7px;
+    color: black;
+    font-size: 13px;
+    background-color: white;
+    border-radius: 0 13px 13px 0
+}
+
+.globalRestMenuHighlight {
+    border: 0 solid;
+    width: 935px;
+    height: 80px;
+    background-image: url(images/1080/coraldubai_en/rest/food_highlighted.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+    padding: 0
+}
+
+.restrntMenuListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 133px;
+    left: 280px
+}
+
+.restrntFoodListItem {
+    border: 0 solid;
+    width: 922px;
+    height: 67px;
+    color: black;
+    float: left;
+    line-height: 27px;
+    background-color: #fff;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    margin-bottom: 13px
+}
+
+.restrntFoodListItem .title {
+    border: 0 solid;
+    float: left;
+    width: 223px;
+    padding: 7px 0 3px 20px;
+    font-weight: bold;
+    line-height: 30px
+}
+
+.restrntFoodListItem .description {
+    border: 0 solid;
+    float: left;
+    line-height: 30px;
+    width: 507px;
+    padding: 3px 0 3px 3px
+}
+
+.restrntFoodListItem .price {
+    border: 0 solid;
+    float: left;
+    width: 127px;
+    padding: 3px 0 3px 3px;
+    line-height: 30px
+}
+
+.foodDetailContainer {
+    border: 0 solid;
+    position: absolute;
+    background-repeat: no-repeat;
+    top: 29px;
+    left: 280px;
+    width: 927px;
+    height: 400px;
+    padding: 0;
+    display: inline-block;
+    font-size: 18px;
+    overflow: hidden;
+    visibility: hidden;
+    font-size: 18px;
+    z-index: 100
+}
+
+.orderTime {
+    width: 400px;
+    height: 67px;
+    background-image: url(images/1080/coraldubai_en/rest/timeField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 67px;
+    text-align: left;
+    padding: 0 0 13px 183px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+.orderTime_selected {
+    width: 400px;
+    height: 67px;
+    background-image: url(images/1080/coraldubai_en/rest/timeField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 67px;
+    text-align: left;
+    padding: 0 0 13px 183px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+.orderDate {
+    width: 400px;
+    height: 67px;
+    background-image: url(images/1080/coraldubai_en/rest/dateField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 67px;
+    text-align: left;
+    padding: 0 0 13px 183px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+.orderDate_selected {
+    width: 400px;
+    height: 67px;
+    background-image: url(images/1080/coraldubai_en/rest/dateField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 67px;
+    text-align: left;
+    padding: 0 0 13px 183px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+.orderGuest {
+    width: 400px;
+    height: 67px;
+    background-image: url(images/1080/coraldubai_en/rest/guestField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 67px;
+    text-align: left;
+    padding: 0 0 13px 183px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+.orderGuest_selected {
+    width: 400px;
+    height: 67px;
+    background-image: url(images/1080/coraldubai_en/rest/guestField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 67px;
+    text-align: left;
+    padding: 0 0 13px 183px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+.orderSubmit {
+    width: 400px;
+    height: 67px;
+    background-image: url(images/1080/coraldubai_en/rest/order.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 67px;
+    text-align: left;
+    padding: 0 0 13px 183px
+}
+
+.orderSubmit_selected {
+    width: 400px;
+    height: 67px;
+    background-image: url(images/1080/coraldubai_en/rest/order_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 67px;
+    text-align: left;
+    padding: 0 0 13px 83px
+}
+
+.restrntOrderRestListContainer {
+    position: absolute;
+    top: 140px;
+    left: 27px;
+    width: 400px
+}
+
+.restrntOrderInfoContainer {
+    background-color: #fff;
+    position: absolute;
+    top: 140px;
+    left: 487px;
+    width: 680px;
+    height: 420px;
+    color: maroon;
+    padding: 10px;
+    font-size: 13px;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px
+}
+
+.restrntOrdermsg {
+    border: 0 solid;
+    position: absolute;
+    top: 110px;
+    left: 507px;
+    width: 507px;
+    height: 33px;
+    color: #fff
+}
+
+.homefooterContainer {
+    border: 0 solid;
+    bottom: 0;
+    font-size: 12px;
+    left: 0;
+    position: absolute;
+    width: 1920px
+}
+
+.footerContainer {
+    border: 0 solid;
+    bottom: 20px;
+    color: #fff;
+    font-size: 18px;
+    height: 30px;
+    left: 60px;
+    position: absolute;
+    width: 1600px;
+}
+
+.footerImage {
+    border: 0 solid;
+    float: left;
+    margin-left: 10px
+}
+
+.footerContainer .footerImage:first-child {
+    margin-left: 0
+}
+
+.footerText {
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 0 solid;
+    color: #80594d;
+    float: left;
+    font-size: 20px;
+    line-height: 26px;
+    margin-left: 10px;
+    min-width: 184px;
+    padding-left: 10px;
+    width: auto;
+    z-index: 100
+}
+
+.vodTrickPlayContainer {
+    border: 0 solid;
+    position: absolute;
+    width: 177px;
+    padding-top: 3px;
+    font-size: 12px;
+    height: 33px;
+    top: 13px;
+    left: 13px
+}
+
+.vodStop {
+    border: 0 solid;
+    float: left;
+    visibility: hidden;
+    background-repeat: no-repeat;
+    width: 52px;
+    height: 40px
+}
+
+.vodRewind {
+    border: 0 solid;
+    float: left;
+    visibility: hidden;
+    background-repeat: no-repeat;
+    width: 52px;
+    height: 40px
+}
+
+.vodPause {
+    border: 0 solid;
+    float: left;
+    visibility: hidden;
+    background-repeat: no-repeat;
+    width: 52px;
+    height: 40px
+}
+
+.vodPlay {
+    border: 0 solid;
+    float: left;
+    visibility: hidden;
+    background-repeat: no-repeat;
+    width: 52px;
+    height: 40px
+}
+
+.vodForward {
+    border: 0 solid;
+    float: left;
+    visibility: hidden;
+    background-repeat: no-repeat;
+    width: 52px;
+    height: 40px
+}
+
+.homeHeader {
+    border: 0 solid;
+    width: 840px;
+    height: 63px;
+    position: absolute;
+    left: 7px;
+    float: left;
+    top: 0
+}
+
+.homeweather {
+    border: 0 solid;
+    color: #DF1820;
+    height: 90px;
+    right: 280px;
+    overflow: hidden;
+    position: absolute;
+    text-align: left;
+    top: 58px;
+    width: auto;
+    z-index: 10;
+}
+
+.homeweather img {
+    width: 60px
+}
+
+.homeweatherImage {
+    float: left;
+    height: 90px;
+    width: 60px
+}
+
+.homeweatherTextContainer {
+    float: left;
+    height: 90px;
+    margin-left: 10px;
+    width: auto
+}
+
+.homeweatherTextType {
+    font-size: 20px
+}
+
+.homeweatherTextTmp {
+    font-size: 30px
+}
+
+.dateContainer {
+    border: 0 solid;
+    position: absolute;
+    left: 600px;
+    top: 10px;
+    width: 267px;
+    height: 49px
+}
+
+.dateTitle {
+    border: 0 solid;
+    font-size: 12px;
+    height: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff
+}
+
+.dateText {
+    border: 0 solid;
+    font-size: 18px;
+    height: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #fff
+}
+
+.homeScheduleContainer {
+    border: 0 solid;
+    position: absolute;
+    left: 7px;
+    top: 73px;
+    width: 363px;
+    height: 357px;
+    background-repeat: no-repeat;
+    padding: 13px 7px 7px 7px
+}
+
+.homeScheduleItemContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 104px;
+    left: 7px;
+    width: 377px;
+    height: 357px
+}
+
+.homeScheduleTitle {
+    border: 0 solid;
+    position: absolute;
+    left: 7px;
+    top: 73px;
+    width: 267px;
+    height: 27px;
+    line-height: 3px;
+    padding: 13px 7px 7px 133px;
+    color: #5f073d;
+    font-weight: bold;
+    font-size: 18px
+}
+
+.homeScheduleItem_logo_t {
+    width: 93px;
+    height: 24px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 23px;
+    padding: 0;
+    border: 0 solid;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    text-transform: capitalize
+}
+
+.homeScheduleItem_route_t {
+    width: 153px;
+    height: 24px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 24px;
+    padding: 0;
+    border: 0 solid;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    text-transform: capitalize
+}
+
+.homeScheduleItem_flight_t {
+    width: 67px;
+    height: 24px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 23px;
+    padding: 0;
+    border: 0 solid;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    text-transform: capitalize
+}
+
+.homeScheduleItem_time_t {
+    width: 61px;
+    height: 24px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 23px;
+    padding: 0;
+    border: 0 solid;
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    text-transform: capitalize
+}
+
+.homeScheduleItem_logo {
+    width: 93px;
+    height: 28px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 25px;
+    padding: 0;
+    border: 0 solid;
+    text-align: center
+}
+
+.homeScheduleItem_route {
+    width: 153px;
+    height: 28px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 25px;
+    padding: 0;
+    border: 0 solid;
+    text-align: center
+}
+
+.homeScheduleItem_flight {
+    width: 67px;
+    height: 28px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 24px;
+    padding: 0;
+    border: 0 solid;
+    text-align: center
+}
+
+.homeScheduleItem_time {
+    width: 61px;
+    height: 28px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 25px;
+    padding: 0;
+    border: 0 solid;
+    text-align: center
+}
+
+.newsFooter {
+    background-image: url("images/1080/coraldubai_en/ticker-bg_en.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    border: 0 solid;
+    bottom: 40px;
+    position: absolute;
+    width: 1920px;
+    height: 60px;
+}
+
+.ticker_tape_restaurent, .ticker_tape_exp, .ticker_tape_local, .ticker_tape_tv, .ticker_tape_tv_genre, .ticker_tape_radio, .ticker_tape_radio_genre, .ticker_tape_messages, .ticker_tape_services, .ticker_tape_spa, .ticker_tape_newsnpromo {
+    background-image: url("images/1080/coraldubai_en/ticker-bg_en.png");
+    background-position: left center;
+    background-repeat: no-repeat;
+    border: 0 solid;
+    bottom: 70px;
+    height: 60px;
+    position: absolute;
+    width: 1920px;
+    left: 0;
+}
+
+#tv_promotion_text, #local_promotion_text, #restaurent_promotion_text, #newsnpromo_promotion_text, #messages_promotion_text  {
+  color: #6b493f;
+  font-size: 24px;
+  font-weight: bold;
+  left: 70px;
+  line-height: 16px;
+  position: relative;
+
+}
+
+#promotion_id{
+    color: #e81c1b;
+    float: left;
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 60px;
+    margin-left: 60px;
+    text-transform: capitalize;
+    width: auto;
+}
+
+.newsFooterTitle {
+    float: left;
+    width: auto;
+    font-size: 36px;
+    text-transform: capitalize;
+    font-weight: bold;
+    line-height: 60px;
+    margin-left: 60px;
+    color: #df1820;
+}
+
+.newsFooterText {
+    float: left;
+    margin-left: 40px;
+}
+
+.scrollInput {
+    background-color: transparent;
+    color: #fff;
+    font-size: 35px;
+    font-weight: normal;
+    line-height: 60px;
+}
+
+.clockContainer {
+    border: 0 solid;
+    height: 300px;
+    width: 367px;
+    left: 20px;
+    top: 67px;
+    position: absolute;
+    background-color: #0c6
+}
+
+.digitalClockContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 67px;
+    left: 467px;
+    width: 160px;
+    height: 355px;
+    padding: 0 0 0 27px
+}
+
+.digitalClockItemsText {
+    border: 0 solid;
+    width: 147px;
+    height: 20px;
+    float: left;
+    line-height: 24px;
+    padding: 7px 0 1px 2px;
+    font-weight: bold
+}
+
+.digitalClockItemsTime {
+    width: 147px;
+    height: 44px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 37px;
+    padding: 3px 1px 1px 20px;
+    font-weight: bold;
+    font-size: 28px
+}
+
+.messageListRestInfo {
+    border: 0 solid;
+    position: absolute;
+    top: 13px;
+    left: 220px;
+    width: 580px;
+    height: 280px;
+    padding: 13px 7px 7px 7px
+}
+
+.messageListRestListHighlight {
+    border: 0 solid;
+    left: 56px;
+    position: absolute;
+    top: 298px
+}
+
+.messageListRestListContainer {
+    border: 0 solid;
+    left: 60px;
+    position: absolute;
+    top: 300px
+}
+
+.globalMsgListHighlight {
+    border: 0 solid;
+    width: 1120px;
+    height: 100px;
+    background-image: url(images/1080/coraldubai_en/message/selected3.png);
+    background-repeat: no-repeat;
+    z-index: 1;
+    padding: 0
+}
+
+.messageListRestListItem {
+  background-color: rgba(255, 255, 255, 0.7);
+  border: 0 solid;
+  color: #464646;
+  font-size: 24px;
+  height: 63px;
+  line-height: 20px;
+  margin-bottom: 15px;
+  padding: 15px;
+  text-align: left;
+  width: 600px;
+}
+
+.messageListRestInfoPicture {
+    border: 0 solid;
+    width: 567px;
+    height: 267px;
+    background-image: url(images/1080/coraldubai_en/vod/alphaOff.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    float: right
+}
+
+.messageDetailContainer {
+    background-color: #eee;
+    border: 0 solid;
+    color: #464646;
+    display: inline-block;
+    font-size: 24px;
+    right: 60px;
+    min-height: 536px;
+    overflow: hidden;
+    padding: 13px;
+    position: absolute;
+    top: 300px;
+    visibility: hidden;
+    width: 1100px;
+    z-index: 100
+}
+
+#menuContainer {
+    border: 0 solid;
+    margin: 0;
+    padding: 0;
+    height: 57px;
+    width: 573px
+}
+
+#foodContainer {
+    border: 0 solid;
+    height: 227px;
+    padding: 7px 7px 7px 20px;
+    width: 467px
+}
+
+#colum1 {
+    border: 0 solid;
+    width: 100px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 12px;
+    color: #000;
+    text-align: left
+}
+
+#colum2 {
+    border: 0 solid;
+    margin-left: 113px;
+    margin-top: -13px;
+    width: 300px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: normal;
+    line-height: 13px;
+    color: #000;
+    text-align: left
+}
+
+h1, h2, h3, h4 {
+    border: 0 solid;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #000;
+    text-align: center
+}
+
+.radioListInfo {
+    border: 0 solid;
+    position: absolute;
+    top: 152px;
+    left: 447px;
+    width: 660px;
+    height: 436px;
+    background-image: url(images/1080/coraldubai_en/vod/movieInfo.png);
+    background-repeat: no-repeat;
+    padding: 13px 7px 7px 7px
+}
+
+.radioListInfoPicture {
+    border: 0 solid;
+    width: 107px;
+    height: 133px;
+    background-image: url(images/1080/coraldubai_en/vod/alphaOff.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    float: left
+}
+
+.radioListInfoMetadataContainer {
+    border: 0 solid;
+    width: 237px;
+    height: 213px;
+    float: left;
+    padding-left: 3px
+}
+
+.radioListInfoName {
+    border: 0 solid;
+    width: 237px;
+    color: #fff;
+    height: 27px;
+    line-height: 27px;
+    font-size: 16px
+}
+
+.radioListInfoTitle {
+    border: 0 solid;
+    width: 237px;
+    color: #fff;
+    font-size: 13px;
+    height: 27px;
+    line-height: 27px
+}
+
+.radioListInfoDescription {
+    border: 0 solid;
+    width: 237px;
+    color: #fff;
+    font-size: 13px;
+    height: 118px;
+    overflow: hidden
+}
+
+.radioListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 203px;
+    left: 104px
+}
+
+.radioListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 147px;
+    left: 70px;
+    width: 293px;
+    height: 280px
+}
+
+.radioListTotal {
+    border: 0 solid;
+    position: absolute;
+    top: 387px;
+    left: 333px;
+    width: 67px;
+    height: 27px;
+    line-height: 27px;
+    color: #fff;
+    font-size: 20px;
+    text-align: right
+}
+
+.radioListItem {
+    border: 0 solid;
+    width: 93px;
+    height: 89px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 89px;
+    text-align: center;
+    color: #fff
+}
+
+.serviceListRestInfo {
+    border: 0 solid;
+    position: absolute;
+    top: 120px;
+    left: 220px;
+    width: 580px;
+    height: 280px;
+    padding: 13px 7px 7px 7px
+}
+
+.serviceMessageBox {
+    position: absolute;
+    top: 500px;
+    z-index: 10;
+    left: 572px;
+}
+.servicemsg {
+    border: 0 solid;
+    width: 640px;
+    height: 139px;
+    color: #fff;
+    background-color: #DF1820;
+}
+#serviceNotificationTitle {
+    font-size: 30px;
+    text-align: center;
+    position: relative;
+    top: 30px;
+}
+#serviceNotificationBody {
+    font-size: 28px;
+    text-align: center;
+    position: relative;
+    top: 31px;
+}
+
+.globalServiceHighlight {
+    border: 0 solid;
+    width: 656px;
+    height: 128px;
+    background-image: url(images/1080/coraldubai_en/service/highlighter.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+    padding: 0;
+}
+
+.serviceListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 367px;
+    left: 57px;
+}
+
+.serviceListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 370px;
+    left: 60px;
+    width: 650px;
+    height: 520px;
+}
+
+.serviceListInfoPicture {
+    border: 0 solid;
+    width: 617px;
+    height: 267px;
+    background-repeat: no-repeat;
+    background-position: top center;
+    float: right
+}
+
+.wakeupservice {
+    background-image: url(images/1080/coraldubai_en/service/Set_Alarm.png);
+    background-repeat: no-repeat;
+}
+
+.taxiservice {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/service/Taxi_Request.png);
+    background-repeat: no-repeat;
+}
+
+.laundryservice {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/service/View_Bill.png);
+    background-repeat: no-repeat;
+}
+
+.roomservice {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/service/Room_Service.png);
+    background-repeat: no-repeat;
+}
+
+.serviceNavListItems {
+    height: 122px;
+    width: 650px;
+    line-height: 84px;
+    margin-bottom: 10px;
+}
+
+.serviceorderTime {
+    border: 0 solid;
+    width: 400px;
+    height: 84px;
+    background-image: url(images/1080/coraldubai_en/service/timeField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+.serviceorderTime_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 84px;
+    background-image: url(images/1080/coraldubai_en/service/timeField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+/*.serviceorderDate {
+    border: 0 solid;
+    width: 400px;
+    height: 84px;
+    background-image: url(images/1080/coraldubai_en/service/dateField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 20px
+}
+
+.serviceorderDate_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 84px;
+    background-image: url(images/1080/coraldubai_en/service/dateField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 13px
+}*/
+
+/*.serviceorderGuest {
+    border: 0 solid;
+    width: 400px;
+    height: 84px;
+    background-image: url(images/1080/coraldubai_en/service/guestField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+.serviceorderGuest_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 84px;
+    background-image: url(images/1080/coraldubai_en/service/guestField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 60px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 13px
+}*/
+
+/*.serviceorderSubmit {
+    border: 0 solid;
+    width: 400px;
+    height: 84px;
+    background-image: url(images/1080/coraldubai_en/service/order.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left;
+    padding: 0 0 7px 183px
+}
+
+.serviceorderSubmit_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 84px;
+    background-image: url(images/1080/coraldubai_en/service/order_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left;
+    padding: 0 0 7px 183px
+}*/
+
+.globalServiceOrderHighlight {
+    border: 0 solid;
+    width: 147px;
+    height: 31px;
+    background-repeat: no-repeat;
+    z-index: 10;
+    padding: 0
+}
+
+.serviceOrderListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 158px;
+    left: 514px
+}
+
+.serviceInfoContainer {
+    background-repeat: no-repeat;
+    border: 0 solid;
+    top: 370px;
+    color: black;
+    font-size: 16px;
+    height: 520px;
+    position: absolute;
+    right: 60px;
+    width: 870px;
+    background-image: url(images/1080/coraldubai_en/service/Alarm.jpg);
+}
+.serviceInfoContainerTitle {
+    border: 0 solid;
+    color: #86868A;
+    font-size: 35px;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    top: 15px;
+    position: relative;
+}
+
+.serviceInfoContainerContent {
+    border: 0 solid;
+    height: 410px;
+    top: 30px;
+    position: relative;
+}
+.serviceorderAlarmTime {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/timeField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+.serviceorderAlarmTime_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/timeField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 13px
+}
+
+/*.serviceorderAlarmDate {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/dateField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 13px
+}*/
+
+/*.serviceorderAlarmDate_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/dateField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 16px
+}*/
+
+/*.serviceorderAlarmType {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/alarmtypeField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.serviceorderAlarmType_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/alarmtypeField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 16px
+}*/
+
+/*.serviceorderAlarmUDPNumber {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/numberField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.serviceorderAlarmUDPNumber_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/numberField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 16px
+}*/
+
+/*.serviceorderAlarmRingTone {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/ringtoneField.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.serviceorderAlarmRingTone_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/ringtoneField_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px;
+    font-weight: bold;
+    font-size: 16px
+}
+*/
+/*.serviceorderAlarmSubmit {
+    border: 0 solid;
+    width: 400px;
+    height: 48px;
+    background-image: url(images/1080/coraldubai_en/service/order.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 47px;
+    text-align: left;
+    padding: 0 0 7px 193px
+}
+
+.serviceorderAlarmSubmit_selected {
+    border: 0 solid;
+    width: 400px;
+    height: 64px;
+    background-image: url(images/1080/coraldubai_en/service/order_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left;
+    padding: 0 0 7px 193px
+}*/
+
+
+/*New Alarm Layout Styles*/
+.alarmRowItemLable {
+    width: 160px;
+    font-size: 30px;
+    float: left;
+    margin-left: 40px;
+    text-transform: uppercase;
+    color: #86868A;
+    text-align: right;
+}
+#serviceorderAlarmHour {
+    width: 40px;
+    font-size: 30px;
+    float: left;
+    text-align: center;
+    color: #DF1820;
+}
+.serviceorderAlarmHour_selected{
+    color: #f7941d !important;
+}
+#serviceorderAlarmMinute {
+    font-size: 30px;
+    width: 40px;
+    float: left;
+    text-align: center;
+    color: #DF1820;
+    margin-right: 60%;
+}
+.serviceorderAlarmMinute_selected{
+    color: #f7941d !important;
+}
+
+#hourMinSeparator {
+    font-size: 30px;
+    float: left;
+    width: 10px;
+    text-align: center;
+    color: #DF1820;
+}
+.alarmRowItemDateLable {
+    font-size: 30px;
+    float: left;
+    margin-left: 40px;
+    text-transform: uppercase;
+    text-align: right;
+    color: #86868A;
+}
+#serviceorderAlarmDate {
+    width: 300px;
+    float: left;
+    text-align: left;
+    font-size: 30px;
+    margin-left: 10px;
+    color: #DF1820;
+    margin-right: 40%;
+}
+.serviceorderAlarmDate_selected{
+    color: #f7941d !important;
+}
+.alarmRowItemTypeLable {
+    float: left;
+    font-size: 30px;
+    margin-left: 40px;
+    height: 50px;
+    line-height: 50px;
+    text-transform: uppercase;
+    margin-top: 25px;
+    color: #DF1820;
+}
+#serviceorderAlarmType {
+    float: left;
+    font-size: 30px;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 25px;
+    width: 250px;
+    text-align: center;
+    border: 2px solid;
+    text-transform: uppercase;
+    margin-left: 106px;
+    color: #86868A;
+    margin-right: 25%;
+}
+.serviceorderAlarmType_selected{
+    color: #f7941d !important;
+}
+.alarmRowItemChannelLable {
+    float: left;
+    font-size: 30px;
+    margin-left: 40px;
+    height: 50px;
+    line-height: 50px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    color: #DF1820;
+}
+#serviceorderAlarmUDPNumber {
+    float: left;
+    font-size: 30px;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 20px;
+    width: 250px;
+    text-align: center;
+    border: 2px solid;
+    text-transform: uppercase;
+    margin-left: 100px;
+    color: #86868A;
+    margin-right: 25%;
+}
+.serviceorderAlarmUDPNumber_selected{
+     color: #f7941d !important;
+}
+.alarmRowItemRingtoneLable{
+    float: left;
+    font-size: 30px;
+    margin-left: 40px;
+    height: 50px;
+    line-height: 50px;
+    text-transform: uppercase;
+    margin-top: 20px;
+    color: #DF1820;
+}
+#serviceorderAlarmRingTone{
+    float: left;
+    font-size: 30px;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 20px;
+    width: 250px;
+    text-align: center;
+    border: 2px solid;
+    text-transform: uppercase;
+    margin-left: 132px;
+    color: #86868A;
+    margin-right: 25%;
+}
+.serviceorderAlarmRingTone_selected{
+    color: #f7941d !important;
+}
+#serviceorderAlarmSubmit {
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin-left: 133px;
+    background-color: gray;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 20px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.serviceorderAlarmSubmit_selected{
+    background-color: #DF1820 !important;
+}
+
+#serviceorderAlarmList {
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    left: 418px;
+    background-color: gray;
+    text-align: center;
+    font-size: 30px;
+    top: 308px;
+    color: #fff;
+    text-transform: uppercase;
+    position: absolute;
+}
+.serviceorderAlarmList_selected{
+    background-color: #DF1820 !important;
+}
+
+#activeAlarmTime {
+    position: absolute;
+    top: 74px;
+    right: 40px;
+    font-size: 30px;
+    color: #86868A;
+    width: 422px;
+    text-align: right;
+}
+
+#activeAlarmTime div {
+    float: left;
+}
+
+#activeAlarmTimeContainer {
+    color: #DF1820;
+}
+
+#showAlarmContainer {
+    width: 400px;
+    height: 320px;
+    position: absolute;
+    background-image: url("images/1080/coraldubai_en/service/alarm_clock.gif");
+    background-repeat: no-repeat;
+    z-index: 10;
+    background-color: #fff;
+    left: 772px;
+    top: 390px;
+    border: 5px solid gray;
+    text-align: center;
+}
+
+#showAlarmContainer #alarmShowText {
+    top: 256px;
+    font-size: 30px;
+    width: 100%;
+    position: relative;
+    color: #DF1820;
+}
+/*Taxi ***********************************/
+
+.alarmRowItemTaxiLable {
+    font-size: 30px;
+    float: left;
+    margin-left: 40px;
+    text-transform: uppercase;
+    color: #86868A;
+    text-align: right;
+    width: 225px;
+}
+#serviceorderTaxiHour{
+    width: 40px;
+    font-size: 30px;
+    float: left;
+    text-align: center;
+    color: #DF1820;
+}
+
+.serviceorderTaxiHour_selected{
+    color: #f7941d !important;
+}
+
+#serviceorderTaxiMinute{
+    font-size: 30px;
+    width: 40px;
+    float: left;
+    text-align: center;
+    color: #DF1820;
+    margin-right: 45%;
+}
+.serviceorderTaxiMinute_selected{
+    color: #f7941d !important;
+}
+
+.alarmRowItemServiceDateLable {
+    font-size: 30px;
+    float: left;
+    margin-left: 40px;
+    text-transform: uppercase;
+    text-align: right;
+    color: #86868A;
+    width: 225px;
+}
+#serviceorderDate{
+    width: 300px;
+    float: left;
+    text-align: left;
+    font-size: 30px;
+    margin-left: 10px;
+    color: #DF1820;
+    margin-right: 30%;
+}
+.serviceorderDate_selected{
+    color: #f7941d !important;
+}
+
+.alarmRowItemTaxiGuestLable{
+    float: left;
+    font-size: 30px;
+    margin-left: 40px;
+    height: 50px;
+    line-height: 50px;
+    text-transform: uppercase;
+    margin-top: 25px;
+    color: #DF1820;
+}
+
+#serviceorderGuest{
+    float: left;
+    font-size: 30px;
+    height: 46px;
+    line-height: 46px;
+    margin-top: 25px;
+    width: 250px;
+    text-align: center;
+    border: 2px solid;
+    text-transform: uppercase;
+    margin-left: 106px;
+    color: #86868A;
+    margin-right: 25%;
+}
+.serviceorderGuest_selected{
+    color: #f7941d !important;
+}
+
+#serviceorderTaxiSubmit{
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin-left: 290px;
+    background-color: gray;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 20px;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.serviceorderTaxiSubmit_selected{
+    background-color: #DF1820 !important;
+}
+
+.alarmRowItemServiceLable{
+    font-size: 30px;
+    float: left;
+    margin-left: 40px;
+    text-transform: uppercase;
+    color: #86868A;
+    text-align: right;
+    width: 225px;
+}
+
+#serviceorderHour{
+    width: 40px;
+    font-size: 30px;
+    float: left;
+    text-align: center;
+    color: #DF1820;
+}
+.serviceorderHour_selected{
+    color: #f7941d !important;
+}
+
+#serviceorderMinute{
+    font-size: 30px;
+    width: 40px;
+    float: left;
+    text-align: center;
+    color: #DF1820;
+    margin-right: 45%;
+}
+.serviceorderMinute_selected{
+    color: #f7941d !important;
+}
+
+#serviceorderSubmit{
+    width: 250px;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    margin-left: 290px;
+    background-color: gray;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 20px;
+    color: #fff;
+    text-transform: uppercase;
+}
+.serviceorderSubmit_selected{
+    background-color: #DF1820 !important;
+}
+
+/*View Bill*/
+
+#guest_bill {
+    position: absolute;
+    width: 870px;
+    top: -292px;
+    height: 385px;
+}
+
+#bill_title {
+    position: relative;
+    top: -45px;
+    height: 45px;
+    font-size: 35px;
+    text-align: center;
+    text-transform: uppercase;
+    color: #DF1820;
+}
+
+#guest_info {
+    font-size: 28px;
+}
+
+#guest_room {
+    float: left;
+    margin-left: 60px;
+}
+
+#guest_name {
+    float: left;
+    margin-left: 310px;
+}
+
+#bill_total_container {
+    width: 400px;
+    font-size: 38px;
+    margin-top: 100px;
+    margin-left: 190px;
+    position: absolute;
+    border: 3px solid #DF1820;
+    padding: 27px;
+}
+
+#bill_total_label {
+    float: left;
+}
+
+#bill_total_amount {
+    float: right;
+}
+
+
+/*Ends Here*/
+
+.vacant_status {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/roomservice/vacant_status.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.turn_down {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/roomservice/turn_down.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.under_maintenance {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/roomservice/under_maintenance.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.maintenance_req {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/roomservice/maintenance_req.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left
+}
+
+.extra_bed {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/roomservice/extra_bed.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left
+}
+
+.cleaning_req {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/roomservice/cleaning_req.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left
+}
+
+.baby_cot {
+    border: 0 solid;
+    background-image: url(images/1080/coraldubai_en/roomservice/baby_cot.png);
+    background-repeat: no-repeat;
+    float: left;
+    text-align: left
+}
+
+.roomkeeperNavItemList {
+    width: 400px;
+    height: 50px;
+    padding: 0 0 13px 0;
+    line-height: 50px
+}
+
+.globalRoomKeeperHighlight {
+    border: 0 solid;
+    width: 400px;
+    height: 59px;
+    background-image: url(images/1080/coraldubai_en/roomservice/highlight410X60.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+    padding: 0
+}
+
+.roomListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 42px;
+    left: 53px;
+    height: 59px
+}
+
+.roomListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 49px;
+    left: 56px;
+    width: 280px;
+    height: 280px
+}
+
+.orderOrderListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 158px;
+    left: 514px
+}
+
+.globalRoomOrderHighlight {
+    border: 0 solid;
+    width: 147px;
+    height: 31px;
+    background-repeat: no-repeat;
+    z-index: 10;
+    padding: 0
+}
+
+.roomOrderListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 158px;
+    left: 514px
+}
+
+.roomInfoContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 65px;
+    left: 520px;
+    width: 493px;
+    height: 320px;
+    color: black;
+    padding: 17px 10px 10px 40px;
+    font-size: 16px;
+    background-color: #fff;
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px
+}
+
+.roomInfoContainerTitle {
+    border: 0 solid;
+    color: grey;
+    font-size: 18px;
+    width: 241px;
+    margin: auto
+}
+
+.roomInfoContainerContent {
+    border: 0 solid;
+    padding: 13px 0 0 0
+}
+
+.roomorderUser {
+    border: 0 solid;
+    width: 267px;
+    height: 56px;
+    background-image: url(images/1080/coraldubai_en/roomservice/userCode.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 63px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.roomorderUser_selected {
+    border: 0 solid;
+    width: 267px;
+    height: 56px;
+    background-image: url(images/1080/coraldubai_en/roomservice/userCode_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 93px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.roomorderStatus {
+    border: 0 solid;
+    width: 267px;
+    height: 56px;
+    background-image: url(images/1080/coraldubai_en/roomservice/roomStatus.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 63px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.roomorderStatus_selected {
+    border: 0 solid;
+    width: 267px;
+    height: 56px;
+    background-image: url(images/1080/coraldubai_en/roomservice/roomStatus_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 63px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.roomorderGuest {
+    border: 0 solid;
+    width: 267px;
+    height: 56px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 63px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.roomorderGuest_selected {
+    border: 0 solid;
+    width: 267px;
+    height: 56px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 63px;
+    text-align: left;
+    padding: 0 0 7px 183px;
+    font-weight: bold;
+    font-size: 16px
+}
+
+.roomorderSubmit {
+    border: 0 solid;
+    width: 267px;
+    height: 56px;
+    background-image: url(images/1080/coraldubai_en/roomservice/send.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 56px;
+    text-align: left;
+    padding: 0 0 7px 183px
+}
+
+.roomorderSubmit_selected {
+    border: 0 solid;
+    width: 267px;
+    height: 56px;
+    background-image: url(images/1080/coraldubai_en/roomservice/send_selected.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 56px;
+    text-align: left;
+    padding: 0 0 7px 183px
+}
+
+.localListHighlight {
+    display: none
+}
+
+#localListDescription p {
+    padding: 0 40px;
+    text-align: justify
+}
+
+#localListDescription p:first-child {
+    margin-top: 40px
+}
+
+#newsnpromoListDescription p {
+    padding: 0 40px;
+    text-align: justify
+}
+
+#newsnpromoListDescription p:first-child {
+    margin-top: 40px
+}
+
+.radioListEmptyChannelList, .chListEmptyChannelList, .vodListEmptyMovieList, .restrntListEmptyRestList, .messageListEmptyRestList, .radioListEmptyList, .localListEmpty, .newsnpromoListEmpty {
+    border: 0 solid;
+    color: #80594d;
+    font-size: 22px
+}
+
+.globalLocalHighlight {
+    border: 0 solid;
+    width: 203px;
+    height: 71px;
+    background-image: url(images/1080/coraldubai_en/locallist/selected.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+    padding: 0
+}
+
+.globalLocalMenuHighlight {
+    border: 0 solid;
+    width: 600px;
+    height: 53px;
+    background-image: url(images/1080/coraldubai_en/locallist/food_highlighted.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+    padding: 0
+}
+
+.localDetailRestInfo {
+    border: 0 solid;
+    position: absolute;
+    top: 22px;
+    left: 309px;
+    padding: 13px 0 7px 7px
+}
+
+img.infoDetailIMG {
+    width: 380px;
+    height: 459px;
+    border-radius: 0;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0
+}
+
+.localDetailListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 29px;
+    left: 10px
+}
+
+.globalLocalListHighlight {
+    border: 0 solid;
+    width: 200px;
+    height: 71px;
+    background-image: url(images/1080/coraldubai_en/locallist/selected.png);
+    background-repeat: no-repeat;
+    z-index: 10;
+    padding: 0
+}
+
+.localDetailListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 35px;
+    left: 13px;
+    width: 133px;
+    height: 280px;
+    font-size: 20px
+}
+
+.localDetailRestInfoPicture {
+    border: 0 solid;
+    background-repeat: no-repeat;
+    background-position: top left;
+    float: left
+}
+
+.localListRestInfo_desc {
+    border: 0 solid;
+    float: left;
+    width: 457px;
+    height: 439px;
+    border-radius: 0;
+    padding: 13px 7px 7px 7px;
+    color: black;
+    font-size: 24px
+}
+
+.localDetailListItem {
+    border: 0 solid;
+    width: 200px;
+    background-image: url(images/1080/coraldubai_en/locallist/itemBox.png);
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 57px;
+    height: 57px;
+    text-align: center;
+    color: #fff;
+    padding: 0 0 13px 0
+}
+
+.localDetailEmptyList {
+    border: 0 solid;
+    color: #fff;
+    font-size: 18px
+}
+
+/*!* background: #000 none repeat scroll 0 0; *!*//*!* background: #000 none repeat scroll 0 0; *!*/
+.radioListChannelListItem {
+    background-color: rgba(255, 255, 255, 1);
+    color: #fff;
+    float: left;
+    height: 120px;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    width: 190px
+}
+
+img.radioChannelIMG {
+    width: 100px;
+    height: 100px;
+    border-radius: 13px;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
+    padding: 10px 44px
+}
+
+.radioChooserChannelListItem {
+    background-color: rgba(255, 255, 255, 0.7);
+    color: #80594d;
+    float: left;
+    height: 120px;
+    line-height: 120px;
+    margin-bottom: 30px;
+    margin-right: 30px;
+    text-align: center;
+    width: 190px
+}
+
+.radioListChannelListTotal {
+    border: 0 solid;
+    color: #fff;
+    font-size: 20px;
+    height: 30px;
+    left: 0;
+    line-height: 30px;
+    position: absolute;
+    text-align: center;
+    top: 460px;
+    width: 600px;
+    display: none
+}
+
+.loader {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('images/page-loader.gif') 50% 50% no-repeat #000
+}
+
+.exitContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1280px;
+    height: 720px
+}
+
+.exitMessage {
+    text-align: center;
+    font-size: 28px;
+    color: white
+}
+
+.exitLogo {
+    text-align: center
+}
+
+.audioSound {
+    visibility: hidden
+}
+
+.internetChooserChannelListHighlight {
+    border: 0 solid;
+    position: absolute;
+    top: 102px;
+    left: 77px
+}
+
+.internetChooserChannelListItem {
+    border: 0 solid;
+    width: 200px;
+    height: 200px;
+    background-repeat: no-repeat;
+    float: left;
+    line-height: 200px;
+    text-align: center;
+    color: #fff;
+    margin-left: 20px;
+    margin-top: 20px
+}
+
+.internetChooserChannelListContainer {
+    border: 0 solid;
+    position: absolute;
+    top: 95px;
+    left: 70px;
+    width: 893px;
+    height: 453px
+}
+
+.webContainer {
+    position: absolute;
+    top: 67px;
+    left: 0;
+    width: 1280px;
+    height: 400px;
+    background-color: green
+}
+
+.homeclockImage {
+    background-image: url("images/1080/coraldubai_en/clock.png");
+    background-position: 0px 20px;
+    background-repeat: no-repeat;
+    float: left;
+    height: 90px;
+    width: 60px
+}
+
+.homeclockTextContainer {
+    float: left;
+    height: 90px;
+    margin-left: 10px;
+    width: auto;
+    color: #DF1820;
+}
+
+.homeclockTextType {
+    font-size: 20px
+}
+
+.homeclockTextTmp {
+    font-size: 30px
+}
+
+.spaListHighlight {
+    display: none
+}
+
+#spaListDescription p {
+    margin-bottom: 0;
+    margin-top: 0;
+    padding: 0 40px;
+    text-align: justify
+}
+
+#spaListDescription p:first-child {
+    margin-top: 40px
+}
+
+.expListHighlight {
+    display: none
+}
+
+#expListDescription p {
+    padding: 0 40px;
+    text-align: justify
+}
+
+#expListDescription p:first-child {
+    margin-top: 40px
+}
+
+#menuMainListContainer .menuMainListItem:last-child {
+    border-right: medium none
+}
+
+
+#loading_img {
+    top: 100px;
+    position: relative;
+}
