@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Keyhandler test</title>
+        <script type="text/javascript">
+            function keydownAction(e) {
+                var keypressed = e.which;
+                var keycode = e.keyCode;
+                var charcode = e.charCode;
+                var metaKey = e.metaKey;
+                var altKey = e.altKey;
+                var shiftKey = e.shiftKey;
+                var ctrlKey = e.ctrlKey;
+                var locale = e.locale;
+                var repeat = e.repeat;
+                var location = e.location;
+                var target = e.target;
+                var type = e.type;
+                var bubbles = e.bubbles;
+                var cancelable = e.cancelable;
+                var view = e.view;
+                var detail = e.detail;
+                var key = e.key;
+                switch (keypressed) {
+                    // return 0 = keypress consumed - i.e. default behaviour suppressed
+                    // return 1 = keypress propagated to browser and will work normally
+                    case 0:
+                        if (keycode == 129) {
+                            return true;
+                        }
+                        break;
+                    default:
+                        document.getElementById("message").innerHTML = "keydown: keycode = " + keycode + "; which = " + keypressed + "; charcode = " + charcode+"; metaKey = "+metaKey+"; altKey = "+altKey+"; shiftKey = "+shiftKey+"; ctrlKey = "+ctrlKey+"; locale = "+locale+"; repeat = "+repeat+"; location = "+location+"; target = "+target+"; type = "+type+"; bubbles = "+bubbles+"; cancelable = "+cancelable+"; view = "+view+"; detail = "+detail+"; key = "+key+";";
+                        //e.preventDefault();
+                        //e.stopPropagation();
+                        return false;
+                }
+            }
+            function keypressAction(e) {
+                var keypressed = e.which;
+                var keycode = e.keyCode;
+                var charcode = e.charCode;
+                var metaKey = e.metaKey;
+                var altKey = e.altKey;
+                var shiftKey = e.shiftKey;
+                var ctrlKey = e.ctrlKey;
+                var locale = e.locale;
+                var repeat = e.repeat;
+                var location = e.location;
+                var target = e.target;
+                var type = e.type;
+                var bubbles = e.bubbles;
+                var cancelable = e.cancelable;
+                var view = e.view;
+                var detail = e.detail;
+                var key = e.key;
+                switch (keypressed) {
+                    // return 0 = keypress consumed - i.e. default behaviour suppressed
+                    // return 1 = keypress propagated to browser and will work normally
+                    default:
+                        document.getElementById("message2").innerHTML = "keypress: keycode = " + keycode + "; which = " + keypressed + "; charcode = " + charcode+"; metaKey = "+metaKey+"; altKey = "+altKey+"; shiftKey = "+shiftKey+"; ctrlKey = "+ctrlKey+"; locale = "+locale+"; repeat = "+repeat+"; location = "+location+"; target = "+target+"; type = "+type+"; bubbles = "+bubbles+"; cancelable = "+cancelable+"; view = "+view+"; detail = "+detail+"; key = "+key+";";
+                        e.preventDefault();
+                        //e.stopPropagation();
+                        return false;
+                }
+            }
+            function keyupAction(e) {
+                var keypressed = e.which;
+                var keycode = e.keyCode;
+                var charcode = e.charCode;
+                var metaKey = e.metaKey;
+                var altKey = e.altKey;
+                var shiftKey = e.shiftKey;
+                var ctrlKey = e.ctrlKey;
+                var locale = e.locale;
+                var repeat = e.repeat;
+                var location = e.location;
+                var target = e.target;
+                var type = e.type;
+                var bubbles = e.bubbles;
+                var cancelable = e.cancelable;
+                var view = e.view;
+                var detail = e.detail;
+                var key = e.key;
+                switch (keypressed) {
+                    // return 0 = keypress consumed - i.e. default behaviour suppressed
+                    // return 1 = keypress propagated to browser and will work normally
+                    default:
+                        document.getElementById("message3").innerHTML = "keyup: keycode = " + keycode + "; which = " + keypressed + "; charcode = " + charcode+"; metaKey = "+metaKey+"; altKey = "+altKey+"; shiftKey = "+shiftKey+"; ctrlKey = "+ctrlKey+"; locale = "+locale+"; repeat = "+repeat+"; location = "+location+"; target = "+target+"; type = "+type+"; bubbles = "+bubbles+"; cancelable = "+cancelable+"; view = "+view+"; detail = "+detail+"; key = "+key+";";
+                        //e.preventDefault();
+                        //e.stopPropagation();
+                        return false;
+                }
+            }
+        </script>
+    </head>
+    <body style="background-color:lightgrey;" onkeydown="keydownAction(event)" onkeypress="keypressAction(event)" onkeyup="keyupAction(event)">
+        <div style="margin-top: 100px;" id="message">press a key</div>
+        <div style="margin-top: 10px;" id="message2"></div>
+        <div style="margin-top: 10px;" id="message3"></div>
+    </body>
+</html>

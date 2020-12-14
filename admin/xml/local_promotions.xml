@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<promotion_array id="local_promotion">
+    <local>
+        <id>1</id>
+        <promotions>
+            <item>Promo 1 : Arab Emirates Hotels 100 AED</item>
+            <item>Promo 1 : Dubai Hotels 200 AED</item>
+            <item>Promo 1 : Abu Dhabi Hotels 400 AED Last</item>
+        </promotions>
+    </local>
+    <local>
+        <id>2</id>
+        <promotions>
+            <item>Promo 2 : Morning Meal 100 AED</item>
+            <item>Promo 2 : Evening Meal 200 AED</item>
+            <item>Promo 2 : A la Carte 80 AED</item>
+            <item>Promo 2 : Night Buffet 150 AED</item>
+            <item>Promo 2 : Room Services with  Full Bord Package 878 AED Last</item>
+        </promotions>
+    </local>
+    <local>
+        <id>3</id>
+        <promotions>
+            <item>Promo 3 : Foot Massage 456 $</item>
+            <item>Promo 3 : Anti Stress Massage 300$</item>
+            <item>Promo 3 : Full Body Massage 500$</item>
+            <item>Promo 3 : Head Massage 100 $</item>
+            <item>Promo 3 : Shoulder Massage $ Last</item>
+        </promotions>
+    </local>
+    <local>
+        <id>4</id>
+        <promotions>
+            <item>Promo 4 : Water Sports 456 $</item>
+            <item>Promo 4 : Football 300$</item>
+            <item>Promo 4 : Basketball 500$</item>
+            <item>Promo 4 : Tennis 100 $</item>
+            <item>Promo 4 : Cricket Per Team $ Last</item>
+        </promotions>
+    </local>
+</promotion_array>

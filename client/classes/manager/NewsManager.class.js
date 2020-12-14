@@ -1,0 +1,1 @@
+var NewsManager={isNewData:false,data:[],init:function(b){},loadFlag:function(b){var c=top.NEWS_URL+top.DEFAULT_LANGUAGE+"/format/json";top.kwUtils.kwXMLHttpRequest("GET",c,true,this,this.loadData)},loadData:function(a){try{this.data=(typeof a==="object")?a:eval(a);this.isNewData=true}catch(e){top.kwConsole.print("NEWS_LOAD_ERROR")}},getData:function(){return this.data}};

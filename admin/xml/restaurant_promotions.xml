@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<promotion_array id="restaurant_promotion">
+    <restaurant>
+        <id>1</id>
+        <promotions>
+            <item>Promo 1 : 100 $</item>
+            <item>Promo 1 : 200 $</item>
+            <item>Promo 1 : 657 $ Last</item>
+        </promotions>
+    </restaurant>
+    <restaurant>
+        <id>2</id>
+        <promotions>
+            <item>Promo 2 : 100 $</item>
+            <item>Promo 2 : 100 $</item>
+            <item>Promo 2 : 657 $</item>
+            <item>Promo 2 : 100 $</item>
+            <item>Promo 2 : 8789 $ Last</item>
+        </promotions>
+    </restaurant>
+    <restaurant>
+        <id>3</id>
+        <promotions>
+            <item>Promo 3 : 456 $</item>
+            <item>Promo 3 : 100 $</item>
+            <item>Promo 3 : 657 $</item>
+            <item>Promo 3 : 100 $</item>
+            <item>Promo 3 : 657 $ Last</item>
+        </promotions>
+    </restaurant>
+</promotion_array>

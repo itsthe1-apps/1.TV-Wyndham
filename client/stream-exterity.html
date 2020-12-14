@@ -1,0 +1,68 @@
+<html>
+
+<head>
+
+<style type="text/css">
+
+body{
+        color:#ffffff;
+        background-color:#000000;
+}
+
+#player
+{
+        height:360px;
+        width:640px;
+        position:absolute;
+        left:50px;
+        top:50px;
+}
+
+#buttons_window {
+        position:absolute;
+        top:430px;
+        left:50px;
+        width:640px;
+}
+
+</style>
+
+<script type="text/javascript">
+
+var stream1='udp://239.3.2.1:1234';
+var stream2='udp://239.3.2.2:1234';
+
+var EP = document.createExterityPlayer();
+
+function playchannel(uri) {
+	alert(uri);
+	try{
+		EP.play (uri);
+	}catch(e){
+    	alert(e)
+    }
+}
+
+</script>
+
+</head>
+
+<body>
+
+<img id="player" src="tv:" />
+
+<div id="buttons_window">
+<p>
+This example changes channel using the ExterityPlayer object. Note that this object must be held globally as in the included javascript (if held locally to a function, playback will stop once the function is exited).
+</p>
+<p>
+Select a channel from the list below. Edit common.js to enter appropriate URIs for the channels.
+</p>
+<ul>
+<li><a href="javascript:playchannel(stream1)">MBC1</a></li>
+<li><a href="javascript:playchannel(stream2)">MBC2</a></li>
+</ul>
+</div>
+
+</body>
+

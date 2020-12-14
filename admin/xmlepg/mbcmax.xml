@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tv SYSTEM "xmltv.dtd">
+
+
+<tv source-info-name="">
+ <channel id="0-0-2814-127.0.0.1-50005">
+  <display-name></display-name>
+ </channel>
+
+ <programme start="20101003113000 +0400" stop="20101003130000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[House of D]]> </title>
+   <desc lang="en">By working through problems stemming from his past, Tom Warshaw, an American artist living in Paris, begins to discover who he really is, and returns to his home to reconcile with his family and friends.</desc>
+ </programme>
+<programme start="20101003130000 +0400" stop="20101003143000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[A Lot Like Love]]> </title>
+   <desc lang="en">On a flight from Los Angeles to New York, Oliver and Emily make a connection, only to decide that they are poorly suited to be together. Over the next seven years, however, they are reunited time and time again, they go from being acquaintances to close friends to ... lovers?</desc>
+ </programme>
+ <programme start="20101003143000 +0400" stop="20101003160000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Bringing Down the House]]> </title>
+   <desc lang="en">When a lonely guy (Martin) meets a woman (Latifah) on the Internet who happens to be in prison, she breaks out to be with him, and proceeds to wreak havoc on his middle-class life.</desc>
+ </programme>
+ <programme start="20101003160000 +0400" stop="20101003180000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[The Hudsucker Proxy]]> </title>
+   <desc lang="en">When Waring Hudsucker, head of hugely successful Hudsucker Industries, commits suicide, his board of directors, led by Sidney Mussberger, comes up with a brilliant plan to make a lot of money: appoint a moron to run the company.</desc>
+ </programme>
+ <programme start="20101003180000 +0400" stop="20101003200000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Rich in Love]]> </title>
+   <desc lang="en">The life of a teenager, in her last year of high school in Charleston, South Carolina, is upended when her mother leaves her father and cuts all contact with her family. Things get even more complicated when her older sister shows up with a new husband and a pregnancy she's bitter and ambivalent about, and moves back in. They all spend the rest of the summer trying to come to grips with their lives. Starring: Albert Finney , Jill Clayburgh , Kathryn Erbe.</desc>
+ </programme>
+ <programme start="20101003200000 +0400" stop="20101003220000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Running Mates]]> </title>
+   <desc lang="en">Michigan governor James Pryce (Tom Selleck) is a promising pick for presidential candidacy. However, his ambition for the Oval Office is overtaken by the more-furious -- and cutthroat -- desires of his wife (Nancy Travis), campaign manager (Laura Linney), and other power-hungry women (Teri Hatcher, Faye Dunaway). To these feisty females, a win for Pryce is a victory for their own agendas</desc>
+ </programme>
+ <programme start="20101003220000 +0400" stop="20101004000000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Hollywood North]]> </title>
+   <desc lang="en">A producer buys the film rights of a famous Canadian novel known as "Latern Moon" and plans the production, but everything doesn't go according to plan when Hollywood gets involved and the documentary filmmaker catches the whole debacle of film.</desc>
+ </programme>
+ <programme start="20101004000000 +0400" stop="20101004020000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Indiana Jones]]> </title>
+   <desc lang="en">Set in 1936, the movie focuses on archeology professor Indiana Jones, who narrowly escapes death in a South American temple with a gold idol. An old enemy, Rene Belloq, steals the idol and then orders Hovito Indians after Indy.</desc>
+ </programme>
+ <programme start="20101004020000 +0400" stop="20101004040000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[A Lot Like Love]]> </title>
+   <desc lang="en">On a flight from Los Angeles to New York, Oliver and Emily make a connection, only to decide that they are poorly suited to be together. Over the next seven years, however, they are reunited time and time again, they go from being acquaintances to close friends to ... lovers?</desc>
+ </programme>
+ <programme start="20101004040000 +0400" stop="20101004053000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Miracle at Sage Creek]]> </title>
+   <desc lang="en">When disaster strikes and necessity dictates that the festering rivalry between the Franklin and Red Eagle families be set aside in the name of survival, the resulting tale of brotherhood gives testament to mankind's remarkable power for forgiveness in this family-oriented Western starring David Carradine and Wes Studi.</desc>
+ </programme>
+ <programme start="20101004053000 +0400" stop="20101004070000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[House of D]]> </title>
+   <desc lang="en">By working through problems stemming from his past, Tom Warshaw, an American artist living in Paris, begins to discover who he really is, and returns to his home to reconcile with his family and friends.</desc>
+ </programme>
+ <programme start="20101004070000 +0400" stop="20101004083000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Bringing Down the House]]> </title>
+   <desc lang="en">When a lonely guy (Martin) meets a woman (Latifah) on the Internet who happens to be in prison, she breaks out to be with him, and proceeds to wreak havoc on his middle-class life.</desc>
+ </programme>
+ <programme start="20101004083000 +0400" stop="20101004100000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Telling You]]> </title>
+   <desc lang="en">Two college graduates find themselves back home in New Jersey stuck behind the counter of a pizza parlor and frustrated about their life's perspectives, while their friends move on struggle to find a new direction for their lives. In the meantime, dealing with problems created by some money missing from the restaurant, the pair begin meeting old acquaintances and trying to pull themselves up and reorganize their plans for the future. Starring: Peter Facinelli , Dash Mihok.</desc>
+ </programme>
+ <programme start="20101004100000 +0400" stop="20101004113000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[The Hudsucker Proxy]]> </title>
+   <desc lang="en">When Waring Hudsucker, head of hugely successful Hudsucker Industries, commits suicide, his board of directors, led by Sidney Mussberger, comes up with a brilliant plan to make a lot of money: appoint a moron to run the company.</desc>
+ </programme>
+ <programme start="20101004113000 +0400" stop="20101004130000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Indiana Jones]]> </title>
+   <desc lang="en">Set in 1936, the movie focuses on archeology professor Indiana Jones, who narrowly escapes death in a South American temple with a gold idol. An old enemy, Rene Belloq, steals the idol and then orders Hovito Indians after Indy.</desc>
+ </programme>
+ <programme start="20101004130000 +0400" stop="20101004143000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Running Mates]]> </title>
+   <desc lang="en">Michigan governor James Pryce (Tom Selleck) is a promising pick for presidential candidacy. However, his ambition for the Oval Office is overtaken by the more-furious -- and cutthroat -- desires of his wife (Nancy Travis), campaign manager (Laura Linney), and other power-hungry women (Teri Hatcher, Faye Dunaway). To these feisty females, a win for Pryce is a victory for their own agendas</desc>
+ </programme>
+ <programme start="20101004143000 +0400" stop="20101004160000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[Hollywood North]]> </title>
+   <desc lang="en">A producer buys the film rights of a famous Canadian novel known as "Latern Moon" and plans the production, but everything doesn't go according to plan when Hollywood gets involved and the documentary filmmaker catches the whole debacle of film.</desc>
+ </programme>
+ <programme start="20101004160000 +0400" stop="20101004180000 +0400" channel="0-0-2814-127.0.0.1-50005">
+  <title> <![CDATA[North shore]]> </title>
+   <desc lang="en">When an 18-year-old surfing champion from Arizona tries to fulfill his ultimate dream of riding the perilous waves of Hawaii's legendary North Shore, the adventure of a lifetime begins.Starring: Matt Adler, Gregory Harrison, Nia Peeples-1987</desc>
+ </programme>
+</tv>
