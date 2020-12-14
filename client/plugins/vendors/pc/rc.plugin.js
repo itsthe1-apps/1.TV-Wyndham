@@ -12,6 +12,7 @@ var pluginKeymap = {
     82: "KEY_RED",
     71: "KEY_GREEN",
     89: "KEY_YELLOW",
+    66: "KEY_BLUE",
     107: "KEY_GUIDE",
     69: "KEY_EXIT",
     85: "KEY_MUTE",
@@ -63,6 +64,13 @@ function pluginKeyHandler(b) {
             }
         }
     }
+    if(top.MessageManager.msgIsInfobarHidden == false){
+        if(c != 66){
+            a = null;
+            c = null;
+        }
+    }
+    // console.log("top.MESSAGEBOX_SHOWED :"+top.MESSAGEBOX_SHOWED,"A :"+a);
     top.kwConsole.print("KeyBoard LMapped KeyCode: " + a);
     top.globalFireEvent(new Event(a, {
         value: c

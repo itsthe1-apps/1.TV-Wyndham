@@ -33,6 +33,7 @@ class Backgrounds_model extends Model {
         $data = array(
             'background_module' => $this->input->post('background_module'),
             'background_image' => $filename,
+            'language' => $this->input->post('language'),
         );
         $this->db->insert($this->backgrounds, $data);
     }
@@ -41,6 +42,7 @@ class Backgrounds_model extends Model {
         $data = array(
             'background_module' => $this->input->post('background_module'),
             'background_image' => $filename,
+            'language' => $this->input->post('language'),
         );
         $this->db->where('background_id', $background_id);
         $this->db->update($this->backgrounds, $data);

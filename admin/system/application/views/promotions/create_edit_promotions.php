@@ -85,19 +85,19 @@ if(isset($promotions['pr_id'])){
 	$data_array = array($this->session->userdata($session_keyword) => $this->session->userdata($session_keyword));
 }
 
-$table = "<table width='100%' border='0' cellpadding='5' cellspacing='0'>";
+$table = "<table width='100%' border='0' cellpadding='5' cellspacing='0' class='table'>";
 
 $table.="<tr>";
 $table.="<td width='25%'><label for='name'>Language</label><span class='star'> * </span></td>";
 $table.="<td width='10%'>:</td>";
-$table.="<td width='30%'>".$this->TVclass->language_dp('language[]',$data_array,'id="language" multiple="multiple" style="height:50px;"')."</td>";
+$table.="<td width='30%'>".$this->TVclass->language_dp('language[]',$data_array,'id="language" multiple="multiple" style="height:50px;" class="form-control"')."</td>";
 $table.="<td width='35%'></td>";
 $table.="</tr>";
 
 $table.="<tr>";
 $table.="<td valign='top' align='left'><label for='name'>Type</label><span class='star'> * </span></td>";
 $table.="<td valign='top' align='left'>:</td>";
-$table.="<td valign='top' align='left'>" . form_dropdown('pr_type',$type_dropdown,isset($promotions) && !isset($_POST['pr_type']) ? $promotions['pr_type'] : $this->input->post('pr_type'),'onchange="get_value(this.value)"') . "</td>";
+$table.="<td valign='top' align='left'>" . form_dropdown('pr_type',$type_dropdown,isset($promotions) && !isset($_POST['pr_type']) ? $promotions['pr_type'] : $this->input->post('pr_type'),'onchange="get_value(this.value)" class="form-control"') . "</td>";
 $table.="<td><span id='error' valign='top' align='left'>" . form_error('pr_type') . "</span></td>";
 $table.="</tr>";
 
@@ -105,7 +105,7 @@ $table.="<tr>";
 $table.="<td valign='top' align='left'><label for='icon'>Image <font class='image_size'>(Width=".$image_width.", Height=".$image_height.")</font></label><span class='star'> * </span></td>";
 $table.="<td valign='top' align='left'>:</td>";
 
-isset($promotions) && $promotions['pr_type']=="image" ? $st_img = "<img  width='50' src='".$this->config->item('promotion_icon_url').$promotions['pr_url']."' align='right' style='margin-top: -25px;'>" : $st_img = "";
+isset($promotions) && $promotions['pr_type']=="image" ? $st_img = "<img  width='150' src='".$this->config->item('promotion_icon_url').$promotions['pr_url']."' align='right' style='margin-top: -25px;'>" : $st_img = "";
 $img_validation = isset($img_error) ? $img_error : '';
 $table.="<td valign='top' align='left'>" . form_upload($data_icon) . "&nbsp;&nbsp;$st_img</td>";
 $table.="<td valign='top' align='left'><span id='error' valign='top' align='left'>$img_validation</span></td>";
@@ -114,24 +114,27 @@ $table.="</tr>";
 $table.="<tr>";
 $table.="<td width='130' valign='top' align='left'><label for='name'>Video URL</label><span class='star'> * </span></td>";
 $table.="<td width='30' valign='top' align='left'>:</td>";
-$table.="<td width='30' valign='top' align='left'>".form_input('pr_url',isset($promotions) && $promotions['pr_url'] && $promotions['pr_type']=="video" && !isset($_POST['pr_url']) ? $promotions['pr_url'] : $this->input->post('pr_url'),'id="pr_url" maxlength="120"')."</td>";
+$table.="<td width='30' valign='top' align='left'>".form_input('pr_url',isset($promotions) && $promotions['pr_url'] && $promotions['pr_type']=="video" && !isset($_POST['pr_url']) ? $promotions['pr_url'] : $this->input->post('pr_url'),'id="pr_url" maxlength="120" class="form-control"')."</td>";
 $table.="<td><span id='error' valign='top' align='left'>" . form_error('pr_url') . "</span><b>DUNE</b>:udp://@,<b>AMINO</b>:src=igmp://</td>";
 $table.="</tr>";
 
 $table.="<tr>";
 $table.="<td width='130' align='left'><label for='name'>Video Duration</label><span class='star'> * </span></td>";
 $table.="<td width='30' align='left'>:</td>";
-$table.="<td width='30' align='left'>".form_input('pr_duration',isset($promotions) && $promotions['pr_duration'] && !isset($_POST['pr_duration']) ? $promotions['pr_duration'] : $this->input->post('pr_duration'),'id="pr_duration" style="width:60px;"')." Milliseconds </td>";
+$table.="<td width='30' align='left' valign='middle'>".form_input('pr_duration',isset($promotions) && $promotions['pr_duration'] && !isset($_POST['pr_duration']) ? $promotions['pr_duration'] : $this->input->post('pr_duration'),'id="pr_duration"  class="form-control" style="width:150px;"')." Milliseconds </td>";
 $table.="<td><span id='error' valign='top' align='left'>" . form_error('pr_duration') . "</span></td>";
 $table.="</tr>";
 
 if($task == "update"){
 	$table.="<tr>";
-$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="positive"><img src="' . base_url() . 'images/cross.png" alt=""/>Back</button><button type="submit" class="positive" name="update"><img src="' . base_url() . 'images/apply2.png" alt=""/>Update Promotions</button></div></td>';
+$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="btn btn-danger">Back
+</button>
+<button type="submit" class="btn btn-primary" name="update">Update Promotions</button></div></td>';
 $table.="</tr>";
 }else{
 	$table.="<tr>";
-	$table.='<td colspan="4" valign="top"><br/><div class="buttons"><button onclick="history.back();return false;" class="positive"><img src="' . base_url() . 'images/cross.png" alt=""/>Back</button><button type="submit" class="positive" name="submit"><img src="' . base_url() . 'images/apply2.png" alt=""/>Create Promotions</button></div></td>';
+	$table.='<td colspan="4" valign="top"><br/><div class="buttons"><button onclick="history.back();return false;" class="btn btn-danger">Back</button>
+	<button type="submit" class="btn btn-success" name="submit">Create Promotions</button></div></td>';
 	$table.="</tr>";
 }
 $table.="</table>";

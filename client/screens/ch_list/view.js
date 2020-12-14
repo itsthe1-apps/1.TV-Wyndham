@@ -2,10 +2,18 @@ var tv_promotion_index; // added by ** Lakshan **
 var promotions = new Array(); //Promotion Text Array added by ** Lakshan **
 
 
+
 var favIsInfobarHidden = true;
 function chListGetScreenHtml() {
+  
+    var promotionText = "Promotions";
+    if (top.DEFAULT_LANGUAGE == "ar") {
+        promotionText = " إعلانات وعروض خاصة ";
+    }
+
+
     var a = "";
-    a += '<div class="bodyBG" id="bodyBG" style="background-image:' + top.BG_IMG + '">';
+    a += '<div class="bodyBG" id="bodyBG" style="background-image:' +  top.BG_IMG + '">';
     a += '<div id="globalChannelZapper" class="globalChannelZapper"></div>';
     a += '<div id="globalVolumeBar" class="globalVolumeBar"></div>';
     a += '<div id="globalMute" class="globalMute"></div>';
@@ -29,7 +37,7 @@ function chListGetScreenHtml() {
     a += '<div id="cfsvProgramListContainer" class="cfsvProgramListContainer"></div>';
     a += "</div>";
     a += '<div class="footer" id="footer">';
-    a += '<div id="ticker_tape_tv" class="ticker_tape_tv"><div id="promotion_id">Promotions</div><p id="tv_promotion_text"></p></div>';
+    a += '<div id="ticker_tape_tv" class="ticker_tape_tv"><div id="promotion_id">'+promotionText+'</div><p id="tv_promotion_text"></p></div>';
     a += '<div id="footerContainer" class="footerContainer">' + showChannelFooter() + "</div>";
     a += "</div>";
     if (top.DEVICE_TYPE == "exterity") {
@@ -40,11 +48,21 @@ function chListGetScreenHtml() {
 
 
 function showChannelFooter() {
+    var yellow = top.globalGetLabel("CH_LIST_FAV");
+    var red = top.globalGetLabel("CH_LIST_RMFAV") ;
+    var blue = top.globalGetLabel("CH_LIST_BACK");
+    var menu = top.globalGetLabel("RC_MENU");
+    if (top.DEFAULT_LANGUAGE == 'ar') {
+        yellow = "<div class=footerImage><img src=images/rc/yellow-bt.jpg  /></div><div class='footerText'>  أضف إلى المفضلة  </div>";
+        red = "<div class=footerImage><img src=images/rc/orange-bt.jpg  /></div><div class=footerText>  إلغاء من المفضلة   </div>";
+        blue = "<div class=footerImage><img src=images/rc/blue-bt.jpg  /></div><div class=footerText> القائمة الرئيسية   </div>";
+        menu = "<div class=footerImage><img src=images/rc/menu-button.jpg  /></div><div class=footerText> القائمة الفرعية  </div>";
+    }
     var b = "";
     if (top.State.getState() == top.State.CH_FAVLIST_MAIN) {
-        b = top.globalGetLabel("CH_LIST_FAV") + top.globalGetLabel("CH_LIST_RMFAV") + top.globalGetLabel("CH_LIST_BACK") + top.globalGetLabel("RC_MENU");
+        b = yellow + red + blue + menu;
     } else {
-        b = top.globalGetLabel("CH_LIST_FAV") + top.globalGetLabel("CH_LIST_BACK") + top.globalGetLabel("RC_MENU");
+        b = yellow + blue + menu;
     }
     return b;
 }
@@ -130,11 +148,15 @@ function chListChannelListOnIndexChanged(x, l) {
     var itemHeight = parseInt(window.getComputedStyle(item, null).getPropertyValue("height"));
 
     this.display();
+
+    var border_width = top.BORDER_WIDTH*2;
+    var border_height = top.BORDER_HEIGHT*2;
+
     var C = parseInt(top.HighLight_W);
     var f = parseInt(top.HighLight_H);
 
-    var A = parseInt(itemWidth + itemMarginRight);
-    var B = parseInt(itemHeight + itemMarginRight);
+    var A = parseInt(itemWidth+ border_width + itemMarginRight);
+    var B = parseInt(itemHeight + border_height + itemMarginRight);
 
     //Change values according to layout
     //Added By Lakshan
@@ -219,6 +241,8 @@ function chListChannelListDisplayTotal() {
 }
 function chListSubMenuListDisplayItem(index, position, selected) {
     var item = this.getItem(index);
+    //console.log(item.txtLabel);
+    //get_arabic_label(item.txtLabel);
     var html = '<div class="chSubMenuListItem ' + this.eval(item, "class", "") + (selected && top.State.getState() == top.State.CH_SUBMENU ? "Selected" : "") + '">' + item.txtLabel + '</div>';
     return html;
 }
@@ -273,6 +297,7 @@ function tvPromotionDataDisplayFunction() {
         tv_promotion_index = 0;
     }
 }
+
 
 //End of TV Promotions
 

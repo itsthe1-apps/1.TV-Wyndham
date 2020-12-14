@@ -6,7 +6,8 @@ function chChooserEventHandler(d) {
     var c = true;
     switch (d.code) {
         case "INIT_SCREEN":
-            top.changeBackgroundImg('TV');
+            // top.changeBackgroundImg('TV');
+            top.BG_IMG = 'url(' + top.IMAGES_PREFIX + 'BGS/' + top.BACKGROUND_ARRAY['TV'] + ')';
             initChChooserVars();
             chChooserInitScreen(d.args);
             break;
@@ -121,13 +122,26 @@ function chChooserSubMenuEventHandler(d) {
             var correct_menu_id = top.PRV_MENU_ID - top.CURRENT_MENU_ID;
             if (correct_menu_id != 0) {
                 menuMainList.scrollDown(correct_menu_id);
+
+                var prev_menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID];
+                var prev_class = prev_menu_id.className;
+                prev_class = prev_class.replace('Semi_selected', '');
+                prev_menu_id.className = prev_class;
+
+
+                var menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID]; //
+                var current_class = menu_id.className;
+                var new_class = current_class + "Selected";
+                menu_id.className = new_class;
             }
             break;
         case "KEY_LEFT":
-            chChooserSubMenuList.scrollUp();
+            (top.DEFAULT_DIRECTION == "ltr") ? chChooserSubMenuList.scrollUp() : chChooserSubMenuList.scrollDown();
+            //chChooserSubMenuList.scrollUp();
             break;
         case "KEY_RIGHT":
-            chChooserSubMenuList.scrollDown();
+            (top.DEFAULT_DIRECTION == "ltr") ? chChooserSubMenuList.scrollDown() : chChooserSubMenuList.scrollUp();
+            //chChooserSubMenuList.scrollDown();
             break;
         case "KEY_DOWN":
             top.State.setState(top.State.CH_CHOOSER_GENRE);
@@ -190,7 +204,12 @@ function chChooserInitScreen(b) {
     menuInitMainList();
     highlight_menu_ch_chooser();
     menuInitWeatherListLoader();
-    this.chChooserInitSubMenuList();
+    if (top.DEFAULT_LANGUAGE == 'en') {
+        this.chChooserInitSubMenuList();
+    }
+    if (top.DEFAULT_LANGUAGE == 'ar') {
+        this.chChooserInitSubMenuList_R();
+    }
     get_TV_chooserPromotionData();
 }
 
@@ -227,6 +246,35 @@ function chChooserGetSubMenuData() {
     b.push({
         "class": "chSubMenuAlphabetIcon",
         "txtLabel": "Favourites",
+        target: "CH_CHOOSER",
+        args: {
+            type: "alpha"
+        }
+    });
+    return b
+}
+
+function chChooserGetSubMenuData_R() {
+    var b = [];
+    b.push({
+        "class": "chSubMenuAllIcon",
+        "txtLabel": "جميع القنوات",
+        target: "CH_LIST",
+        args: {
+            type: "all"
+        }
+    });
+    b.push({
+        "class": "chSubMenuGenreIcon",
+        "txtLabel": "قائمة النوع",
+        target: "CH_CHOOSER",
+        args: {
+            type: "genre"
+        }
+    });
+    b.push({
+        "class": "chSubMenuAlphabetIcon",
+        "txtLabel": "المفضلة",
         target: "CH_CHOOSER",
         args: {
             type: "alpha"
@@ -325,6 +373,12 @@ function chChooserInitSubMenuList() {
     chChooserSubMenuList.initList()
 }
 
+function chChooserInitSubMenuList_R() {
+    chChooserSubMenuList = new top.List(top.ListType.BLOCK, chChooserGetSubMenuData_R(), 0, 0, 0, 3, document.getElementById("chChooserSubMenuListContainer"));
+    chChooserSubMenuList.displayItem = chChooserSubMenuListDisplayItem;
+    chChooserSubMenuList.initList()
+}
+
 function chChooserInitGenreList() {
     tl = top.CATEGORY_COLUMNS * top.CATEGORY_ROWS;
     chChooserGenreList = new top.List(top.ListType.BLOCK, top.ChannelManager.getCategoriesData(), 0, 0, 0, tl, document.getElementById("chChooserListContainer"));
@@ -365,7 +419,7 @@ function highlight_menu_ch_chooser() {
 
     var menu_id = document.getElementsByClassName("menuMainListItem")[selected_menu_id]; //
     var current_class = menu_id.className;
-    var new_class = current_class + "Selected";
+    var new_class = current_class + "Semi_selected";
     var prev_menu_id = document.getElementsByClassName("menuMainListItem")[current_menu_id];
     var prev_class = prev_menu_id.className;
     prev_class = prev_class.replace('Selected', '');
@@ -377,8 +431,8 @@ function highlight_menu_ch_chooser() {
 //TV Promotions
 function get_TV_chooserPromotionData() {
 
-    var json_url = top.TICKER_MEDIA_URL + "en/format/json";
-    top.kwUtils.kwXMLHttpRequest("GET", json_url, true, this, myFunctionTVChooser);
+    // var json_url = top.TICKER_MEDIA_URL + "en/format/json";
+    // top.kwUtils.kwXMLHttpRequest("GET", json_url, true, this, myFunctionTVChooser);
 
 
 }

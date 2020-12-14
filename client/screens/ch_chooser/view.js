@@ -3,6 +3,12 @@ var promotions = new Array(); //Promotion Text Array added by ** Lakshan **
 
 
 function chChooserGetScreenHtml() {
+
+    var promotionText = "Promotions";
+    if (top.DEFAULT_LANGUAGE == "ar") {
+        promotionText = " إعلانات وعروض خاصة ";
+    }
+   
     var b = "";
     b += '<div class="bodyBG" style="background-image:' + top.BG_IMG + '">';
     b += '<div id="messageBlock" class="messageBlock"></div>';
@@ -20,16 +26,22 @@ function chChooserGetScreenHtml() {
     b += '<div id="chChooserListContainer" class="chChooserChannelListContainer"></div>';
     b += '<div id="chChooserGenreListTotal" class="chChooserGenreListTotal"></div>';
     b += "</div>";
-    b += '<div id="ticker_tape_tv_genre" class="ticker_tape_tv_genre"><div id="promotion_id">Promotions</div><p id="tv_genre_promotion_text"></p></div>';
+    b += '<div id="ticker_tape_tv_genre" class="ticker_tape_tv_genre"><div id="promotion_id">'+promotionText+'</div><p id="tv_genre_promotion_text"></p></div>';
     b += '<div class="footer">';
-    b += '<div id="footerContainer" class="footerContainer">' + showChannelChooserFooter() + "</div>";
+    b += '<div id="footerContainer" class="footerContainer">' + showChannelChooserFooter_R() + "</div>";
     b += "</div>";
     return b
 }
 
-function showChannelChooserFooter() {
-    var a = top.globalGetLabel("CH_LIST_BACK") + top.globalGetLabel("RC_MENU");
-    return a
+function showChannelChooserFooter_R() {
+    var back = top.globalGetLabel("CH_LIST_BACK");
+    var rc_menu = top.globalGetLabel("RC_MENU");
+    if (top.DEFAULT_LANGUAGE == 'ar') {
+        back = "<div class=footerImage><img src=images/rc/blue-bt.jpg  /></div><div class=footerText> القائمة الرئيسية   </div>";
+        rc_menu = "<div class=footerImage><img src=images/rc/menu-button.jpg  /></div><div class=footerText> القائمة الفرعية  </div>";
+    }
+    var a = back + rc_menu;
+    return a;
 }
 
 function chChooserSubMenuListDisplayItem(index, position, selected) {
@@ -70,16 +82,30 @@ function chChooserGenreListOnIndexChanged(x, l) {
 
     var item = document.getElementsByClassName("chChooserChannelListItem")[0];
     var itemMarginTop = parseInt(window.getComputedStyle(item, null).getPropertyValue("margin-top"));
+    
     var itemMarginBottom = parseInt(window.getComputedStyle(item, null).getPropertyValue("margin-bottom"));
     var itemMarginRight = parseInt(window.getComputedStyle(item, null).getPropertyValue("margin-right"));
+    var itemMarginLeft = parseInt(window.getComputedStyle(item, null).getPropertyValue("margin-left"));
     var itemWidth = parseInt(window.getComputedStyle(item, null).getPropertyValue("width"));
     var itemHeight = parseInt(window.getComputedStyle(item, null).getPropertyValue("height"));
 
     this.display();
+
+    var border_width = top.BORDER_WIDTH*2;
+    var border_height = top.BORDER_HEIGHT*2;
+
     var C = parseInt(top.HighLight_W);
     var f = parseInt(top.HighLight_H);
-    var A = parseInt(itemWidth + itemMarginRight);
-    var B = parseInt(itemHeight + itemMarginRight);
+    var A = parseInt(itemWidth + border_width + itemMarginRight);
+    var B = parseInt(itemHeight + border_height + itemMarginRight);
+    //Change values according to layout
+    //Added By Lakshan
+    var layout = top.DEFAULT_LANGUAGE;
+    if (layout == 'ar') {
+        A = parseInt(itemWidth + itemMarginLeft);
+        B = parseInt(itemHeight + itemMarginLeft);
+    }
+    //End
     var t = this.getSelected();
 
     if ((x == 1 || x == -1) && l == 1) {

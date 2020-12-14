@@ -16,14 +16,23 @@ var UserManager = {
         try {
             b = (typeof b === "object") ? b : top.jsonParser(b);
             if (b.id !== undefined) {
+                //Added By Lakshan
+                if (b.id == null) {
+                    //Asigning Default values for the
+                    b.id = top.DEFAULT_GUEST_ID;
+                    b.theme = top.DEFAULT_THEME;
+                    b.welcome_msg = top.DEFAULT_GREETING;
+                }
                 top.kwStatusConsole.print("Authentication Succeeded.", 0);
             } else {
                 top.kwStatusConsole.print("Authentication Failed.", 1);
+
                 return;
             }
             if (b != null && b.id == null) {
                 top.kwStatusConsole.print("Room is vacant.", 0);
                 top.kwConsole.print("USER_LOAD_ERROR");
+                
                 return;
             }
             if (this.userAccount == null) {
@@ -82,6 +91,7 @@ var UserManager = {
             var str = this.userAccount.view_type;
             top.VIEW_TYPE = str.replace(/\s+/g, '');
             top.BACKGROUND_ARRAY = this.userAccount.background_array;
+            //console.log(top.BACKGROUND_ARRAY);
             top.TTAPE_MARQUEE = parseInt(this.userAccount.tapemarquee_enabled);
             top.FAKE_DATA = parseInt(this.userAccount.fakedata_enabled);
             top.IS_INTERNET = parseInt(this.userAccount.internet_enabled);
@@ -110,12 +120,16 @@ var UserManager = {
             top.kwConsole.print("USER_LOAD_ERROR");
         }
     }, changeUserLang: function () {
-        var b = top.CHANGE_LANG_URL + "user_id/" + top.USER_ID + "/language/" + top.DEFAULT_LANGUAGE + "/format/json";
-        top.kwUtils.kwXMLHttpRequest("POST", b, true);
-        top.Player.restart();
+        // var b = top.CHANGE_LANG_URL + "user_id/" + top.USER_ID + "/language/" + top.DEFAULT_LANGUAGE + "/format/json";
+        // top.kwUtils.kwXMLHttpRequest("POST", b, true);
+        // top.Player.restart();
     }, setRestart: function () {
         var a = top.ROOM_NUMBER;
         var b = top.RESTART_DONE + "device/" + top.DEVICE_ID;
         top.kwUtils.kwXMLHttpRequest("POST", b, true);
+    }, completeCheckout: function (device_id) {
+        var url = top.COMMON_APP_URL+"complete_checkout/device_id/"+device_id+"/format/json";
+        top.kwUtils.kwXMLHttpRequest("POST", url, true);
+        console.log(url);
     }
 };

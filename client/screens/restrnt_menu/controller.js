@@ -2,7 +2,8 @@ function restrntMenuEventHandler(d) {
     var c = true;
     switch (d.code) {
         case "INIT_SCREEN":
-            top.changeBackgroundImg('RESTAURANT');
+            //top.changeBackgroundImg('RESTAURANT');
+            top.BG_IMG = 'url(' + top.IMAGES_PREFIX + 'BGS/' + top.BACKGROUND_ARRAY['RESTAURANT'] + ')';
             restrntMenuListInitScreen(d.args);
             break;
         case "UNINIT_SCREEN":

@@ -1,12 +1,14 @@
 var Clock = {
     dateFormat: "NNN dd",
+    currentTime: null,
     ampm: false,
     show: function (i, g) {
-        var u = top.DATETIME_URL;
+       var u = top.DATETIME_URL+top.DEFAULT_LANGUAGE+"/format/json";
         //added by Yesh - for none working NTP server STBs
         if (top.LOCAL_DATE) {
             top.kwUtils.kwXMLHttpRequest("GET", u, true, this, function (datetime) {
                 datetime = (typeof datetime === "object") ? datetime : top.jsonParser(datetime);
+                currentTime = datetime.time;
                 var k = '<div class="homeclockImage"></div><div class="homeclockTextContainer"><div class="homeclockTextTmp">' + datetime.time + '</div><div class="homeclockTextType">' + datetime.day + '</div></div>';
 //                var k = '<span align="right" class="sceneDateTime">' + this.getFormattedDate() + ", " + this.getFormattedTime() + "</span>";
                 var l = i.document.getElementById(g);

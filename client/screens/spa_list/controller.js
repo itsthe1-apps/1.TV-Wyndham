@@ -51,6 +51,19 @@ function spaListMainEventHandler(d) {
             var correct_menu_id = top.PRV_MENU_ID - top.CURRENT_MENU_ID;
             if (correct_menu_id != 0) {
                 menuMainList.scrollDown(correct_menu_id);
+            }else if (correct_menu_id == 0) {
+                //console.log(top.CURRENT_MENU_ID);
+
+                var prev_menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID];
+                var prev_class = prev_menu_id.className;
+                prev_class = prev_class.replace('Semi_selected', '');
+                prev_menu_id.className = prev_class;
+
+
+                var menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID]; //
+                var current_class = menu_id.className;
+                var new_class = current_class + "Selected";
+                menu_id.className = new_class;
             }
             break;
         case "KEY_DOWN":

@@ -349,6 +349,8 @@ class Backend extends Controller
 
         // Default role_id that will be showed
         $role_id = $this->input->post('role') ? $this->input->post('role') : 1;
+        //Added by Yesh - 25062019
+        $data['role_id'] = $role_id;
 
         // Get all role from database
         $data['roles'] = $this->roles->get_all()->result();
@@ -368,8 +370,6 @@ class Backend extends Controller
 
     function roles_channelgroups()
     {
-
-
         $this->load->model('dx_auth/roles', 'roles');
         $this->load->model('dx_auth/channelgroup', 'channels');
         $this->load->model('dx_auth/channel_role_permissions', 'chpermissions');
@@ -393,6 +393,8 @@ class Backend extends Controller
 
         // Default role_id that will be showed
         $role_id = $this->input->post('role') ? $this->input->post('role') : 1;
+        //Added by Yesh - 25062019
+        $data['role_id'] = $role_id;
 
         // Get all role from database
         $data['roles'] = $this->roles->get_all()->result();
@@ -439,6 +441,8 @@ class Backend extends Controller
 
         // Default role_id that will be showed
         $role_id = $this->input->post('role') ? $this->input->post('role') : 1;
+        //Added by Yesh - 25062019
+        $data['role_id'] = $role_id;
 
         // Get all role from database
         $data['roles'] = $this->roles->get_all()->result();
@@ -691,7 +695,7 @@ class Backend extends Controller
         $row_count = RECORDS_PERPAGE;
 
         $data['rooms'] = $this->rooms->get_all($offset, $row_count)->result();
-        $p_config['base_url'] = base_url() . 'index.php/backend/language/';
+        $p_config['base_url'] = base_url() . 'index.php/backend/rooms/';
         $p_config['uri_segment'] = 3;
         $p_config['num_links'] = 2;
         $p_config['total_rows'] = $this->rooms->get_all()->num_rows();
@@ -786,35 +790,65 @@ class Backend extends Controller
         redirect('backend/devices', 'location');
     }
 
-    function devices($attempts = false)
+    function devices()
     {
-        $data['attempts'] = intval(false);
-        if (!$attempts) {
-            $data['attempts'] = intval(true);
-            $this->Devices->device_status_update(0, 0);
-            $offset = (int)$this->uri->segment(3);
-            $orderby = $this->uri->segment(4);
-        } else {
-            $offset = (int)$this->uri->segment(5);
-            $orderby = $this->uri->segment(6);
-        }
         $data['title'] = "Devices";
         $data['total_devices'] = $this->Devices->device_count();
+        $offset = (int)$this->uri->segment(3);
+        //$orderby = $this->uri->segment(4);
+        $orderby = "ASC";
+        $attempts = $this->uri->segment(4);
+        $data['attempts'] = intval(false);
+        if ($attempts == "") {
+            $data['attempts'] = intval(true);
+            $this->Devices->device_status_update(0, 0);
+        }
+        $data['offset'] = $offset;
         $row_count = RECORDS_PERPAGE;
         $data['devices'] = $this->Devices->device_all($offset, $row_count, $orderby)->result();
-        $p_config['base_url'] = base_url() . 'index.php/backend/devices/';
+        $base_url = base_url() . 'index.php/backend/devices/';
+        $p_config['base_url'] = $base_url;
+        $data['base_url'] = $base_url;
         $p_config['uri_segment'] = 3;
         $p_config['num_links'] = 2;
         $p_config['total_rows'] = $this->Devices->device_all()->num_rows();
         $p_config['per_page'] = $row_count;
-
         $this->pagination->initialize($p_config);
 
         $data['pagination'] = $this->pagination->create_links();
-
         $data['main'] = 'backend/devices';
         $this->load->view('template', $data);
     }
+
+    // function devices($attempts = false)
+    // {
+    //     $data['attempts'] = intval(false);
+    //     if (!$attempts) {
+    //         $data['attempts'] = intval(true);
+    //         $this->Devices->device_status_update(0, 0);
+    //         $offset = (int)$this->uri->segment(3);
+    //         $orderby = $this->uri->segment(4);
+    //     } else {
+    //         $offset = (int)$this->uri->segment(5);
+    //         $orderby = $this->uri->segment(6);
+    //     }
+    //     $data['title'] = "Devices";
+    //     $data['total_devices'] = $this->Devices->device_count();
+    //     $row_count = RECORDS_PERPAGE;
+    //     $data['devices'] = $this->Devices->device_all($offset, $row_count, $orderby)->result();
+    //     $p_config['base_url'] = base_url() . 'index.php/backend/devices/';
+    //     $p_config['uri_segment'] = 3;
+    //     $p_config['num_links'] = 2;
+    //     $p_config['total_rows'] = $this->Devices->device_all()->num_rows();
+    //     $p_config['per_page'] = $row_count;
+
+    //     $this->pagination->initialize($p_config);
+
+    //     $data['pagination'] = $this->pagination->create_links();
+
+    //     $data['main'] = 'backend/devices';
+    //     $this->load->view('template', $data);
+    // }
 
     function create_edit_devices($device_id = false)
     {

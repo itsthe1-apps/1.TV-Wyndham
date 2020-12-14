@@ -17,7 +17,7 @@ error_reporting(0);
   |
  */
 
-$config['base_url'] = "http://" . $_SERVER['HTTP_HOST'] . "/1.TV-NationsHospital/admin/";
+$config['base_url'] = "http://" . $_SERVER['HTTP_HOST'] . "/1.TV-Wyndham/admin/";
 
 /*
   |--------------------------------------------------------------------------
@@ -95,7 +95,6 @@ $config['charset'] = "UTF-8";
   |
  */
 $config['enable_hooks'] = TRUE;
-
 
 /*
   |--------------------------------------------------------------------------
@@ -362,14 +361,6 @@ $config['display_types'] = array('1' => '4:3', '2' => '16:9');
 $config['video_types'] = array('1' => '4_3-fit', '2' => '4_3-preserve', '3' => '16_9-fit', '4' => '16_9-preserve');
 $config['status'] = array('0' => 'No', '1' => 'Yes');
 
-$timezone = "Asia/Dubai";
-date_default_timezone_set($timezone);
-
-define('RECORDS_PERPAGE', 100);
-define('TV_PATH', '/home/itsthe1/public_html/profiles/exterity/itsthe1_mw/icons/TV/');
-define('MOVIE_PATH', '/home/itsthe1/public_html/profiles/exterity/itsthe1_mw/icons/VOD/');
-define('RESTAURANT_PATH', './icons/RESTAURANT/');
-define('EXIT_PATH', './icons/EXIT/');
 
 $config['data_language'] = array('en' => 'English', 'fr' => 'French');
 $config['name_title'] = array('Mr' => 'Mr', 'Mrs' => 'Mrs', 'Ms' => 'Ms', 'Miss' => 'Miss', 'Rev' => 'Rev', 'Dr' => 'Dr', 'Sir' => 'Sir');
@@ -381,7 +372,8 @@ $config['thumb_width'] = '100';
 $config['thumb_height'] = '60';
 
 $config['system_lang'] = 'en';
-$config['vod_thumbnail_url'] = $config['base_url'] . 'icons/VOD/thumbnail/';
 $config['max_textarea_length'] = 150;
 $config['ticker_promo_menu'] = array('DINE', 'SPA', 'EXPERIENCE', 'SERVICES', 'LOCAL');
 
+$timezone = "Asia/Dubai";
+date_default_timezone_set($timezone);

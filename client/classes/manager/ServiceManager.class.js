@@ -1,17 +1,18 @@
 var ServiceManager = {
     exitData: null,
     exitPageLoaded: 0,
-    init: function() {},
+    init: function() {
+    },
     setServiceRequest: function(b, e, h, f) {
         var c = top.USER_ID;
         e = e.replace(":", "_");
         var h = top.SERVICE_REQURL + "type/" + b + "/user/" + c + "/time/" + e + "/date/" + h + "/guest/" + f;
         top.kwUtils.kwXMLHttpRequest("POST", h, true)
     },
-    setAlarmServiceRequest: function(b, e, i, h, j, f) {
+    setAlarmServiceRequest: function(b, e, i, h, j, f,g) {
         var c = top.USER_ID;
         e = e.replace(":", "_");
-        var i = top.SERVICEALARM_REQURL + "type/" + b + "/user/" + c + "/time/" + e + "/date/" + i + "/alarm_type/" + h + "/udp_number/" + j + "/ring_type/" + f;
+        var i = top.SERVICEALARM_REQURL + "type/" + b + "/user/" + c + "/time/" + e + "/date/" + i + "/alarm_type/" + h + "/udp_number/" + j + "/ring_type/" + f + "/mac/" +g;
         top.kwUtils.kwXMLHttpRequest("POST", i, true)
     },
     setAlarmServiceClosed: function() {
@@ -42,4 +43,5 @@ var ServiceManager = {
             top.kwConsole.print("EXIT_LOAD_ERROR")
         }
     }
+
 };

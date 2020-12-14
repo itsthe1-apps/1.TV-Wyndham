@@ -2,6 +2,12 @@ var local_promotion_index; // added by ** Lakshan **
 var promotions = new Array(); //Promotion Text Array added by ** Lakshan **
 
 function localListGetScreenHtml() {
+
+    var promotionText = "Promotions";
+    if (top.DEFAULT_LANGUAGE == "ar") {
+        promotionText = " إعلانات وعروض خاصة ";
+    }
+
     var b = "";
     b += '<div class="bodyBG" style="background-image:' + top.BG_IMG + '">';
     b += '<div id="messageBlock" class="messageBlock"></div>';
@@ -13,12 +19,17 @@ function localListGetScreenHtml() {
     b += '<div id="globalClock" class="globalClock"></div>';
     b += "</div>";
     b += menuGetMenuListHtml();
+
+    if (top.HIDE_SLIDER == 'YES') {
+        b += '<div id="localListInfo" class="localListInfo"><img id="localListImage" class="localListImage" style="display:none;"/></div>';
+    }
+
     b += '<div id="localListInfo" class="localListInfo"><img id="localListImage" class="localListImage" /></div>';
     b += '<div id="localListHighlight" class="localListHighlight globalLocalHighlight"></div>';
     b += '<div id="localListContainer" class="localListContainer"></div>';
     b += "</div>";
     b += '<div id="localListDescription" class="localListDescription"></div>'
-    b += '<div id="ticker_tape_local" class="ticker_tape_local"><div id="promotion_id">Promotions</div><p id="local_promotion_text"></p></div>';
+    b += '<div id="ticker_tape_local" class="ticker_tape_local"><div id="promotion_id">'+promotionText+'</div><p id="local_promotion_text"></p></div>';
     b += '<div class="footer">';
     b += '<div id="footerContainer" class="footerContainer">' + showLocalFooter() + "</div>";
     b += "</div>";
@@ -26,8 +37,11 @@ function localListGetScreenHtml() {
 }
 
 function showLocalFooter() {
-    var a = top.globalGetLabel("RC_MENU");
-    return a
+    var menu = top.globalGetLabel("RC_MENU");
+    if (top.DEFAULT_LANGUAGE == 'ar') {
+         menu = "<div class=footerImage><img src=images/rc/menu-button.jpg  /></div><div class=footerText> القائمة الفرعية  </div>";
+    }
+    return menu;
 }
 
 function localListHideHighlight() {
@@ -92,7 +106,8 @@ function localListOnIndexChanged(c, i) {
     var k = this.getSelected();
 
     var element = document.getElementsByClassName("localListItem")[k];
-    element.style.backgroundColor = "#B78D49";
+    //element.style.backgroundColor = "#B78D49";
+    element.className += " active";
 }
 
 

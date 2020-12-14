@@ -7,19 +7,19 @@ $upload_file = !empty($upload_file_error) ? $upload_file_error : "";
 //print "<span style='color:#FF0000'>".validation_errors()."</span>";
 $attributes = array('name' => 'myform','autocomplete'=>'off');
 echo form_open_multipart('welcome/addtv',$attributes);
-$data_chName		= array('name'=>'name','id'=>'name','size'=> 25);
-$data_chNum			= array('name'=>'ChNum','id'=>'ChNum','size'=> 25);
+$data_chName		= array('name'=>'name','id'=>'name','class'=>'form-control','size'=> 25);
+$data_chNum			= array('name'=>'ChNum','id'=>'ChNum','class'=>'form-control','size'=> 25);
 //$data_prNum			= array('name'=>'prLevel','id'=>'prLevel','size'=> 25);
 //$data_prNam			= array('name'=>'prName','id'=>'prName','size'=> 25);
-$data_eitxml		= array('name'=>'eitxml','id'=>'eitxml','size'=>25);
-$data_epgxml		= array('name'=>'epgxml','id'=>'epgxml','size'=>25);
-$data_path			= array('name'=>'path','id'=>'path','size'=> 25);
-$data_icon			= array('name'=> 'icon','id'=> 'icon');
-$data_description 	= array('name'=>'description','id'=>'description','rows'=> 5, 'cols'=>'40');
+$data_eitxml		= array('name'=>'eitxml','id'=>'eitxml','class'=>'form-control','size'=>25);
+$data_epgxml		= array('name'=>'epgxml','id'=>'epgxml','class'=>'form-control','size'=>25);
+$data_path			= array('name'=>'path','id'=>'path','class'=>'form-control','size'=> 25);
+$data_icon			= array('name'=> 'icon','id'=> 'icon','class'=>'form-control');
+$data_description 	= array('name'=>'description','id'=>'description','rows'=> 5, 'cols'=>'40','class'=>'form-control');
 $data_language		= $this->config->item('languages');
 
 
-$table="<table width='99%' border='0' cellpadding='5' cellspacing='0'>";
+$table="<table width='99%' border='0' cellpadding='5' cellspacing='0' class='table'>";
 
 $table.="<tr>";
 $table.="<td width='25%'><label for='name'>Channel Name</label><span class='star'> * </span></td>";
@@ -100,7 +100,8 @@ $table.="<td><span id='error'>".form_error('language')."</span></td>";
 $table.="</tr>";
 
 $table.="<tr>";
-$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="positive"><img src="'.base_url().'images/cross.png" alt=""/>Back</button><button type="submit" class="positive" name="submit"><img src="'.base_url().'images/apply2.png" alt=""/>Create TV</button></div></td>';
+$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="btn btn-danger">Back</button>
+&nbsp;&nbsp;<button type="submit" class="btn btn-success" name="submit">Create TV</button></div></td>';
 $table.="</tr>";
 $fields = array('type'=>'hidden', 'name'=>'genreName', 'id'=>'genreName');
 if($genreName!=""){ $val=$genreName; }else{ $val="Select"; }

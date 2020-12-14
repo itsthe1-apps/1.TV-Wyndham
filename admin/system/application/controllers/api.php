@@ -1,13 +1,12 @@
 <?php
 
-require(APPPATH . '/libraries/REST_Controller.php');
+require APPPATH . '/libraries/REST_Controller.php';
 
 class Api extends REST_Controller
 {
 
-    function channels_get()
+    public function channels_get()
     {
-
         $u_id = $this->get('uid');
         $g_id = $this->get('gid');
 
@@ -22,7 +21,7 @@ class Api extends REST_Controller
         }
     }
 
-    function restaurants_get()
+    public function restaurants_get()
     {
         $this->load->model('WebService');
         $language = "en";
@@ -37,7 +36,7 @@ class Api extends REST_Controller
         }
     }
 
-    function spa_get()
+    public function spa_get()
     {
         $this->load->model('WebService');
         $language = "en";
@@ -53,7 +52,7 @@ class Api extends REST_Controller
         }
     }
 
-    function experience_get()
+    public function experience_get()
     {
 
         $this->load->model('WebService');
@@ -75,10 +74,22 @@ class Api extends REST_Controller
      * Added by Yesh
      * 2016-08-14
      */
-    function datetime_get()
+    public function datetime_get()
     {
+        $language = "en";
+        if (array_key_exists('language', $this->get())) {
+            $language = trim($this->get('language'));
+        }
         $datetime = DateTime::createFromFormat('Y-m-d H:i', date('Y-m-d H:i'));
-        $array = array('date' => date("Y-m-d"), 'time' => date('H:i'), 'day' => $datetime->format('D'));
+
+        $today = $datetime->format('D');
+
+        $days = array('Sun' => 'الأحد', 'Mon' => 'الإثنين', 'Tue' => 'الثلاثاء', 'Wed' => 'الأربعاء', 'Thu' => 'الخميس', 'Fri' => 'يوم الجمعة', 'Sat' => 'يوم السبت');
+        if ($language == 'ar') {
+            $today = $days[$today];
+        }
+
+        $array = array('date' => date("Y-m-d"), 'time' => date('H:i'), 'day' => $today);
         if ($array) {
             $this->response($array, 200); // 200 being the HTTP response code
         } else {
@@ -86,7 +97,7 @@ class Api extends REST_Controller
         }
     }
 
-    function restmenutypes_get()
+    public function restmenutypes_get()
     {
         $this->load->model('WebService');
 
@@ -98,7 +109,7 @@ class Api extends REST_Controller
         }
     }
 
-    function localinfos_get()
+    public function localinfos_get()
     {
         $this->load->model('WebService');
         if (array_key_exists('language', $this->get())) {
@@ -112,7 +123,7 @@ class Api extends REST_Controller
         }
     }
 
-    function newsnpromos_get()
+    public function newsnpromos_get()
     {
         $this->load->model('WebService');
         if (array_key_exists('language', $this->get())) {
@@ -126,7 +137,7 @@ class Api extends REST_Controller
         }
     }
 
-    function localinfotypes_get()
+    public function localinfotypes_get()
     {
         $this->load->model('WebService');
         $localinfotypes = $this->WebService->get_localinfotypes_api();
@@ -137,21 +148,21 @@ class Api extends REST_Controller
         }
     }
 
-    function newsflag_get()
+    public function newsflag_get()
     {
         $this->load->model('WebService');
 
         $news = $this->WebService->get_newsflag_api();
         /*
-          if ($news[0]['news']) {
-          $this->response($news[0]['news'], 200); // 200 being the HTTP response code
-          } else {
-          $this->response(array('error' => 'Couldn\'t find any users!'), 404);
-          } */
+        if ($news[0]['news']) {
+        $this->response($news[0]['news'], 200); // 200 being the HTTP response code
+        } else {
+        $this->response(array('error' => 'Couldn\'t find any users!'), 404);
+        } */
         print $news[0]['news'];
     }
 
-    function weather_get()
+    public function weather_get()
     {
         $this->load->model('WebService');
         $language = "en";
@@ -168,16 +179,47 @@ class Api extends REST_Controller
             curl_close($ch);
             $response = json_decode($curlout, true);
 //            echo '<pre>';
-//            print_r($response);
-//            echo '</pre>';
-//            die();
+            //            print_r($response);
+            //            echo '</pre>';
+            //            die();
             $forecast = $response['query']['results']['channel']['item']['forecast'];
             $city = $response['query']['results']['channel']['location']['city'];
             $unit = $response['query']['results']['channel']['units']['temperature'];
             $weatherArray = [];
             $i = 0;
+
+            //          Arabic Weather Types
+            $weather_types = array(
+                "Partly Cloud" => "سحابة جزئيا",
+                "Showers" => "الاستحمام",
+                "Partly Cloudy" => "غائم جزئيا",
+                "AM Showers" => "الصباح الاستحمامo",
+                "PM Showers" => "مساء الاستحمام",
+                "PM Thunderstorms" => "عواصف رعدية مسائية",
+                "Scattered Thunderstorms" => "عواصف رعدية متفرقة",
+                "Light Rain with Thunder" => "ضوء المطر مع الرعد",
+                "Thunderstorms" => "عواصف رعدية",
+                "Heavy Rain" => "مطر غزير",
+                "Mostly Sunny" => "غالبا مشمس",
+                "Light Rain" => "مطر خفيف",
+                "Fog" => "ضباب",
+                "Fair" => "معرض",
+                "Sunny" => "مشمس",
+                "AM Rain" => "الصباح المطر",
+                "PM Rain" => "مساء المطر",
+                "Mostly Cloudy" => "غالبا غائم",
+                "Isolated Thunderstorms" => "هبوب عواصف رعدية متفرقة",
+                "Thundershowers" => "عواصف رعدية",
+                "Heavy Thunderstorms" => "عواصف رعدية ثقيلة",
+                "Clear" => "واضح",
+                "Rain" => "تمطر",
+                "Cloudy" => "غائم");
+
             foreach ($forecast as $value) {
                 $weatherType = $value['text'];
+                if ($language == 'ar') {
+                    $weatherType = $weather_types[$weatherType];
+                }
                 $tmpHigh = $value['high'] . "" . $unit;
                 $tmpLow = $value['low'] . "" . $unit;
                 $code = $value['code'];
@@ -193,7 +235,7 @@ class Api extends REST_Controller
         }
     }
 
-    function checkRemoteFile($url)
+    public function checkRemoteFile($url)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -201,14 +243,14 @@ class Api extends REST_Controller
         curl_setopt($ch, CURLOPT_NOBODY, 1);
         curl_setopt($ch, CURLOPT_FAILONERROR, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        if (curl_exec($ch) !== FALSE) {
-            return TRUE;
+        if (curl_exec($ch) !== false) {
+            return true;
         } else {
-            return FALSE;
+            return false;
         }
     }
 
-    function messageread_post()
+    public function messageread_post()
     {
         $this->load->model('WebService');
         $mac_address = "";
@@ -237,7 +279,7 @@ class Api extends REST_Controller
         //  $this->response($str, 200);
     }
 
-    function userchannels_get()
+    public function userchannels_get()
     {
         $this->load->model('WebService');
         $mac_address = "";
@@ -268,7 +310,7 @@ class Api extends REST_Controller
         }
     }
 
-    function movies_get()
+    public function movies_get()
     {
         $g_id = $this->get('id');
 
@@ -282,7 +324,7 @@ class Api extends REST_Controller
         }
     }
 
-    function programs_get()
+    public function programs_get()
     {
         $this->load->model('WebService');
 
@@ -294,7 +336,7 @@ class Api extends REST_Controller
         }
     }
 
-    function genres_get()
+    public function genres_get()
     {
         $this->load->model('WebService');
 
@@ -306,7 +348,7 @@ class Api extends REST_Controller
         }
     }
 
-    function parentals_get()
+    public function parentals_get()
     {
         $this->load->model('WebService');
 
@@ -318,7 +360,7 @@ class Api extends REST_Controller
         }
     }
 
-    function news_get()
+    public function news_get()
     {
         $this->load->model('WebService');
         $language = "";
@@ -334,7 +376,7 @@ class Api extends REST_Controller
         }
     }
 
-    function tickertape_get()
+    public function tickertape_get()
     {
         $this->load->model('WebService');
         $language = "";
@@ -350,7 +392,7 @@ class Api extends REST_Controller
         }
     }
 
-    function xmltvlist_get()
+    public function xmltvlist_get()
     {
         $this->load->model('WebService');
 
@@ -362,7 +404,7 @@ class Api extends REST_Controller
         }
     }
 
-    function login_post()
+    public function login_post()
     {
         $this->load->model('WebService');
         $response_string = "";
@@ -391,7 +433,7 @@ class Api extends REST_Controller
         $this->responseHTML($data);
     }
 
-    function skins_get()
+    public function skins_get()
     {
         $this->load->model('WebService');
 
@@ -404,7 +446,7 @@ class Api extends REST_Controller
         }
     }
 
-    function language_get()
+    public function language_get()
     {
         $this->load->model('WebService');
 
@@ -417,7 +459,7 @@ class Api extends REST_Controller
         }
     }
 
-    function devices_get()
+    public function devices_get()
     {
         $this->load->model('WebService');
 
@@ -430,7 +472,7 @@ class Api extends REST_Controller
         }
     }
 
-    function devices_type_get()
+    public function devices_type_get()
     {
         $this->load->model('WebService');
 
@@ -443,7 +485,7 @@ class Api extends REST_Controller
         }
     }
 
-    function devices_groups_get()
+    public function devices_groups_get()
     {
         $this->load->model('WebService');
 
@@ -456,7 +498,7 @@ class Api extends REST_Controller
         }
     }
 
-    function guest_get()
+    public function guest_get()
     {
         $this->load->model('WebService');
 
@@ -469,7 +511,7 @@ class Api extends REST_Controller
         }
     }
 
-    function rooms_get()
+    public function rooms_get()
     {
         $this->load->model('WebService');
 
@@ -482,7 +524,7 @@ class Api extends REST_Controller
         }
     }
 
-    function greeting_get()
+    public function greeting_get()
     {
         $this->load->model('WebService');
 
@@ -495,7 +537,7 @@ class Api extends REST_Controller
         }
     }
 
-    function occation_get()
+    public function occation_get()
     {
         $this->load->model('WebService');
 
@@ -508,7 +550,7 @@ class Api extends REST_Controller
         }
     }
 
-    function message_get()
+    public function message_get()
     {
         $this->load->model('WebService');
 
@@ -521,7 +563,7 @@ class Api extends REST_Controller
         }
     }
 
-    function itvgenre_get()
+    public function itvgenre_get()
     {
         $this->load->model('WebService');
 
@@ -534,7 +576,7 @@ class Api extends REST_Controller
         }
     }
 
-    function packages_get()
+    public function packages_get()
     {
         $this->load->model('WebService');
 
@@ -547,7 +589,7 @@ class Api extends REST_Controller
         }
     }
 
-    function parental_get()
+    public function parental_get()
     {
         $this->load->model('WebService');
 
@@ -560,7 +602,7 @@ class Api extends REST_Controller
         }
     }
 
-    function user_roles_get()
+    public function user_roles_get()
     {
         $this->load->model('WebService');
 
@@ -573,7 +615,7 @@ class Api extends REST_Controller
         }
     }
 
-    function users_get()
+    public function users_get()
     {
         $this->load->model('WebService');
 
@@ -586,7 +628,7 @@ class Api extends REST_Controller
         }
     }
 
-    function favourites_get()
+    public function favourites_get()
     {
         $get_id = $this->get('user');
         $this->load->model('WebService');
@@ -600,7 +642,7 @@ class Api extends REST_Controller
         }
     }
 
-    function setfavourite_post()
+    public function setfavourite_post()
     {
         $this->load->model('WebService');
         $user = 0;
@@ -617,7 +659,7 @@ class Api extends REST_Controller
         }
     }
 
-    function changelang_post()
+    public function changelang_post()
     {
         $this->load->model('rooms');
         if (array_key_exists('user_id', $this->get())) {
@@ -627,7 +669,7 @@ class Api extends REST_Controller
             $language = trim($this->get('language'));
         }
 //        $user_id = $this->get('user_id');
-//        $language = $this->get('language');
+        //        $language = $this->get('language');
         $this->load->model('WebService');
         $lan = $language == "en" ? 2 : 1; //if en change to ar
         if (isset($user_id)) {
@@ -642,7 +684,7 @@ class Api extends REST_Controller
         }
     }
 
-    function removefavourite_post()
+    public function removefavourite_post()
     {
         $this->load->model('WebService');
         $user = 0;
@@ -660,7 +702,7 @@ class Api extends REST_Controller
         }
     }
 
-    function vod_get()
+    public function vod_get()
     {
         $this->load->model('WebService');
 
@@ -673,7 +715,7 @@ class Api extends REST_Controller
         }
     }
 
-    function user_get()
+    public function user_get()
     {
         $this->load->model('WebService');
         $this->load->model('rooms');
@@ -686,19 +728,19 @@ class Api extends REST_Controller
         $type = $this->get('type');
         $td = $this->Devices->device_count();
         $add = "no";
-        if (DEVICE_LIMIT == $td)
+        if (DEVICE_LIMIT == $td) {
             $add = "eq";
-        else if (DEVICE_LIMIT < $td)
+        } else if (DEVICE_LIMIT < $td) {
             $add = "yes";
-
+        }
         if (in_array($allowed_macrange, unserialize(STB_RANGE)) && ($add == "eq" || $add = "yes")) {
             $device_id = 0;
             $device_id = $this->Devices->addIfNotDeviceListed($mac_address, $serial_num, $type, $add);
             //$data = array();
             if ($device_id > 0) {
-                $data = $this->WebService->get_user_api($device_id);
+                $userLangId = $this->WebService->get_user_lang_bymac($mac_address);
+                $data = $this->WebService->get_user_api($device_id, $userLangId);
             }
-
             if ($data) {
                 $this->response($data, 200); // 200 being the HTTP response code
             } else {
@@ -709,7 +751,7 @@ class Api extends REST_Controller
         }
     }
 
-    function usermessages_get()
+    public function usermessages_get()
     {
         $this->load->model('WebService');
         $user_id = "";
@@ -730,7 +772,7 @@ class Api extends REST_Controller
         }
     }
 
-    function settings_get()
+    public function settings_get()
     {
 
         $this->load->model('WebService');
@@ -743,7 +785,7 @@ class Api extends REST_Controller
         }
     }
 
-    function style_get()
+    public function style_get()
     {
         $id = $this->get('id');
         $this->load->model('WebService');
@@ -755,7 +797,7 @@ class Api extends REST_Controller
         }
     }
 
-    function user_get_post()
+    public function user_get_post()
     {
         $this->load->model('WebService');
         $type = "";
@@ -819,7 +861,7 @@ class Api extends REST_Controller
         }
     }
 
-    function servicealarmreq_post()
+    public function servicealarmreq_post()
     {
         $this->load->model('WebService');
         $type = "";
@@ -829,6 +871,7 @@ class Api extends REST_Controller
         $alarm_type = "TV";
         $udp_number = 1;
         $ring_type = "Default";
+        $mac = "00:00:00:00:00";
 
         if (array_key_exists('type', $this->get())) {
             $type = trim($this->get('type'));
@@ -853,6 +896,9 @@ class Api extends REST_Controller
         if (array_key_exists('ring_type', $this->get())) {
             $ring_type = trim($this->get('ring_type'));
         }
+        if (array_key_exists('mac', $this->get())) {
+            $mac = trim($this->get('mac'));
+        }
         if ($user > 0 && $type != "") {
             $this->load->model('dx_auth/users');
             $this->load->model('Subscribers');
@@ -876,11 +922,13 @@ class Api extends REST_Controller
             $to_email = $this->WebService->get_configmail($type);
             $subject = 'WakeUp Call Request';
             $this->send_email($from_email, $from_name, $to_email, $subject, $message);
-            $this->WebService->guestalarm_insert_data($user, $date . " " . $time, $alarm_type, $udp_number, $ring_type);
+            $this->WebService->guestalarm_insert_data($user, $date . " " . $time, $alarm_type, $udp_number, $ring_type, $mac);
+
+            //$this->response($re, 200);
         }
     }
 
-    function servicealarmconfirm_post()
+    public function servicealarmconfirm_post()
     {
         $this->load->model('WebService');
         $user = 0;
@@ -896,7 +944,30 @@ class Api extends REST_Controller
         }
     }
 
-    function restarted_post()
+    public function servicealarmcurrent_get()
+    {
+        $this->load->model('WebService');
+        $result = "";
+        $mac = "00:00:00:00:00";
+        if (array_key_exists('mac', $this->get())) {
+            $mac = trim($this->get('mac'));
+            $result = $this->WebService->get_current_alarm($mac);
+        }
+        $this->response($result, 200);
+    }
+
+    public function servicealarmremove_post()
+    {
+        $this->load->model('WebService');
+        $mac = "00:00:00:00:00";
+        if (array_key_exists('mac', $this->get())) {
+            $mac = trim($this->get('mac'));
+            $this->WebService->remove_current_alarm($mac);
+        }
+        $this->response($result, 200);
+    }
+
+    public function restarted_post()
     {
         $this->load->config('dx_auth');
         $this->load->model('WebService');
@@ -911,7 +982,7 @@ class Api extends REST_Controller
      * @updated - Yeshan
      * @date - 2017-JUL-13
      */
-    function setdevicerebooted_post()
+    public function setdevicerebooted_post()
     {
         $this->load->model('TVclass');
         $device = 0;
@@ -925,7 +996,7 @@ class Api extends REST_Controller
         $this->Subscribers->update_guest_stb($device, 0, $this->TVclass->current_date());
     }
 
-    function roomreq_post()
+    public function roomreq_post()
     {
         $this->load->config('dx_auth');
         $this->load->model('WebService');
@@ -959,7 +1030,7 @@ class Api extends REST_Controller
         }
     }
 
-    function orderreq_post()
+    public function orderreq_post()
     {
         $this->load->model('WebService');
         $type = 0;
@@ -1010,19 +1081,18 @@ class Api extends REST_Controller
             $from_name = 'Room Number - ' . $guest_info['room_number'];
             $subject = "Restaurant Table Booking Request";
 
-
             $this->send_email($from_email, $from_name, $to_email, $subject, $message);
         }
     }
 
-    function get_admin_info()
+    public function get_admin_info()
     {
         $this->load->model('dx_auth/users');
         $admin_info = $this->users->get_user_by_username('admin')->row_array();
         return $admin_info;
     }
 
-    function send_email($from_email, $from_name, $to_email, $subject, $message)
+    public function send_email($from_email, $from_name, $to_email, $subject, $message)
     {
         $this->load->library('email');
         $this->email->from($from_email, $from_name);
@@ -1034,7 +1104,7 @@ class Api extends REST_Controller
     }
 
     //flags
-    function userflag_get()
+    public function userflag_get()
     {
         $user_id = "";
         if (array_key_exists('user_id', $this->get())) {
@@ -1044,11 +1114,11 @@ class Api extends REST_Controller
 
         $flag = $this->WebService->get_userflag_api($user_id);
         /*
-          if ($flag[0]['date_added']) {
-          $this->response($flag[0]['date_added'], 200); // 200 being the HTTP response code
-          } else {
-          $this->response(array('error' => 'Couldn\'t find any users!'), 404);
-          } */
+        if ($flag[0]['date_added']) {
+        $this->response($flag[0]['date_added'], 200); // 200 being the HTTP response code
+        } else {
+        $this->response(array('error' => 'Couldn\'t find any users!'), 404);
+        } */
         print $flag[0]['date_added'];
     }
 
@@ -1057,7 +1127,7 @@ class Api extends REST_Controller
      * @updated - Yeshan
      * @date - 2017-JUL-13
      */
-    function data_reload_get()
+    public function data_reload_get()
     {
         $this->load->model('WebService');
         $this->load->model('push/Push_model');
@@ -1066,26 +1136,40 @@ class Api extends REST_Controller
 
         $flag = $this->WebService->get_flag_api();
         $result = $this->Push_model->get_guestSTBStatus($device);
-        if ($result == true)
+        if ($result == true) {
             $flag[0]['need_restart'] = "yes";
-        else
+        } else {
             $flag[0]['need_restart'] = "no";
+        }
+
+
+        $resultCheckedOut = $this->Push_model->get_guestSTBCheckedOutStatus($device);
+        if ($resultCheckedOut == true) {
+            $flag[0]['checked_out'] = "yes";
+        } else {
+            $flag[0]['checked_out'] = "no";
+        }
 
         $message = $this->WebService->getUserMessage($id);
         $flag[0]['message'] = "no";
-        if ($message > 0)
-            $flag[0]['message'] = "yes"; // 200 being the HTTP response code
+        if ($message > 0) {
+            $flag[0]['message'] = "yes";
+        }
+        // 200 being the HTTP response code
 
         $flag[0]['exit'] = 0;
         $rows = $this->WebService->getRoomExit();
-        if (count($rows) > 0)
+        if (count($rows) > 0) {
             $flag[0]['exit'] = $rows[0]['status'];
+        }
 
         $flag[0]['alarm'] = "no";
         if ($id > 0) {
             $alarm = $this->WebService->getUserAlarm($id);
-            if (count($alarm) > 0)
+            if (count($alarm) > 0) {
                 $flag[0]['alarm'] = $alarm[0]['udp'];
+            }
+
         }
 
         $device_info = $this->WebService->get_device_api($device);
@@ -1098,23 +1182,25 @@ class Api extends REST_Controller
         print $data['data'];
     }
 
-    function alarmchecker_get()
+    public function alarmchecker_get()
     {
         $this->load->model('WebService');
         $id = $this->get('user');
         if ($id > 0) {
             $message = $this->WebService->getUserAlarm($id);
             //print  $message[0]['alarm_time'];
-            if (count($message) > 0)
-                $data['data'] = $message[0]['udp']; // 200 being the HTTP response code
-            else
+            if (count($message) > 0) {
+                $data['data'] = $message[0]['udp'];
+            } // 200 being the HTTP response code
+            else {
                 $data['data'] = 0;
+            }
 
             print $data[data];
         }
     }
 
-    function media_get()
+    public function media_get()
     {
         $this->load->model('WebService');
 
@@ -1132,7 +1218,7 @@ class Api extends REST_Controller
         }
     }
 
-    function ticker_promo_get()
+    public function ticker_promo_get()
     {
         $this->load->model('WebService');
         $news = $this->WebService->get_ticker_promo();
@@ -1144,7 +1230,7 @@ class Api extends REST_Controller
         }
     }
 
-    function radios_get()
+    public function radios_get()
     {
 
         $u_id = $this->get('uid');
@@ -1161,7 +1247,7 @@ class Api extends REST_Controller
         }
     }
 
-    function rgenres_get()
+    public function rgenres_get()
     {
         $this->load->model('WebService');
 
@@ -1173,7 +1259,7 @@ class Api extends REST_Controller
         }
     }
 
-    function internets_get()
+    public function internets_get()
     {
         $this->load->model('WebService');
 
@@ -1185,7 +1271,7 @@ class Api extends REST_Controller
         }
     }
 
-    function rfavourites_get()
+    public function rfavourites_get()
     {
         $get_id = $this->get('user');
         $this->load->model('WebService');
@@ -1199,7 +1285,7 @@ class Api extends REST_Controller
         }
     }
 
-    function setrfavourite_post()
+    public function setrfavourite_post()
     {
         $this->load->model('WebService');
         $user = 0;
@@ -1216,7 +1302,7 @@ class Api extends REST_Controller
         }
     }
 
-    function removerfavourite_post()
+    public function removerfavourite_post()
     {
         $this->load->model('WebService');
         $user = 0;
@@ -1234,7 +1320,7 @@ class Api extends REST_Controller
         }
     }
 
-    function userlang_get()
+    public function userlang_get()
     {
         $this->load->model('rooms');
         $user_id = $this->get('user_id');
@@ -1254,17 +1340,19 @@ class Api extends REST_Controller
         }
     }
 
-    function exitchecker_get()
+    public function exitchecker_get()
     {
         $data['data'] = 0;
         $this->load->model('WebService');
         $rows = $this->WebService->getRoomExit();
-        if (count($rows) > 0)
-            $data['data'] = $rows[0]['status']; // 200 being the HTTP response code
+        if (count($rows) > 0) {
+            $data['data'] = $rows[0]['status'];
+        }
+        // 200 being the HTTP response code
         print $data['data'];
     }
 
-    function exit_get()
+    public function exit_get()
     {
         $r = $this->get('room');
         $this->load->model('WebService');
@@ -1278,17 +1366,62 @@ class Api extends REST_Controller
         }
     }
 
-    function dtcm_data_get()
+
+    //Meteor PMS Integration
+
+    public function meteor_get()
+    {
+
+        switch ($this->get('RI')) {
+            case GI :
+                $this->checkin();
+                break;
+            case GO :
+                $this->checkout();
+                break;
+            case GC:
+
+                if ($this->get('RO')) {
+                    //Room Change
+                    $this->room_change();
+                } else {
+                    //Guest Update
+                    $this->guest_update();
+                }
+
+                break;
+            case XL:
+                //Guest Message
+                $this->guest_message();
+
+                break;
+
+            case XI:
+                //Single Bill Item
+                $this->guest_bill_item();
+                break;
+
+            case XB:
+                //Bill Total
+                $this->guest_bill_total();
+                break;
+
+            default :
+                break;
+        }
+    }
+
+    //Checkin Function
+    public function checkin()
     {
         $this->load->model('Subscribers');
-        $name_title = $this->get('name_title') == 1 ? "Mr" : $this->get('name_title') == 2 ? "Mrs" : $this->get('name_title');
         $data = array(
-            'title' => $name_title,
-            'name' => $this->get('name'),
-            'surname' => $this->get('surname'),
+            'title' => $this->get('GQ'),
+            'name' => $this->get('GN'),
+            'surname' => $this->get('GF'),
             'skin' => 'default',
             'accessibility' => '0',
-            'status' => $this->get('status'),
+            'status' => '1',
             'address' => '0',
             'postal_code' => '0',
             'post' => '0',
@@ -1304,30 +1437,238 @@ class Api extends REST_Controller
             'parental_pin' => '0',
             'user_pin' => '0',
             'package_id' => '26',
-            'date_added' => $this->TVclass->current_date()
+            'date_added' => $this->TVclass->current_date(),
+            'guest_code' => $this->get('GX'),
+            'bill_amount' => 0.0
         );
 
-        $room_number = $this->get("room_number");
+        $room_number = $this->get('RN');
         $roomId = $this->Subscribers->get_roomId_by_room_number($room_number);
+
+        $theme_id = 18; //Coral Dubai
+
+        $guest_lang = $this->get('GL');
+        $guest_tv_pack = $this->get('TV');
 
         $room_guest = array(
             'room_id' => $roomId,
             'guest_id' => '0',
             'greeting_id' => '1',
-            'theme_id' => '11',
-            'language_id' => '1'
+            'theme_id' => $theme_id,
+            'language_id' => '1',
         );
-        $this->Subscribers->add_dtcm_guest($data, $room_guest);
-        $this->response($data, 200);
-        //$this->response(NULL,404);
+
+        $guest_code = $data['guest_code'];
+        $guest_status = $this->Subscribers->guest_status($guest_code);
+
+        if ($guest_status['status'] != TRUE) {
+            $this->Subscribers->pms_checkin($data, $room_guest);
+        }
+
+        $response = array('payTV' => 'OK');
+        $this->response($response, 200);
 
     }
 
-    //rebooting devices
-    function reboot_stbs_get()
+
+    public function checkout()
+    {
+
+        $this->load->model('Subscribers');
+        $room_number = $this->get('RN');
+        $guest_code = $this->get('GX');
+
+        $guest_status = $this->Subscribers->guest_status($guest_code);
+        if ($guest_status['status'] == TRUE) {
+
+            $guest_data = $this->Subscribers->guest_status($guest_code);
+            $roomId = $this->Subscribers->get_roomId_by_room_number($room_number);
+            $this->Subscribers->pms_checkout($guest_data['guest_id'], $roomId);
+        }
+
+        $response = array('payTV' => 'OK');
+        $this->response($response, 200);
+    }
+
+    public function room_change()
+    {
+
+
+        //Checkout Process
+        $this->load->model('Subscribers');
+        $checkout_room = $this->get('RO');
+        $checkin_room = $this->get('RN');
+        $guest_code = $this->get('GX');
+
+        $roomId_checkedOut = $this->Subscribers->get_roomId_by_room_number($checkout_room);
+        $roomId_checkedIn = $this->Subscribers->get_roomId_by_room_number($checkin_room);
+        $guest_data = $this->Subscribers->guest_status($guest_code);
+        //var_dump($guest_code,$roomId_checkedIn,$roomId_checkedOut);
+
+        $guest_status = $this->Subscribers->guest_status($guest_code);
+        if ($guest_status['status'] != TRUE) {
+
+            $this->Subscribers->pms_room_change($roomId_checkedOut, $roomId_checkedIn, $guest_data);
+
+        }
+
+
+        $response = array('payTV' => 'OK');
+        $this->response($response, 200);
+
+    }
+
+    public function guest_message()
+    {
+
+        $this->load->model('Subscribers');
+        $room_no = $this->get('RN');
+        $guest_code = $this->get('GX');
+        $message_text = $this->get('MT');
+        $this->Subscribers->guest_message($room_no, $guest_code, $message_text);
+        $response = array('payTV' => 'OK');
+        $this->response($response, 200);
+    }
+
+    public function guest_update()
     {
         $this->load->model('Subscribers');
-        //$this->Subscribers->reboot_all_devices();
+        $guest_code = $this->get('GX');
+        $guest_data = $this->Subscribers->guest_status($guest_code);
+        $guest_id = $guest_data['guest_id'];
+        $room_no = $this->get('RN');
+        $roomId = $this->Subscribers->get_roomId_by_room_number($room_no);
+        $guest_id = $guest_id;
+        $update_data = array(
+            'title' => $this->get('GQ'),
+            'name' => $this->get('GN'),
+            'surname' => $this->get('GF')
+        );
+
+        $guest_status = $this->Subscribers->guest_status($guest_code);
+        if ($guest_status['status'] != TRUE) {
+
+            $this->Subscribers->pms_guest_update($roomId, $guest_id, $update_data);
+
+        }
+        $response = array('payTV' => 'OK');
+        $this->response($response, 200);
     }
+
+    public function guest_bill_item()
+    {
+
+        $this->load->model('Subscribers');
+        $guest_code = $this->get('GX');
+        $guest_data = $this->Subscribers->guest_status($guest_code);
+        $guest_id = $guest_data['guest_id'];
+        $room_no = $this->get('RN');
+        $item_amount = $this->get('BI');
+        $item_name = $this->get('BD');
+
+        $data = array(
+            'guest_id' => $guest_id,
+            'guest_code' => $guest_code,
+            'room_number' => $room_no,
+            'descreption' => $item_name,
+            'amount' => $item_amount
+        );
+        //$this->Subscribers->pms_bill_items($data);
+
+        $response = array('payTV' => 'OK');
+        $this->response($response, 200);
+
+
+    }
+
+    public function guest_bill_total()
+    {
+
+        $this->load->model('Subscribers');
+        $guest_code = $this->get('GX');
+        $guest_data = $this->Subscribers->guest_status($guest_code);
+        $guest_id = $guest_data['guest_id'];
+        $total_amount = $this->get('BA');
+
+
+        $this->Subscribers->pms_bill_total($guest_id, $guest_code, $total_amount);
+
+        $response = array('payTV' => 'OK');
+        $this->response($response, 200);
+
+    }
+
+    public function guestdata_get()
+    {
+
+        $guest_id = $this->get('id');
+        //Room Number Guest Code
+        $this->load->model('Subscribers');
+        $guest_data = $this->Subscribers->get_guest_code_room_number($guest_id);
+        $this->response($guest_data, 200);
+
+    }
+
+    public function removeguestbillitems_get()
+    {
+
+        $this->load->model('Subscribers');
+        $guest_code = $this->get('guest_code');
+        $room_no = $this->get('room_no');
+
+
+        $response = array('payTV' => 'OK', 'guest_code' => $guest_code, 'room_no' => $room_no);
+        $this->response($response, 200);
+
+    }
+
+    public function bill_info_get()
+    {
+
+        $this->load->model('Subscribers');
+        $guest_code = $this->get('guest_code');
+        $room_no = $this->get('room_no');
+        //$bill_items = $this->Subscribers->get_bill_items($room_no,$guest_code); //Not Available in Protel PMS
+        $bill_items = null;
+        $bill_total = $this->Subscribers->get_bill_total($guest_code);
+        $guest_bill = array(
+            'bill_items' => $bill_items,
+            'bill_total' => $bill_total
+        );
+        $this->response($guest_bill, 200);
+
+    }
+
+    public function init_view_bill_get()
+    {
+
+        //Get Parameters
+        $guest_code = $this->get('guest_code');
+        $room_no = $this->get('room_no');
+        $url = 'http://192.168.3.11:8081/Meteor/interface/istv/istv.jsp?RI=XR&RN=' . $room_no . '&GX=' . $guest_code . '';
+
+        // Get cURL resource
+        $curl = curl_init();
+        // Set some options - we are passing in a useragent too here
+        curl_setopt_array($curl, array(
+            CURLOPT_RETURNTRANSFER => 1,
+            CURLOPT_URL => $url,
+            CURLOPT_USERAGENT => 'Codular Sample cURL Request'
+        ));
+        // Send the request & save response to $resp
+        $resp = curl_exec($curl);
+        // Close request to clear up some resources
+        curl_close($curl);
+        $this->response($resp, 200);
+    }
+
+    public function complete_checkout_post()
+    {
+        $this->load->model('Subscribers');
+        $device_id = $this->get('device_id');
+        $this->Subscribers->complete_checkout($device_id);
+        $this->response("OK", 200);
+    }
+
 
 }

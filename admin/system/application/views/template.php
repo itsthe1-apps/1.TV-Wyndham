@@ -88,6 +88,8 @@
                         <div id="left_main">
                             <ul class="container">
                                 <?php
+                                // var_dump($this->session->userdata('menu_area'));
+                                // die();
                                 if ($this->session->userdata('menu_area') == 'tv') {
                                     $p_menu_all = array('ALL', 'FAVOURITES');
                                     $p_menu_url = array('welcome/Tv/all/0', 'welcome/favourites');
@@ -126,7 +128,22 @@
                                 } else if ($this->session->userdata('menu_area') == 'localinfo') {
                                     $parentmenu = $this->lang->line('LOCALINFO');
                                     $parentmenu_url = $this->lang->line('LOCALINFO_URL');
-                                } else {
+                                } else if ($this->session->userdata('menu_area') == 'localinfo') {
+                                    $parentmenu = $this->lang->line('LOCALINFO');
+                                    $parentmenu_url = $this->lang->line('LOCALINFO_URL');
+                                }else if ($this->session->userdata('menu_area') == 'newsnpromo') {
+                                    $parentmenu = $this->lang->line('NEWSNPROMO');
+                                    $parentmenu_url = $this->lang->line('NEWSNPROMO_URL');
+                                }else if ($this->session->userdata('menu_area') == 'messages') {
+                                    $parentmenu = $this->lang->line('MESSAGES');
+                                    $parentmenu_url = $this->lang->line('MESSAGES_URL');
+                                }else if ($this->session->userdata('menu_area') == 'promotions') {
+                                    $parentmenu = $this->lang->line('PROMOTIONS');
+                                    $parentmenu_url = $this->lang->line('PROMOTIONS_URL');
+                                }else if ($this->session->userdata('menu_area') == 'ticker_promo') {
+                                    $parentmenu = $this->lang->line('TICKERPROMOTIONS');
+                                    $parentmenu_url = $this->lang->line('TICKERPROMOTIONSS_URL');
+                                }else {
                                     $parentmenu = array();
                                     $parentmenu_url = array();
                                     $childmenu = array();

@@ -111,10 +111,10 @@ var ListenerManager = {
                         }
                         if (top.MESSAGES == 1) {
                             if (a.message == "yes") {
-                                top.MessageManager.getMessage()
+                                //top.MessageManager.getMessage()
                             } else {
                                 if (top.MessageManager.msgIsInfobarHidden == false) {
-                                    top.MessageManager.messageShow(0)
+                                    //top.MessageManager.messageShow(0)
                                 }
                             }
                         }

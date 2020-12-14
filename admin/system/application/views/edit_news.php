@@ -21,11 +21,11 @@ echo form_close();
 **/
 print form_open('newsmenu/editnews');
 
-$title 		= array('name'=>'title','id'=>'title','size'=> 25, 'value'=>$category['title']!="" ? $category['title'] : $this->input->post('title'),'maxlength'=>100);
-$summary	= array('name'=>'summary','id'=>'summary','rows'=> 6,'cols'=>60, 'value' =>$category['summary'] ? $category['summary'] : $this->input->post('summary'),'maxlength'=>$text_area_length,'onkeyup'=>'return ismaxlength(this)');
-$full_news  = array('name'=>'fullnews','id'=>'fullnews','rows'=> 10, 'cols'=>60, 'value' =>$category['fullnews'] ? utf8_decode($category['fullnews']) : $this->input->post('fullnews'));	
+$title 		= array('name'=>'title','id'=>'title','class' => 'form-control','size'=> 25, 'value'=>$category['title']!="" ? $category['title'] : $this->input->post('title'),'maxlength'=>100);
+$summary	= array('name'=>'summary','id'=>'summary','class' => 'form-control','rows'=> 6,'cols'=>60, 'value' =>$category['summary'] ? $category['summary'] : $this->input->post('summary'),'maxlength'=>$text_area_length,'onkeyup'=>'return ismaxlength(this)');
+$full_news  = array('name'=>'fullnews','id'=>'fullnews','rows'=> 10, 'cols'=>80, 'value' =>$category['fullnews'] ? utf8_decode($category['fullnews']) : $this->input->post('fullnews'));	
 
-$table = "<table width='100%' border='0' cellpadding='5' cellspacing='0'>";
+$table = "<table width='100%' border='0' cellpadding='5' cellspacing='0' class='table'>";
 
 $table.="<tr>";
 $table.="<td width='20%'><label for='name'>Language </label><span class='star'> * </span></td>";
@@ -59,7 +59,8 @@ $table.="<td valign='top'><span id='error'>".form_error('fullnews')."</span></td
 $table.="</tr>";
 
 $table.="<tr>";
-$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="positive"><img src="'.base_url().'images/cross.png" alt=""/>Back</button><button type="submit" class="positive" name="submit"><img src="'.base_url().'images/apply2.png" alt=""/>Update News</button></div></td>';
+$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="btn btn-danger">Back</button>
+&nbsp;&nbsp;<button type="submit" class="btn btn-primary" name="submit">Update News</button></div></td>';
 $table.="</tr>";
 
 $table.= "</table>";

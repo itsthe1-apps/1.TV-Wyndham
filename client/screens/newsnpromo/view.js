@@ -1,6 +1,12 @@
 var newsnpromo_promotion_index; // added by ** Lakshan **
 var promotions = new Array(); //Promotion Text Array added by ** Lakshan **
 function newsnpromoListGetScreenHtml() {
+
+    var promotionText = "Promotions";
+    if (top.DEFAULT_LANGUAGE == "ar") {
+        promotionText = " إعلانات وعروض خاصة ";
+    }
+
     var b = "";
     b += '<div class="bodyBG" style="background-image:' + top.BG_IMG + '">';
     b += '<div id="messageBlock" class="messageBlock"></div>';
@@ -13,22 +19,27 @@ function newsnpromoListGetScreenHtml() {
     b += "</div>";
     b += menuGetMenuListHtml();
     // b += '<div id="globalTitle" class="globalTitle newsnpromoListTitle">' + top.globalGetLabel("NEWSNPROMO_LIST_TITLE") + "</div>";
+    if (top.HIDE_SLIDER == 'YES') {
+         b += '<div id="newsnpromoListInfo" class="newsnpromoListInfo"><img id="newsnpromoListImage" class="newsnpromoListImage" style="display:none;"/></div>';
+    }
     b += '<div id="newsnpromoListInfo" class="newsnpromoListInfo"><img id="newsnpromoListImage" class="newsnpromoListImage" /></div>';
     b += '<div id="newsnpromoListHighlight" class="newsnpromoListHighlight globalNewsnpromoHighlight"></div>';
     b += '<div id="newsnpromoListContainer" class="newsnpromoListContainer"></div>';
     b += "</div>";
     b += '<div id="newsnpromoListDescription" class="newsnpromoListDescription"></div>'
+    b += '<div id="ticker_tape_newsnpromo" class="ticker_tape_newsnpromo"><div id="promotion_id" class="newsFooterTitle">'+promotionText+'</div><p id="newsnpromo_promotion_text" class="scrollInput"></p></div>';
     b += '<div class="footer">';
-    b += '<div class="newsFooter" id="newsFooter"><div class="newsFooterTitle" id="promotion_id">Promotions</div><div class="newsFooterText" id="newsFooterText"><div class="scrollInput" id="newsnpromo_promotion_text"></div></div></div>';
-    //b += '<div id="ticker_tape_newsnpromo" class="ticker_tape_newsnpromo"><div id="promotion_id" class="newsFooterTitle">Promotions</div><p id="newsnpromo_promotion_text" class="scrollInput"></p></div>';
     b += '<div id="footerContainer" class="footerContainer">' + showNewsnpromoFooter() + "</div>";
     b += "</div>";
     return b
 }
 
 function showNewsnpromoFooter() {
-    var a = top.globalGetLabel("RC_MENU");
-    return a
+    var menu = top.globalGetLabel("RC_MENU");
+    if (top.DEFAULT_LANGUAGE == 'ar') {
+        menu = "<div class=footerImage><img src=images/rc/menu-button.jpg  /></div><div class=footerText> القائمة الفرعية  </div>";
+    }
+    return menu;
 }
 
 function newsnpromoListHideHighlight() {
@@ -86,7 +97,8 @@ function newsnpromoListOnIndexChanged(c, i) {
     this.display();
     var k = this.getSelected();
     var element = document.getElementsByClassName("newsnpromoListItem")[k];
-    element.style.color = "#FFF";
+    // element.style.color = "#FFF";
+    element.className += " active";
     // clearInterval(interval_id);
     //setting up promotion array according to restaurnt
     // if(k == 0){

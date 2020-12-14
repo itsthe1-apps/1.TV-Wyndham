@@ -74,12 +74,12 @@ function minutes($name=false,$selected=false){
 
 echo form_open_multipart($this->uri->uri_string(), $attributes);
 
-$data_name = array('name' => 'name', 'id' => 'name', 'size' => 25, 'value'=>isset($restaurant['name']) ? $restaurant['name'] : $this->input->post('name'));
-$data_icon = array('name' => 'icon1[]', 'id' => 'icon1','multiple' => true,'value'=>$this->input->post('icon'));
+$data_name = array('name' => 'name', 'id' => 'name', 'class' => 'form-control', 'size' => 25, 'value'=>isset($restaurant['name']) ? $restaurant['name'] : $this->input->post('name'));
+$data_icon = array('name' => 'icon1[]', 'id' => 'icon1', 'class' => 'form-control','multiple' => true,'value'=>$this->input->post('icon'));
 
 //$data_menu_icon = array('name' => 'icon2', 'id' => 'icon2','value'=>$this->input->post('icon2'));
 
-$data_description = array('name' => 'description', 'id' => 'description', 'rows' => 5, 'cols' => '40', 'value' => isset($restaurant['description']) ? html_entity_decode($restaurant['description']) : html_entity_decode($this->input->post('description')), 'onkeypress'=>'check_length(this.form,this);');
+$data_description = array('name' => 'description', 'id' => 'description', 'class' => 'form-control', 'rows' => 5, 'cols' => '40', 'value' => isset($restaurant['description']) ? html_entity_decode($restaurant['description']) : html_entity_decode($this->input->post('description')), 'onkeypress'=>'check_length(this.form,this);');
 
 if(isset($restaurant['image'])){
 	//$file	= $this->TVclass->set_image_path("RESTAURANT",basename($restaurant['image']));
@@ -96,7 +96,7 @@ if(isset($restaurant['menu_image'])){
   echo $this->validation->error_string;
 **/
 
-$table = "<table width='100%' border='0' cellpadding='5' cellspacing='0'>";
+$table = "<table width='100%' border='0' cellpadding='5' cellspacing='0' class='table'>";
 
 $table.="<tr>";
 $table.="<td width='30%'><label for='name'>Language</label><span class='star'> * </span></td>";
@@ -119,7 +119,7 @@ $image_names = explode("|",$restaurant['image']);
 
 $html_img = '';
 foreach ($image_names as $img) {
-    $html_img .= "<img  width='50' src='".$this->config->item('rest_icon_url').$img."' align='right'>";
+    $html_img .= "<img  width='120' style='margin:10px;' src='".$this->config->item('rest_icon_url').$img."' align='right'>";
 }
 isset($restaurant['image']) && $restaurant['image']!="" ? $st_img = $html_img : $st_img = ""; 
 
@@ -143,28 +143,28 @@ $table.="</tr>";
 $table.="<tr>";
 $table.="<td><label for='daliy_time'>Daily Time</label></td>";
 $table.="<td>:</td>";
-$table.="<td>".form_input('daliy_time',isset($restaurant['daliy_time']) ? $restaurant['daliy_time'] : '')."</td>";
+$table.="<td>".form_input('daliy_time',isset($restaurant['daliy_time']) ? $restaurant['daliy_time'] : '','class="form-control"')."</td>";
 $table.="<td><span id='error'></span></td>";
 $table.="</tr>";
 
 $table.="<tr>";
 $table.="<td><label for='breakf_time'>Break First Time</label></td>";
 $table.="<td>:</td>";
-$table.="<td>".form_input('breakf_time',isset($restaurant['breakf_time']) ? $restaurant['breakf_time'] : '','maxlength=40')."</td>";
+$table.="<td>".form_input('breakf_time',isset($restaurant['breakf_time']) ? $restaurant['breakf_time'] : '','maxlength=40 class="form-control"')."</td>";
 $table.="<td><span id='error'></span></td>";
 $table.="</tr>";
 
 $table.="<tr>";
 $table.="<td><label for='lunch_time'>Lunch Time</label></td>";
 $table.="<td>:</td>";
-$table.="<td>".form_input('lunch_time',isset($restaurant['lunch_time']) ? $restaurant['lunch_time'] : '','maxlength=40')."</td>";
+$table.="<td>".form_input('lunch_time',isset($restaurant['lunch_time']) ? $restaurant['lunch_time'] : '','maxlength=40 class="form-control"')."</td>";
 $table.="<td><span id='error'></span></td>";
 $table.="</tr>";
 
 $table.="<tr>";
 $table.="<td><label for='dinner_time'>Dinner Time</label></td>";
 $table.="<td>:</td>";
-$table.="<td>".form_input('dinner_time',isset($restaurant['dinner_time']) ? $restaurant['dinner_time'] : '','maxlength=40')."</td>";
+$table.="<td>".form_input('dinner_time',isset($restaurant['dinner_time']) ? $restaurant['dinner_time'] : '','maxlength=40 class="form-control"')."</td>";
 $table.="<td><span id='error'></span></td>";
 $table.="</tr>";
 
@@ -207,14 +207,14 @@ for($i=1;$i<=5;$i++){
 $table.="<tr>";
 $table.="<td><label for='name'>Dress</label></td>";
 $table.="<td>:</td>";
-$table.="<td>" . form_input('dress',isset($restaurant['dress']) ? $restaurant['dress'] : ''). "</td>";
+$table.="<td>" . form_input('dress',isset($restaurant['dress']) ? $restaurant['dress'] : '','class="form-control"'). "</td>";
 $table.="<td><span id='error'></span></td>";
 $table.="</tr>";
 
 $table.="<tr>";
 $table.="<td><label for='name'>Venue</label></td>";
 $table.="<td>:</td>";
-$table.="<td>" . form_input('venue',isset($restaurant['venue']) ? $restaurant['venue'] : ''). "</td>";
+$table.="<td>" . form_input('venue',isset($restaurant['venue']) ? $restaurant['venue'] : '','class="form-control"'). "</td>";
 $table.="<td><span id='error'></span></td>";
 $table.="</tr>";
 
@@ -234,11 +234,13 @@ $table.="</tr>";
 
 if($task == "update"){
 	$table.="<tr>";
-$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="positive"><img src="' . base_url() . 'images/cross.png" alt=""/>Back</button><button type="submit" class="positive" name="update"><img src="' . base_url() . 'images/apply2.png" alt=""/>Update Restaurant</button></div></td>';
+$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="btn btn-danger">Back</button>
+&nbsp;&nbsp;<button type="submit" class="btn btn-primary" name="update">Update Restaurant</button></div></td>';
 $table.="</tr>";
 }else{
 	$table.="<tr>";
-	$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="positive"><img src="' . base_url() . 'images/cross.png" alt=""/>Back</button><button type="submit" class="positive" name="submit"><img src="' . base_url() . 'images/apply2.png" alt=""/>Create Restaurant</button></div></td>';
+	$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="btn btn-danger">Back</button>
+	&nbsp;&nbsp;<button type="submit" class="btn btn-success" name="submit">Create Restaurant</button></div></td>';
 	$table.="</tr>";
 }
 $table.="</table>";

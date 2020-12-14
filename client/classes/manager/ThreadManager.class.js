@@ -104,8 +104,46 @@ var ThreadManager = {
                 }
             }
             if (a.need_restart == "yes") {
-                top.kwConsole.print("Restarting STB");
-                top.Player.restart()
+
+                ////Wakeup STB if on StandBy if Stand By
+                p = gSTB.GetStandByStatus();
+                top.kwConsole.print("GetStandByStatus :" + p);
+                var tvStatus = gSTB.GetHDMIConnectionState();
+                //alert(tvStatus+"----"+p);
+                if ((tvStatus == 0) && (p == true)) {
+                    gSTB.StandBy(false);
+                }
+                //top.Player.restart();
+                top.Player.reboot();
+
+            }
+            //console.log("a.checked_out : "+a.checked_out,"----","top.CHECKED_OUT_FLAG : ",top.CHECKED_OUT_FLAG,"Device ID:"+top.DEVICE_ID);
+            if (a.checked_out == "yes"){
+                top.kwConsole.print("Checked Out STB");
+                if(top.CHECKED_OUT_FLAG == false){
+                    top.CHECKED_OUT = true;
+                    top.ScreenManager.load("MENU");
+                    top.CHECKED_OUT_FLAG == true;
+                    top.UserManager.completeCheckout(top.DEVICE_ID);
+                    //Set STB To Snad by
+                    setTimeout(function () {
+
+                        p = gSTB.GetStandByStatus();
+                        top.kwConsole.print("GetStandByStatus :" + p);
+                        var tvStatus = gSTB.GetHDMIConnectionState();
+                        //alert(tvStatus+"----"+p);
+                        if ((tvStatus == 2) && (p == false)) {
+                            gSTB.StandBy(true);
+                        }
+
+                    },5000);
+                }
+            }else{
+                if(top.CHECKED_OUT_FLAG == true){
+                    top.CHECKED_OUT = false;
+                    top.CHECKED_OUT_FLAG == false;
+                }
+                //console.log(a.checked_out);
             }
             if (a.device_status == "device_off") {
                 top.kwConsole.print("Change Device Status");
@@ -113,10 +151,20 @@ var ThreadManager = {
             }
             if (top.MESSAGES == 1) {
                 if (a.message == "yes") {
-                    top.MessageManager.getMessage()
+
+                	var p = gSTB.GetStandByStatus();
+                    top.kwConsole.print("GetStandByStatus :" + p);
+                    var tvStatus = gSTB.GetHDMIConnectionState();
+                    //alert("tvStatus : "+tvStatus+"----"+"StandBy Status :"+p+"top.STANDBY_HOLD : "+top.STANDBY_HOLD);
+                    if ((tvStatus == 0) && (p == true) && (top.STANDBY_HOLD == false)) {
+                        gSTB.StandBy(false);
+                    }
+
+                    top.MessageManager.loadMessages();
+
                 } else {
                     if (top.MessageManager.msgIsInfobarHidden == false) {
-                        top.MessageManager.messageShow(0)
+                        //top.MessageManager.messageShow(0)
                     }
                 }
             }

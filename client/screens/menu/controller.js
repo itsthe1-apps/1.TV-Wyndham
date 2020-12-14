@@ -8,7 +8,7 @@ function menuEventHandler(a) {
     var b = true;
     switch (a.code) {
         case "INIT_SCREEN":
-            top.changeBackgroundImg('HOME');
+            top.BG_IMG = 'url(' + top.IMAGES_PREFIX + 'BGS/' + top.BACKGROUND_ARRAY['HOME'] + ')';
             top.kwStatusConsole.clear();
             top.kwStatusConsole.hide();
             top.MENU_LOADED = 1;
@@ -37,14 +37,28 @@ function menuMainEventHandler(a) {
     var b = true;
     switch (a.code) {
         case "KEY_LEFT":
-            menuMainList.scrollUp(1);
+             if (menuMainList.getIndex() == menuMainList.getLength() - 1) {
+                if (top.DEFAULT_DIRECTION == "ltr") {
+                    menuMainList.scrollUp(1); 
+                }else{
+                    menuMainList.scrollUp(menuMainList.getLength()); 
+                }
+            }else{
+                (top.DEFAULT_DIRECTION == "ltr") ? menuMainList.scrollUp(1) :  menuMainList.scrollDown(1);
+            }
             top.kwConsole.print("Key Left::target" + menuMainList.getItem().target);
             break;
         case "KEY_RIGHT":
             if (menuMainList.getIndex() == menuMainList.getLength() - 1) {
-                menuMainList.scrollUp(menuMainList.getLength());
+                if (top.DEFAULT_DIRECTION == "ltr") {
+                    menuMainList.scrollUp(menuMainList.getLength()); 
+                }else{
+                    menuMainList.scrollUp(1); 
+                }
             } else {
-                menuMainList.scrollDown(1);
+                (top.DEFAULT_DIRECTION == "ltr") ? menuMainList.scrollDown(1) : menuMainList.scrollUp(1);
+
+                //menuMainList.scrollDown(1);
             }
             break;
         case "KEY_SELECT":
@@ -111,6 +125,15 @@ function menuMainEventHandler(a) {
                     b = restrntListMainEventHandler(a);
                     menu_highlight_menu();
                     break;
+                case top.State.SERVICE_LIST:
+                    a.code = "KEY_RIGHT"; //Assigne to escape KEY_DOWN
+                    b = serviceMainEventHandler(a);
+                    menu_highlight_menu();
+                    top.State.setState(top.State.SERVICE_LIST);
+                    break;
+                case top.State.MESSAGE_LIST_MAIN:
+                    b = messageListMainEventHandler(a);
+                    menu_highlight_menu();
                 //Spa Experience Local_Info
                 case top.State.LOCAL_LIST_MAIN:
                     if (top.CURRENT_MAIN_MENU_ID == "SPA") {
@@ -155,7 +178,7 @@ function menu_highlight_menu() {
 
     var menu_id = document.getElementsByClassName("menuMainListItem")[selected_menu_id]; //
     var current_class = menu_id.className;
-    var new_class = current_class + "Selected";
+    var new_class = current_class + "Semi_selected";
     menu_id.className = new_class;
 
     var prev_menu_id = document.getElementsByClassName("menuMainListItem")[current_menu_id];
@@ -172,7 +195,7 @@ function menuActionHandler(b, a) {
 
 function menuInitScreen() {
     try {
-
+       
         clearInterval(top.GLOBAL_SLIDER_INTERVAL);
         clearInterval(top.GLOBAL_PROMOTION_INTERVAL);
 
@@ -184,6 +207,7 @@ function menuInitScreen() {
         this.menuInitMainList();
         this.menuInitNewsListLoader();
         this.menuInitWeatherListLoader();
+        this.loadMediaList();
         //this.loadMediaList();//Added by Yesh - 2016-08-02 - Disable promotions
         if (top.TTAPE_MARQUEE == 1) {
             this.loadNewsString();
@@ -192,6 +216,8 @@ function menuInitScreen() {
         }
         top.switchMuteDisplay(top.Player.isMute);
         top.checkVolumeBar();
+        top.initAlarmClock();
+        
     } catch (a) {
         top.kwConsole.print("menuInitScreen" + a);
     }
@@ -297,7 +323,7 @@ function menuGetMenuListData() {
     if (top.TV) {
         a.push({
             "class": "menuTvIcon",
-            "txtLabel": "TV",
+            "txtLabel": "TV CHANNELS",
             target: "CH_LIST"
         });
         menus++;
@@ -305,7 +331,7 @@ function menuGetMenuListData() {
     if (top.INFORMATION) {
         a.push({
             "class": "menuLocalIcon",
-            "txtLabel": "Hospital Infomation",
+            "txtLabel": "FACILITIES",
             target: "LOCAL"
         });
         menus++;
@@ -329,7 +355,7 @@ function menuGetMenuListData() {
     if (top.RESTAURANT) {
         a.push({
             "class": "menuRestrntIcon",
-            "txtLabel": "Retail & Dining",
+            "txtLabel": "DINING",
             target: "RESTRNT"
         });
         menus++;
@@ -353,7 +379,7 @@ function menuGetMenuListData() {
     if (top.NEWSNPROMO) {
         a.push({
             "class": "menuNewsnpromoIcon",
-            "txtLabel": "News & Promotions",
+            "txtLabel": "ATTRACTIONS",
             target: "NEWSNPROMO"
         });
         menus++;
@@ -378,7 +404,7 @@ function menuGetMenuListData() {
         a.push({
             "class": "menuLanguageIconA",
             "txtLabel": "",
-            target: "CHNGE_LANG"
+            target: "CHNGE_LANG" //target: "CHNGE_LANG"
         });
         menus++;
     }
@@ -390,14 +416,14 @@ function menuGetMenuListData_R() {
     var a = [];
     a.push({
         "class": "menuHomeIcon",
-        "txtLabel": "WELCOME",
+        "txtLabel": " مرحبا بكم  ",
         target: "MENU"
     });
     menus++;
     if (top.TV) {
         a.push({
             "class": "menuTvIcon",
-            "txtLabel": "TV",
+            "txtLabel": "التليفزيون ",
             target: "CH_LIST"
         });
         menus++;
@@ -405,7 +431,7 @@ function menuGetMenuListData_R() {
     if (top.INFORMATION) {
         a.push({
             "class": "menuLocalIcon",
-            "txtLabel": "Hospital Infomation",
+            "txtLabel": "  المرافق والخدمات  ",
             target: "LOCAL"
         });
         menus++;
@@ -429,7 +455,7 @@ function menuGetMenuListData_R() {
     if (top.RESTAURANT) {
         a.push({
             "class": "menuRestrntIcon",
-            "txtLabel": "Retail & Dining",
+            "txtLabel": " المطاعم  ",
             target: "RESTRNT"
         });
         menus++;
@@ -453,7 +479,7 @@ function menuGetMenuListData_R() {
     if (top.NEWSNPROMO) {
         a.push({
             "class": "menuNewsnpromoIcon",
-            "txtLabel": "News & Promotions",
+            "txtLabel": " المعالم المهمة في دبي   ",
             target: "NEWSNPROMO"
         });
         menus++;
@@ -461,7 +487,7 @@ function menuGetMenuListData_R() {
     if (top.SERVICES) {
         a.push({
             "class": "menuServiceIcon",
-            "txtLabel": "SERVICES",
+            "txtLabel": "الخدمات  ",
             target: "SERVICE"
         });
         menus++;
@@ -469,7 +495,7 @@ function menuGetMenuListData_R() {
     if (top.MESSAGES) {
         a.push({
             "class": "menuMessageIcon",
-            "txtLabel": "Messages",
+            "txtLabel": " رسائل ",
             target: "MESSAGE"
         });
         menus++;
@@ -486,7 +512,7 @@ function menuGetMenuListData_R() {
 }
 
 function menuInitMainList() {
-    if (top.DEFAULT_DIRECTION == "ltr") {
+    if (top.DEFAULT_LANGUAGE == "en") {
         menuMainList = new top.List(top.ListType.SCROLL, menuGetMenuListData(), 0, 0, 0, menus, document.getElementById("menuMainListContainer"))
     } else {
         menuMainList = new top.List(top.ListType.SCROLL, menuGetMenuListData_R(), 0, 0, 0, menus, document.getElementById("menuMainListContainer"))

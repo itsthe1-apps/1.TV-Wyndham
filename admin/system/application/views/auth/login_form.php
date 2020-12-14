@@ -7,7 +7,7 @@ $password = array('name' => 'password','id'	=> 'password','size' => 30,'value' =
 $page_name = basename(__FILE__, '.php');
 if ($page_name == 'login_form') {
     echo '<style type="text/css">';
-    echo 'body{background:url("'.base_url().'icons/BGS/background.jpg");}';
+    echo 'body{background:url("'.base_url().'images/bg_texture.png");}';
     echo '</style>';
 }
 ?>

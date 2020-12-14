@@ -10,3 +10,5 @@ admin/icons/*
 admin/images/*
 client/screens/images/*
 *.css
+
+rmv/*

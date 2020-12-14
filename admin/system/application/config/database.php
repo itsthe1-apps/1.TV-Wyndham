@@ -1,4 +1,4 @@
-<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 /*
 | -------------------------------------------------------------------
 | DATABASE CONNECTIVITY SETTINGS
@@ -40,7 +40,7 @@ $active_record = TRUE;
 $db['default']['hostname'] = "localhost";
 $db['default']['username'] = "root";
 $db['default']['password'] = "root";
-$db['default']['database'] = "NationsHospital_db";
+$db['default']['database'] = "Wyndham_db";
 $db['default']['port'] = 3306;
 
 $db['default']['dbdriver'] = "mysqli";

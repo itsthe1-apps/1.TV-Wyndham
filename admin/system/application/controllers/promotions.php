@@ -4,8 +4,8 @@ class Promotions extends Controller {
 
     var $title = "";
     var $session_keyword = "promotion_menu";
-    var $image_width = 560;
-    var $image_height = 345;
+    var $image_width = 880;
+    var $image_height = 510;
 
     function Promotions() {
         parent::Controller();

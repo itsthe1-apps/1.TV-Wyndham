@@ -12,7 +12,8 @@ function restrntEventHandler(d) {
     var c = true;
     switch (d.code) {
         case "INIT_SCREEN":
-            top.changeBackgroundImg('RESTAURANT');
+            // top.changeBackgroundImg('RESTAURANT');
+            top.BG_IMG = 'url(' + top.IMAGES_PREFIX + 'BGS/' + top.BACKGROUND_ARRAY['RESTAURANT'] + ')';
             initRestListVars();
             restrntListInitScreen(d.args);
             break;
@@ -40,13 +41,29 @@ function restrntListMainEventHandler(d) {
     var c = true;
     switch (d.code) {
         case "KEY_LEFT":
-            top.IMAGES_ARRAY = true;
-            restrntListRestList.scrollUp(1);
-            setCurrentRestauant();
+        top.IMAGES_ARRAY = true;
+            if (top.DEFAULT_DIRECTION == "ltr") {
+                restrntListRestList.scrollUp(1);
+                setCurrentRestauant();
+                menu_id_count--;
+            }else{
+                restrntListRestList.scrollDown(1);
+                setCurrentRestauant();
+                menu_id_count++;
+            }
+            
             break;
         case "KEY_RIGHT":
-            restrntListRestList.scrollDown(1);
-            setCurrentRestauant();
+             if (top.DEFAULT_DIRECTION == "ltr") {
+                restrntListRestList.scrollDown(1);
+                setCurrentRestauant();
+                menu_id_count++;
+             }else{
+                restrntListRestList.scrollUp(1);
+                setCurrentRestauant();
+                menu_id_count--;
+             }
+            
             break;
         case "KEY_UP":
 
@@ -55,7 +72,20 @@ function restrntListMainEventHandler(d) {
             var correct_menu_id = top.PRV_MENU_ID - top.CURRENT_MENU_ID;
             if (correct_menu_id != 0) {
                 menuMainList.scrollDown(correct_menu_id);
+            }else if (correct_menu_id == 0) {
+
+                var prev_menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID];
+                var prev_class = prev_menu_id.className;
+                prev_class = prev_class.replace('Semi_selected', '');
+                prev_menu_id.className = prev_class;
+
+
+                var menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID]; //
+                var current_class = menu_id.className;
+                var new_class = current_class + "Selected";
+                menu_id.className = new_class;
             }
+
             break;
         case "KEY_DOWN":
             //restrntListRestList.scrollDown(1);
@@ -193,7 +223,7 @@ function highlight_menu_dine() {
     var selected_menu_id = top.PRV_MENU_ID;
     var menu_id = document.getElementsByClassName("menuMainListItem")[selected_menu_id]; //
     var current_class = menu_id.className;
-    var new_class = current_class + "Selected";
+    var new_class = current_class + "Semi_selected";
     var prev_menu_id = document.getElementsByClassName("menuMainListItem")[current_menu_id];
     var prev_class = prev_menu_id.className;
     prev_class = prev_class.replace('Selected', '');
@@ -203,5 +233,6 @@ function highlight_menu_dine() {
 
 function  heighlight_first_menu_dine() {
     var element = document.getElementsByClassName("restrntListRestListItem")[0];
-    element.style.backgroundColor = "#B78D49";
+    // element.style.backgroundColor = "#B78D49";
+    element.className += " active";
 }

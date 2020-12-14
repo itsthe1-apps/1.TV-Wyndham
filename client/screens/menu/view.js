@@ -17,7 +17,7 @@ function menuGetScreenHtml() {
     c += '<div id="guestTitle" class="guestTitle">' + showUserTitle() + "</div>";
     c += '<div id="menuNewsListContainer" class="menuNewsListContainer"></div>';
     c += "</div>";
-    // c += '<div id="globalClipScreen" class="globalClipScreen"></div>';
+    c += '<div id="globalClipScreen" class="globalClipScreen welcome"></div>';
     c += '<div class="footer">';
     c += '<div id="homefooterContainer" class="homefooterContainer">';
     if (top.TTAPE_MARQUEE == 0) {
@@ -84,7 +84,11 @@ function menuMediaListDisplayItem(h, i, k) {
     return l
 }
 function showMenuFooter() {
-    var c = '<div class="newsFooter" id="newsFooter"><div class="newsFooterTitle">' + top.globalGetLabel("TAPE_TITLE") + '</div><div class="newsFooterText" id="newsFooterText"><input type="text" class="scrollInput" id="scrollInput"></div></div>';
+    var title = top.globalGetLabel("TAPE_TITLE");
+    if (top.DEFAULT_LANGUAGE == 'ar') {
+        title = " أخبار عالمية ";
+    }
+    var c = '<div class="newsFooter" id="newsFooter"><div class="newsFooterTitle">' + title + '</div><div class="newsFooterText" id="newsFooterText"><input type="text" class="scrollInput" id="scrollInput"></div></div>';
     return c;
 }
 function showUserTitle() {
@@ -93,12 +97,18 @@ function showUserTitle() {
         if(top.GUEST_NAME == 'Welcome . '){
             c = "Welcome To " + top.HOTEL_NAME + "<br>";
         }else{
-            c = top.GUEST_NAME + "<br>";
+            
+            c = "<div id='guest_name_title'>"+top.GUEST_NAME + "</div><br>";
         }
     } else {
+        
         c = "Welcome To " + top.HOTEL_NAME + "<br>";
     }
-    c = c + "<span class='guestWelcome'>" + top.WELCOME_MSG + "</span>";
+    if(top.CHECKED_OUT == true){
+        c = "Welcome to Elite Byblos Hotel"+"<br/>";
+    }else{
+        c = c + "<span class='guestWelcome'>" + top.WELCOME_MSG + "</span>";
+    }
     return c;
 }
 function menuGetMenuListHtml() {
@@ -123,6 +133,10 @@ function menuNewsListDisplayItem(index, position, selected) {
 }
 function menuNewsTapeListDisplayItem(index, position, selected) {
     var item = this.getItem(index);
-    var html = '<div class="newsFooter" id="newsFooter"><div class="newsFooterTitle">' + top.globalGetLabel("TAPE_TITLE") + '</div><div class="newsFooterText" id="newsFooterText"><div class="scrollInput">' + this.eval(item, "title", "") + "</div></div></div>";
+    var title = top.globalGetLabel("TAPE_TITLE");
+    if (top.DEFAULT_LANGUAGE == 'ar') {
+        title = 'اخبار العالم';
+    }
+    var html = '<div class="newsFooter" id="newsFooter"><div class="newsFooterTitle">' + title+ '</div><div class="newsFooterText" id="newsFooterText"><div class="scrollInput">' + this.eval(item, "title", "") + "</div></div></div>";
     return html;
 }

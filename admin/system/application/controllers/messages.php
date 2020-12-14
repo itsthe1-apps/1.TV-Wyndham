@@ -26,12 +26,12 @@ class Messages extends Controller {
         $this->load->model('restaurant');
         $this->load->model('themes/Themes_model');
 
-        // Protect entire controller so only admin, 
+        // Protect entire controller so only admin,
         // and users that have granted role in permissions table can access it.
-        $this->dx_auth->check_uri_permissions();
-        if (in_array($this->uri->segment(1), unserialize(BLOCKED_MODULES))) {
-            redirect('', 'refresh');
-        }
+        // $this->dx_auth->check_uri_permissions();
+        // if (in_array($this->uri->segment(1), unserialize(BLOCKED_MODULES))) {
+        //     redirect('', 'refresh');
+        // }
     }
 
     function index() {
@@ -56,7 +56,7 @@ class Messages extends Controller {
         $this->load->view('template', $data);
     }
 
-    //subscribers = guest 
+    //subscribers = guest
     //message
     //////////////////
     function addmessage() {

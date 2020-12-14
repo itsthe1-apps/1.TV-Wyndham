@@ -32,6 +32,25 @@ class Push_model extends Model {
         
     }
 
+
+    function get_guestSTBCheckedOutStatus($id=0) {
+        $this->db->select('checked_out');
+        $this->db->where('device_id', $id);
+        $this->db->where('checked_out', 1);
+        $this->db->from($this->_guest_stb);
+        $this->db->limit(1);
+        $Q = $this->db->get();
+
+        if ($Q->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+        $Q->free_result();
+
+
+    }
+
     function update_guestSTBStatus($id, $status) {
         $data = array('need_restart' => $status,);
         $this->db->where('guest_id', $id);

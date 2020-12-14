@@ -51,18 +51,18 @@ if (isset($edit_data['image'])) {
 ?>
 
 
-    <table width="100%" border="0" cellpadding="5" cellspacing="0">
+    <table width="100%" border="0" cellpadding="5" cellspacing="0" class="table">
         <tr>
             <td width="30%" valign="top"><label for="name">Language</label><span class="star"> * </span></td>
             <td width="10%" valign="top">:</td>
             <td width="30%"
-                valign="top"><?= $this->TVclass->language_dp('language', isset($edit_data['language']) ? $edit_data['language'] : $this->session->userdata($session_keyword), 'id="language"') ?></td>
+                valign="top"><?= $this->TVclass->language_dp('language', isset($edit_data['language']) ? $edit_data['language'] : $this->session->userdata($session_keyword), 'id="language" ') ?></td>
             <td width="30%" align="left" valign="top"><span id="error"><?= form_error('language') ?></span></td>
         </tr>
         <tr>
             <td valign="top"><label for="name">Name</label><span class="star"> * </span></td>
             <td valign="top">:</td>
-            <td valign="top"><?= form_input('name', isset($edit_data['name']) ? $edit_data['name'] : $this->input->post('name'), 'maxlength=100') ?></td>
+            <td valign="top"><?= form_input('name', isset($edit_data['name']) ? $edit_data['name'] : $this->input->post('name'), 'maxlength=100 class="form-control"') ?></td>
             <td align="left" valign="top"><span id="error"><?= form_error('name') ?></span></td>
         </tr>
         <tr>
@@ -71,7 +71,7 @@ if (isset($edit_data['image'])) {
             <td valign="top">:</td>
             <td valign="top">
                 <?php
-                $st_img = isset($edit_data['image']) ? "<img src='" . $this->config->item('newsnpromo_icon_url') . $edit_data['image'] . "' align='right' width='100' height='80' style='float: right;margin-top: -25px;'>" : "";
+                $st_img = isset($edit_data['image']) ? "<img src='" . $this->config->item('newsnpromo_icon_url') . $edit_data['image'] . "' align='right' width='100' height='70' style='float: right;margin-top: -25px;'>" : "";
                 print form_upload('image') . '&nbsp;&nbsp;' . $st_img;
                 ?>
             </td>
@@ -82,7 +82,7 @@ if (isset($edit_data['image'])) {
             <td valign="top">:</td>
             <td valign="top">
                 <?php
-                $description = array('name' => 'description', 'cols' => 40, 'rows' => 5, 'value' => isset($edit_data['description']) ? html_entity_decode($edit_data['description']) : html_entity_decode($this->input->post('description')), 'id' => 'description');
+                $description = array('name' => 'description', 'cols' => 60, 'rows' => 10, 'value' => isset($edit_data['description']) ? html_entity_decode($edit_data['description']) : html_entity_decode($this->input->post('description')), 'id' => 'description');
                 print form_textarea($description);
                 print display_ckeditor($ckeditor);
                 ?>
@@ -92,16 +92,13 @@ if (isset($edit_data['image'])) {
         <tr>
             <td colspan="4" align="left"><br/>
                 <div class="buttons">
-                    <button onclick="history.back();return false;" class="positive"><img
-                            src="<?= base_url() ?>images/cross.png" alt=""/>Back
+                    <button onclick="history.back();return false;" class="btn btn-danger" >Back
                     </button>
                     <?php if (isset($edit_data['id'])) { ?>
-                        <button type="submit" class="positive" name="update"><img
-                                src="<?= base_url() ?>images/apply2.png" alt=""/>Update
+                        <button type="submit" name="update" class="btn btn-primary">Update
                         </button>
                     <?php } else { ?>
-                        <button type="submit" class="positive" name="submit"><img
-                                src="<?= base_url() ?>images/apply2.png" alt=""/>Create
+                        <button type="submit" name="submit" class="btn btn-success">Create
                         </button>
                     <?php } ?>
                 </div>

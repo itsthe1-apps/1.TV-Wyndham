@@ -8,7 +8,8 @@ function localEventHandler(d) {
     var c = true;
     switch (d.code) {
         case "INIT_SCREEN":
-            top.changeBackgroundImg('INFO');
+            // top.changeBackgroundImg('INFO');
+            top.BG_IMG = 'url(' + top.IMAGES_PREFIX + 'BGS/' + top.BACKGROUND_ARRAY['INFO'] + ')';
             initInfoVars();
             localListInitScreen(d.args);
             break;
@@ -50,6 +51,18 @@ function localListMainEventHandler(d) {
             var correct_menu_id = top.PRV_MENU_ID - top.CURRENT_MENU_ID;
             if (correct_menu_id != 0) {
                 menuMainList.scrollDown(correct_menu_id);
+            }else if (correct_menu_id == 0) {
+
+                var prev_menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID];
+                var prev_class = prev_menu_id.className;
+                prev_class = prev_class.replace('Semi_selected', '');
+                prev_menu_id.className = prev_class;
+
+
+                var menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID]; //
+                var current_class = menu_id.className;
+                var new_class = current_class + "Selected";
+                menu_id.className = new_class;
             }
             break;
         case "KEY_DOWN":
@@ -141,8 +154,8 @@ function initInfoVars() {
 //Local Info Promotions
 function getLocalPromotionData(){
 
-    var json_url = top.TICKER_MEDIA_URL+"en/format/json";
-    top.kwUtils.kwXMLHttpRequest("GET", json_url, true, this, myFunctionLocal);
+    // var json_url = top.TICKER_MEDIA_URL+"en/format/json";
+    // top.kwUtils.kwXMLHttpRequest("GET", json_url, true, this, myFunctionLocal);
 
 }
 
@@ -186,7 +199,7 @@ function highlight_menu_local(){
     var selected_menu_id = top.PRV_MENU_ID;
     var  menu_id = document.getElementsByClassName("menuMainListItem")[selected_menu_id]; //
     var current_class = menu_id.className;
-    var new_class = current_class +"Selected";
+    var new_class = current_class +"Semi_selected";
     var prev_menu_id = document.getElementsByClassName("menuMainListItem")[current_menu_id];
     var prev_class = prev_menu_id.className;
     prev_class = prev_class.replace('Selected','');
@@ -196,5 +209,6 @@ function highlight_menu_local(){
 
 function  heighlight_first_menu(){
     var element = document.getElementsByClassName("localListItem")[0];
-    element.style.backgroundColor = "#B78D49";
+    //element.style.backgroundColor = "#B78D49";
+    element.className += " active";
 };

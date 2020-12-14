@@ -62,10 +62,12 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
     $this->session->set_userdata('menu_area', 'messages');
 } else if (strtolower($this->uri->segment(1)) == "localinfo") {
     $this->session->set_userdata('menu_area', 'localinfo');
+} else if (strtolower($this->uri->segment(1)) == "newsnpromo") {
+    $this->session->set_userdata('menu_area', 'newsnpromo');
 } else if (strtolower($this->uri->segment(1)) == "radio") {
     $this->session->set_userdata('menu_area', 'radio');
 } else if (strtolower($this->uri->segment(2)) == "ticker_promo") {
-    $this->session->set_userdata('menu_area', 'ticker_promotions');
+    $this->session->set_userdata('menu_area', 'ticker_promo');
 } else if (strtolower($this->uri->segment(1)) == "promotions") {
     $this->session->set_userdata('menu_area', 'promotions');
 } else if (
@@ -141,6 +143,7 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
     strtolower($this->uri->segment(2)) == "exitmsg" || //Added by Yesh
     strtolower($this->uri->segment(2)) == "config_middleware" || //Added by Yesh
     strtolower($this->uri->segment(2)) == "television_brands"
+
 ) { //Added by Yesh
     $this->session->set_userdata('menu_area', 'system');
 } else {
@@ -161,7 +164,8 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
     </div>
     <?php if ($this->dx_auth->is_logged_in()) { ?>
         <span id="logout">
-            <a href="<?= base_url() ?>index.php/auth/logout">LOGOUT</a>
+            <a href="<?= base_url() ?>index.php/auth/logout"><img
+                    src="<?= base_url() ?>images/icons/logout.png" ?>"</a>
         </span>
         <div id="icons" align="right">
             <span style="padding:10px;"><a href="<?= base_url() ?>index.php/guest"
@@ -169,11 +173,13 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
                                            onMouseOver="MM_swapImage('Image2', '', '<?= base_url() ?>images/icons/guest_on.png', 1)"><img
                         src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "guest" ? "guest_on.png" : "guest_off.png" ?>"
                         border="0" name="Image3"/></a></span>
+            <span class="menu_borders"></span>
             <span style="padding:10px;"><a href="<?= base_url() ?>index.php/room/filter/occupancy"
                                            onMouseOut="MM_swapImage('Image3', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "room" ? "rooms_on.png" : "rooms_off.png" ?>', 1)"
                                            onMouseOver="MM_swapImage('Image3', '', '<?= base_url() ?>images/icons/rooms_on.png', 1)"><img
                         src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "rooms" ? "rooms_on.png" : "rooms_off.png" ?>"
                         border="0" name="Image3"/></a></span>
+            <span class="menu_borders"></span>
             <?php
             /**
              * <span style="padding:10px;">
@@ -186,7 +192,7 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
              * </span>
              */
             ?>
-            <img src="<?= base_url() ?>images/icons/line.png" border="0"/>
+            <span class="menu_borders"></span>
             <span style="padding:10px;">
                 <a href="<?= base_url() ?>index.php/newsnpromo"
                    onMouseOut="MM_swapImage('Image33', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "newsnpromo" ? "newsnpromo_on.png" : "newsnpromo_off.png" ?>', 1)"
@@ -196,11 +202,13 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
                         border="0" name="Image33"/>
                 </a>
             </span>
+            <span class="menu_borders"></span>
             <span style="padding:10px;"><a href="<?= base_url() ?>index.php/localinfo"
                                            onMouseOut="MM_swapImage('Image6', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "localinfo" ? "info_on.png" : "info_off.png" ?>', 1)"
                                            onMouseOver="MM_swapImage('Image6', '', '<?= base_url() ?>images/icons/info_on.png', 1)"><img
                         src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "localinfo" ? "info_on.png" : "info_off.png" ?>"
                         border="0" name="Image6"/></a></span>
+            <span class="menu_borders"></span>
             <span style="padding:10px;">
                 <a href="<?= base_url() ?>index.php/messages"
                    onMouseOut="MM_swapImage('Image1', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "messages" ? "message_on.png" : "message_off.png" ?>', 1)"
@@ -210,7 +218,7 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
                         border="0" name="Image1"/>
                 </a>
             </span>
-            <img src="<?= base_url() ?>images/icons/line.png" border="0"/>
+            <span class="menu_borders"></span>
             <?php
             /**
              * <span style="padding:10px;"><a href="<?= base_url() ?>index.php/radio/index/all/0"
@@ -218,18 +226,24 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
              * onMouseOver="MM_swapImage('Image7', '', '<?= base_url() ?>images/icons/radio_on.png', 1)"><img
              * src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "radio" ? "radio_on.png" : "radio_off.png" ?>"
              * border="0" name="Image7"/></a></span>
-             * <span style="padding:10px;"><a href="<?= base_url() ?>index.php/promotions/ticker_promo"
-             * onMouseOut="MM_swapImage('Image8', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "ticker_promotions" ? "ticker_promo_on.png" : "ticker_promo_off.png" ?>', 1)"
-             * onMouseOver="MM_swapImage('Image8', '', '<?= base_url() ?>images/icons/ticker_promo_on.png', 1)"><img
-             * src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "ticker_promotions" ? "ticker_promo_on.png" : "ticker_promo_off.png" ?>"
-             * border="0" name="Image8"/></a></span>
-             * <span style="padding:10px;">
-             * <a href="<?= base_url() ?>index.php/promotions" onMouseOut="MM_swapImage('Image9', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "promotions" ? "promotion_on.png" : "promotion_off.png" ?>', 1)" onMouseOver="MM_swapImage('Image9', '', '<?= base_url() ?>images/icons/promotion_on.png', 1)">
-             * <img src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "promotions" ? "promotion_on.png" : "promotion_off.png" ?>" border="0" name="Image9"/>
-             * </a>
-             * </span>
              */
             ?>
+            <span style="padding:10px;">
+            <a href="<?= base_url() ?>index.php/promotions"
+               onMouseOut="MM_swapImage('Image9', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "promotions" ? "promotion_on.png" : "promotion_off.png" ?>', 1)"
+               onMouseOver="MM_swapImage('Image9', '', '<?= base_url() ?>images/icons/promotion_on.png', 1)">
+                <img
+                    src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "promotions" ? "promotion_on.png" : "promotion_off.png" ?>"
+                    border="0" name="Image9"/>
+            </a>
+            </span>
+            <span class="menu_borders"></span>
+            <span style="padding:10px;"><a href="<?= base_url() ?>index.php/promotions/ticker_promo"
+                                           onMouseOut="MM_swapImage('Image8', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "ticker_promotions" ? "ticker_promo_on.png" : "ticker_promo_off.png" ?>', 1)"
+                                           onMouseOver="MM_swapImage('Image8', '', '<?= base_url() ?>images/icons/ticker_promo_on.png', 1)"><img
+                        src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "ticker_promotions" ? "ticker_promo_on.png" : "ticker_promo_off.png" ?>"
+                        border="0" name="Image8"/></a></span>
+            <span class="menu_borders"></span>
             <span style="padding:10px;">
                 <a href="<?= base_url() ?>index.php/welcome/Tv/all/0"
                    onMouseOut="MM_swapImage('Image10', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "tv" ? "TV_on.png" : "TV_off.png" ?>', 1)"
@@ -237,12 +251,13 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
                         src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "tv" ? "TV_on.png" : "TV_off.png" ?>"
                         border="0" name="Image10"/></a>
             </span>
+            <span class="menu_borders"></span>
             <span style="padding:10px;"><a href="<?= base_url() ?>index.php/restaurants"
                                            onMouseOut="MM_swapImage('Image11', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "restaurants" ? "restaurrent_on.png" : "restaurrent_off.png" ?>', 1)"
                                            onMouseOver="MM_swapImage('Image11', '', '<?= base_url() ?>images/icons/restaurrent_on.png', 1)"><img
                         src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "restaurants" ? "restaurrent_on.png" : "restaurrent_off.png" ?>"
                         border="0" name="Image11"/></a></span>
-            <img src="<?= base_url() ?>images/icons/line.png" border="0"/>
+            <span class="menu_borders"></span>
             <?php
             /**
              * <span style="padding:10px;">
@@ -257,11 +272,13 @@ if (strtolower($this->uri->segment(2)) == "tv" ||
                                            onMouseOver="MM_swapImage('Image13', '', '<?= base_url() ?>images/icons/news_on.png', 1)"><img
                         src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "news" ? "news_on.png" : "news_off.png" ?>"
                         border="0" name="Image13"/></a></span>
+            <span class="menu_borders"></span>
             <span style="padding:10px;"><a href="<?= base_url() ?>index.php/backend/rooms"
                                            onMouseOut="MM_swapImage('Image14', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "system" ? "system_on.png" : "system_off.png" ?>', 1)"
                                            onMouseOver="MM_swapImage('Image14', '', '<?= base_url() ?>images/icons/system_on.png', 1)"><img
                         src="<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "system" ? "system_on.png" : "system_off.png" ?>"
                         border="0" name="Image14"/></a></span>
+            <span class="menu_borders"></span>
             <span style="padding:10px;"><a href="<?= base_url() ?>index.php/myauth/users"
                                            onMouseOut="MM_swapImage('Image15', '', '<?= base_url() ?>images/icons/<?= $this->session->userdata('menu_area') == "myauth" ? "users_on.png" : "users_off.png" ?>', 1)"
                                            onMouseOver="MM_swapImage('Image15', '', '<?= base_url() ?>images/icons/users_on.png', 1)"><img

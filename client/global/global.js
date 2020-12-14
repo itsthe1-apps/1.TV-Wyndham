@@ -298,6 +298,7 @@ function globalInitManagers() {
         } else {
             top.ThreadManager.init();
         }
+        initGlobalAlarmTime();
     } catch (b) {
         top.kwConsole.print("global.js::globalInitScreens Error:" + b.message);
     }
@@ -352,7 +353,7 @@ function globalEventHandler(h) {
                 break;
             case "POWER_BUTTON":
                 // top.ScreenManager.load("MENU");
-                // top.Player.powerToggle();
+                top.Player.powerToggle();
                 break;
             case "KEY_NUMERIC":
                 top.globalSetChannelNumber(h);
@@ -365,9 +366,9 @@ function globalEventHandler(h) {
             //     break;
             // case "KEY_CHANNEL_DOWN":
             //     break;
-            case "KEY_NUMERIC":
-                top.globalSetChannelNumber(h);
-                break;
+            // case "KEY_NUMERIC":
+            //     top.globalSetChannelNumber(h);
+            //     break;
             case "CHANNEL_SELECTED":
                 channel = top.ChannelManager.getChannelByNumber(h.args.channelNumber);
 
@@ -386,6 +387,15 @@ function globalEventHandler(h) {
                         scope: this,
                         callback: top.globalHideChannelNumber
                     }, 1500);
+                }
+                break;
+            case "KEY_BLUE":
+                if(top.MessageManager.msgIsInfobarHidden == false){
+
+                    top.MessageManager.messageShow(0);
+                    top.MessageManager.setMessageRead(top.CURRENT_MESSAGE_ID);
+                    top.CURRENT_MESSAGE_ID = null;
+
                 }
                 break;
         }
@@ -576,5 +586,122 @@ function changeBackgroundImg(str) {
         }
     }
 }
+
+function initGlobalAlarmTime(){
+    var mac = top.Player.getMacAddress();
+    var i = top.SERVICEALARM_CURRENT + "mac/" + mac +"/format/json";
+    top.kwUtils.kwXMLHttpRequest("GET", i, true, this, initAlarmTime);
+}
+
+function initAlarmTime(alarm){
+    if (alarm.error) {
+        top.GLOBAL_ALARM_DATA = null;
+    }else{
+        var jsonAlarm = top.jsonParser(alarm);
+        top.GLOBAL_ALARM_DATA = jsonAlarm[0];
+    }
+    
+}
+
+function initAlarmClock(){
+    
+    //Checking alarm time
+    if (top.GLOBAL_ALARM_DATA != null) {
+        var date = new Date(); // for now
+        
+        var mm = date.getMonth()+1;
+        var dd = date.getDate();
+        var hh = date.getHours();
+        var min = date.getMinutes();
+        if(dd<10) {
+            dd = '0'+dd
+        } 
+        if(mm<10) {
+            mm = '0'+mm
+        }
+        if (hh < 10) {
+            hh = '0'+hh
+        } 
+        if (min <10) {
+            min = '0'+min;
+        }
+        var currentDate = date.getFullYear()+"-"+mm+"-"+dd;
+        var currentTime =  hh+":"+min+":00";
+        var dateTime = currentDate+" "+currentTime;
+        var alarmTime = top.GLOBAL_ALARM_DATA.alarm_time;
+
+
+        if (dateTime == alarmTime) {
+            
+            
+            top.GLOBAL_FIRE_ALARM = 1;
+            var alarm_tone = "";
+            if (top.GLOBAL_ALARM_DATA.tone == "Alarm 1") { 
+                alarmTone = "alarm1";
+            }else if (top.GLOBAL_ALARM_DATA.tone  == "Alarm 2") {
+                alarmTone = "alarm2";
+            }else if (top.GLOBAL_ALARM_DATA.tone  == "Alarm 3") {
+                alarmTone = "alarm3";
+            }else if (top.GLOBAL_ALARM_DATA.tone  == "Alarm 4") {
+                alarmTone = "alarm4";
+            }
+            if (gSTB.GetStandByStatus() == false) {
+                
+               startAlarm(alarmTone);
+                
+
+            }else{
+                gSTB.StandBy(false);
+                // var alarm_url = "http://"+top.ip+"/client/alarm/alarm.mp3";
+                // console.log(alarm_url);
+                // top.ScreenManager.load("SERVICE");
+                // top.Player.stop();
+                // top.Player.play(alarm_url);
+                // gSTB.SetLoop(1);
+                startAlarm(alarmTone);
+
+                
+            }
+            
+        }
+    }
+    var h = (60 * 1000);
+    top.kwTimer.setTimer("ALARM", {
+        scope: this,
+        callback: this.initAlarmClock,
+        args: []
+    }, h);
+}
+
+function startAlarm(alarmTone){
+     if (top.GLOBAL_ALARM_DATA.type == "TV") {
+        var channel = top.ChannelManager.getChannelByNumber(top.GLOBAL_ALARM_DATA.udp);
+        kwConsole.print("channel :" +channel);
+        if (channel) {
+            gSTB.SetVolume(100);
+            top.ChannelManager.setCurrentChannel(channel);
+            top.ScreenManager.deleteHistory();
+            top.globalChannelApproved = false;
+            top.ScreenManager.load("FSV");
+        }
+
+    }else if (top.GLOBAL_ALARM_DATA.type == "RingTone") {
+        
+        //console.log("Ring Tone");
+        
+        var alarm_url = "http://"+top.ip+"/client/alarm/"+alarmTone+".mp3";
+        //console.log(alarm_url);
+
+        top.ScreenManager.load("SERVICE");
+        top.ALARM_CONTAINER.style.visibility = "visible";
+
+        top.Player.stop();
+        gSTB.SetVolume(100);
+        top.Player.play(alarm_url);
+        gSTB.SetLoop(1);
+    }
+}
+
+
 
 

@@ -30,6 +30,17 @@ $lang['RESTAURANTS_URL'] = array('restaurants'); //$lang['RESTAURANTS_URL'] = ar
 // Restaurant Menus
 $lang['LOCALINFO'] = array('LOCAL INFO'); //$lang['LOCALINFO'] = array('LOCAL INFO', 'LOCAL INFO MENU');
 $lang['LOCALINFO_URL'] = array('localinfo'); //$lang['LOCALINFO_URL'] = array('localinfo', 'localinfo/menu/localinfomenu');
+
+$lang['NEWSNPROMO'] = array('NEWSNPROMO'); //$lang['LOCALINFO'] = array('LOCAL INFO', 'LOCAL INFO MENU');
+$lang['NEWSNPROMO_URL'] = array('newsnpromo'); //$lang['LOCALINFO_URL'] = array('localinfo', 'localinfo/menu/localinfomenu');
+
+$lang['PROMOTIONS'] = array('PROMOTIONS'); //$lang['LOCALINFO'] = array('LOCAL INFO', 'LOCAL INFO MENU');
+$lang['PROMOTIONS_URL'] = array('promotions'); //$lang['LOCALINFO_URL'] = array('localinfo', 'localinfo/menu/localinfomenu');
+
+$lang['TICKERPROMOTIONS'] = array('TICKER PROMOTIONS'); //$lang['LOCALINFO'] = array('LOCAL INFO', 'LOCAL INFO MENU');
+$lang['TICKERPROMOTIONS_URL'] = array('ticker_promo'); //$lang['LOCALINFO_URL'] = array('localinfo', 'localinfo/menu/localinfomenu');
+
+
 $lang['GUEST'] = array('GUEST', 'GREETING', 'GUEST ALARM');
 $lang['GUEST_URL'] = array('guest', 'guest/greeting', 'guest/guestalarm');
 $lang['ROOMS'] = array('OCCUPANCY', 'VACANT STATUS', 'MAINTENANCE REQUIRED', 'EXTRA BED', 'BABY COT', 'CLEANING REQUIRED', 'TURN DOWN', 'UNDER MAINTENANCE');
@@ -76,7 +87,7 @@ $lang['ADMIN_CHILD_URL'] = array(
     //JK'SETTINGS' => array('welcome/pRating','backend/listapilinks','backend/themes','backend/settings'),
     'SETTINGS' => array('backend/themes', 'backend/backgrounds', 'backend/weather', 'backend/tickertape', 'backend/config_middleware', 'backend/television_brands'), //Edit by Yesh
     //JK'ENTITIES' => array('backend/devices','backend/devicetypes','backend/guest','backend/rooms','backend/roomtypes','backend/roomgroups','backend/greeting','backend/occation','backend/message')
-    'ENTITIES' => array('backend/devices', 'backend/devicetypes', 'backend/rooms', 'backend/roomtypes', 'backend/roomgroups')
+    'ENTITIES' => array('backend/devices/0', 'backend/devicetypes', 'backend/rooms', 'backend/roomtypes', 'backend/roomgroups')
         //'ENTITIES' => array('backend/guest','backend/devices','backend/rooms','backend/greeting','backend/occation','backend/devicetypes','backend/devicegroups
 );
 $lang['users'] = 'USERS';

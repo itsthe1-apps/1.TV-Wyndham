@@ -50,7 +50,6 @@ class Notice
             }
         }
         if ((BLK_CLIENT) && ($this->isClientApp) && ($this->license_validity == "EXPIRED")) {
-            echo json_encode(array('error' => 'Invalid License'));
             die();
         }
     }
@@ -58,7 +57,8 @@ class Notice
     /**
      * validate_application_status
      */
-    private function validate_application_status()
+    private
+    function validate_application_status()
     {
         $license_validity = $this->license_validity;
         // echo "validate_application_status :: $license_validity <br/>";
@@ -82,17 +82,18 @@ class Notice
     /**
      * get_application_status
      */
-    private function get_application_status()
+    private
+    function get_application_status()
     {
         $license_validity = $this->license_validity;
         if (APP_HASLIFE) {
             $today = date("Y-m-d");
-//            $today = date("2020-06-10");
+            //$today = date("2019-06-30");
             $expire_date = date(EXPIRE_DATE);
             $check_date = date("Y-m-d", strtotime(CHECK_EXPIRE, strtotime(EXPIRE_DATE)));
-//            echo "today :: $today <br/>";
-//            echo "expire_date :: $expire_date <br/>";
-//            echo "check_date :: $check_date <br/>";
+            // echo "today :: $today <br/>";
+            // echo "expire_date :: $expire_date <br/>";
+            // echo "check_date :: $check_date <br/>";
             if ($today >= $expire_date) {
                 $license_validity = "EXPIRED";
             } else {
@@ -103,8 +104,8 @@ class Notice
             //if client app only
             if ($this->isClientApp) {
                 $expire_date = date("Y-m-d", strtotime("+1 months", strtotime(EXPIRE_DATE)));//+1 months
-//                echo "isClientApp :: true <br/>";
-//                echo "expire_date :: $expire_date <br/>";
+                // echo "isClientApp :: true <br/>";
+                // echo "expire_date :: $expire_date <br/>";
                 if ($today >= $expire_date) {
                     $license_validity = "EXPIRED";
                 } else {
@@ -115,8 +116,8 @@ class Notice
             //HAS no LIFE
             $license_validity = "LIFETIME";
         }
-//        echo "license_validity :: $license_validity <br/>";
-//        die();
+        // echo "license_validity :: $license_validity <br/>";
+        // die();
         $this->license_validity = $license_validity;
     }
 
@@ -125,16 +126,16 @@ class Notice
      */
     public function init_notice()
     {
-//         echo "<pre>";
-//         print_r($this->CI->session->all_userdata());
-//         echo "</pre>";
-//         die();
+        // echo "<pre>";
+        // print_r($this->CI->session->all_userdata());
+        // echo "</pre>";
+        // die();
         // if (!(empty($this->CI->session->userdata('DX_user_id')))) {
         if ($this->CI->session->userdata('DX_user_id')) {
             $this->isDashboard = true;
         } else {
             $segment_1 = $this->CI->uri->segment('1');
-//             echo "segment_1 :: $segment_1 <br/>";
+            // echo "segment_1 :: $segment_1 <br/>";
             if ($segment_1 != "auth") {
                 $this->isClientApp = true;
             }
@@ -142,17 +143,17 @@ class Notice
         $this->get_application_status();
         $this->validate_application_status();
         $this->display_html();
-//        if ($this->isDashboard) {
-//            echo "Yes :: isDashboard";
-//        } else {
-//            echo "No :: isDashboard";
-//        }
-//        echo "<br/>";
-//        if ($this->isClientApp) {
-//            echo "Yes :: isClientApp";
-//        } else {
-//            echo "No :: isClientApp";
-//        }
-//        echo "<br/>";
+        // if ($this->isDashboard) {
+        //     echo "Yes :: isDashboard";
+        // } else {
+        //     echo "No :: isDashboard";
+        // }
+        // echo "<br/>";
+        // if ($this->isClientApp) {
+        //     echo "Yes :: isClientApp";
+        // } else {
+        //     echo "No :: isClientApp";
+        // }
+        // echo "<br/>";
     }
 }

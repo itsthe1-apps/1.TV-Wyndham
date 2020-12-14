@@ -43,22 +43,28 @@ $update_field = array('name' => 'is_updated_field', 'id' => 'is_updated_field', 
 print form_input($update_field);
 ?>
 <h1><? print $title;?></h1>
-<table width="100%" cellpadding="0" cellspacing="5">
+<table width="100%" cellpadding="0" cellspacing="5" class="table">
     <tr>
-        <td width='20%'>Name <span class='star'> * </span></td>
+        <td width='20%'>Salutation <span class='star'> * </span></td>
         <td width='5%'>:</td>
         <td width='46%'>
             <?php
             $name_title = $this->config->item('name_title');
-            print form_dropdown('name_title', $name_title, !empty($message['title']) ? $message['title'] : $this->input->post('name_title'));
+            print form_dropdown('name_title', $name_title, !empty($message['title']) ? $message['title'] : $this->input->post('name_title'),'class="form-control" style="width:auto;"');
             ?>
-            <?= form_input('name', !empty($message['name']) ? $message['name'] : $this->input->post('name'), 'size=25 maxlength=100') ?></td>
+            <td width="29%"><span id="error"><?= form_error('name') ?></span></td>
+    </tr>
+    <tr>
+        <td width='20%'>Name <span class='star'> * </span></td>
+        <td width='5%'>:</td>
+        <td width='46%'>
+            <?= form_input('name', !empty($message['name']) ? $message['name'] : $this->input->post('name'), 'size=25 maxlength=100 class="form-control"') ?></td>
         <td width="29%"><span id="error"><?= form_error('name') ?></span></td>
     </tr>
     <tr>
         <td width='20%'>Surname</td>
         <td width='5%'>:</td>
-        <td width='46%'><?= form_input('surname', !empty($message['surname']) ? $message['surname'] : $this->input->post('surname'), 'size=25 maxlength=100') ?><br/> <?= isset($message['guest_id']) ? '<a href="' . base_url() . 'index.php/guest/name_language/' . $message['guest_id'] . '">Name in other languages</a>' : '' ?></td>
+        <td width='46%'><?= form_input('surname', !empty($message['surname']) ? $message['surname'] : $this->input->post('surname'), 'size=25 maxlength=100 class="form-control"') ?><br/> <?= isset($message['guest_id']) ? '<a href="' . base_url() . 'index.php/guest/name_language/' . $message['guest_id'] . '">Name in other languages</a>' : '' ?></td>
         <td><span id="error"><?= form_error('surname') ?></span></td>
     </tr>
     <tr>
@@ -68,14 +74,14 @@ print form_input($update_field);
             foreach ($skin as $row) {
                 $opt_sub1[$row->sk_css] = $row->sk_name;
             }
-            print form_dropdown('skin', $opt_sub1, !empty($message['skin']) ? $message['skin'] : $this->input->post('skin'));
+            print form_dropdown('skin', $opt_sub1, !empty($message['skin']) ? $message['skin'] : $this->input->post('skin'),'class="form-control" style="width:200px;"');
             ?></td>
         <td><span id="error"><?= form_error('surname') ?></span></td>
     </tr>
     <tr>
         <td width='20%'>Accessibility</td>
         <td width='5%'>:</td>
-        <td width='46%'><?= form_checkbox('accessibility', 1, !empty($message['accessibility']) || $this->input->post('accessibility') == 1 ? TRUE : FALSE, 'size=25') ?></td>
+        <td width='46%'><?= form_checkbox('accessibility', 1, !empty($message['accessibility']) || $this->input->post('accessibility') == 1 ? TRUE : FALSE, 'size=25 ') ?></td>
         <td><span id="error"><?= form_error('accessibility') ?></span></td>
     </tr>
     <tr>
@@ -92,7 +98,7 @@ print form_input($update_field);
                     $status_opt[$row->st_id] = $row->st_name;
                 }
             }
-            print form_dropdown('status', $status_opt, !empty($message['status']) ? $message['status'] : $this->input->post('status'));
+            print form_dropdown('status', $status_opt, !empty($message['status']) ? $message['status'] : $this->input->post('status'),'class="form-control" style="width:200px;"');
             ?></td>
         <td><span id="error"><?= form_error('status') ?></span></td>
     </tr>
@@ -107,7 +113,7 @@ print form_input($update_field);
                     $rooms_dp[$row->id] = $row->room_number;
                 }
             }
-            print form_dropdown('room_number', $rooms_dp, !empty($message['room_id']) ? $message['room_id'] : '', 'id="room_number"');
+            print form_dropdown('room_number', $rooms_dp, !empty($message['room_id']) ? $message['room_id'] : '', 'id="room_number" class="form-control" style="width:200px;"');
             print form_hidden('edit_room_number', !empty($message['room_id']) ? $message['room_id'] : '', 'id="edit_room_number"');
 
             if (!empty($message['room_id'])) {
@@ -129,7 +135,7 @@ print form_input($update_field);
                     $greeting_dp[$row->id] = $row->title;
                 }
             }
-            print form_dropdown('greeting', $greeting_dp, !empty($message['greeting_id']) ? $message['greeting_id'] : '', 'id="greeting"');
+            print form_dropdown('greeting', $greeting_dp, !empty($message['greeting_id']) ? $message['greeting_id'] : '', 'id="greeting" class="form-control" style="width:200px;"');
             ?>
         </td>
         <td><span id="error"><?= form_error('greeting') ?></span></td>
@@ -145,7 +151,7 @@ print form_input($update_field);
                     $themes_dp[$row->th_id] = $row->th_name;
                 }
             }
-            print form_dropdown('themes', $themes_dp, !empty($message['theme_id']) ? $message['theme_id'] : 1, 'id="themes"');
+            print form_dropdown('themes', $themes_dp, !empty($message['theme_id']) ? $message['theme_id'] : 1, 'id="themes" class="form-control" style="width:200px;"');
             ?>
         </td>
         <td><span id="error"></span></td>
@@ -161,7 +167,7 @@ print form_input($update_field);
                     $language_dp[$row->id] = $row->short_label;
                 }
             }
-            print form_dropdown('language', $language_dp, !empty($message['language_id']) ? $message['language_id'] : 1, 'id="language"');
+            print form_dropdown('language', $language_dp, !empty($message['language_id']) ? $message['language_id'] : 1, 'id="language" class="form-control" style="width:80px;"');
             ?>
         </td>
         <td><span id="error"></span></td>
@@ -260,19 +266,19 @@ print form_input($update_field);
             foreach ($packages as $row) {
                 $opt_sub[$row->id] = $row->name;
             }
-            print form_dropdown('package', $opt_sub, !empty($message['package']) ? $message['package'] : $this->input->post('package'));
+            print form_dropdown('package', $opt_sub, !empty($message['package']) ? $message['package'] : $this->input->post('package'),'class="form-control" style="width:200px;"');
             ?></td>
         <td><span id="error"><?= form_error('package') ?></span></td>
     </tr>
     <tr>
         <td colspan="4" align="left"><br/><div class="buttons">
-                <button onclick="history.back();return false;" class="positive"><img src="<?= base_url() ?>images/cross.png" alt=""/>Back</button>
+                <button onclick="history.back();return false;" class="btn btn-danger">Back</button>
                     <?php
                     if ($guest_id != "" && intval($guest_id)) {
-                        print '<button type="submit" class="positive" name="update"><img src="' . base_url() . 'images/apply2.png" alt=""/>Update Guest</button>';
+                        print '<button type="submit" class="btn btn-primary" name="update">Update Guest</button>';
                         //print form_submit('update','Update Skin');
                     } else {
-                        print '<button type="submit" class="positive" name="submit"><img src="' . base_url() . 'images/apply2.png" alt=""/>Create Guest</button>';
+                        print '<button type="submit" class="btn btn-success" name="submit">Create Guest</button>';
                         //print form_submit('submit','Create Skin');
                     }
                     ?>

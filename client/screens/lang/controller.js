@@ -43,6 +43,7 @@ function langMainEventHandler(b) {
             var target = 0;
             if (top.DEFAULT_LANGUAGE == "ar") {
                 target = 1;
+                top.DEFAULT_DIRECTION = "rtl";
             }
             if (langMainList.getItem().target) {
                 try {
@@ -52,7 +53,7 @@ function langMainEventHandler(b) {
                     //var g = "css_" + top.COMMON_CSS_EXTENSION + ".css";
                     //removejscssfile(g, "css");
                     //top.DEFAULT_LANGUAGE = langMainList.getItem(target).language;
-                    top.DEFAULT_DIRECTION = langMainList.getItem(target).direction;
+                    //top.DEFAULT_DIRECTION = langMainList.getItem(target).direction;
                     g = "css_" + top.globalGetScreenWidthByResolution() + "x" + top.globalGetScreenHeightByResolution() + "_" + top.DEVICE_TYPE + "_" + top.THEME + "_" + top.DEFAULT_LANGUAGE + ".css";
                     top.kwConsole.print("Style Sheet Name:" + g);
                     top.kwStatusConsole.print("Skin Parameters,THEME:<b>" + top.THEME + "</b>,LANGUAGE:<b>" + top.DEFAULT_LANGUAGE + "</b>", 0);
@@ -209,8 +210,8 @@ function loadJS(b) {
 }
 
 function retrivePromoDetails() {
-    var json_url = top.TICKER_MEDIA_URL + "en/format/json";
-    top.kwUtils.kwXMLHttpRequest("GET", json_url, true, this, getPromoJson);
+    // var json_url = top.TICKER_MEDIA_URL + "en/format/json";
+    // top.kwUtils.kwXMLHttpRequest("GET", json_url, true, this, getPromoJson);
 }
 
 function getPromoJson(jsonString) {

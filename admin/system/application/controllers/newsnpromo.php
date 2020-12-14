@@ -4,8 +4,8 @@ class Newsnpromo extends Controller {
 
     var $title = "";
     var $session_keyword = "newsnpromo";
-    var $image_width = 760;
-    var $image_height = 400;
+    var $image_width = 880;
+    var $image_height = 520;
     var $image_width_menu = 331;
     var $image_height_menu = 400;
 

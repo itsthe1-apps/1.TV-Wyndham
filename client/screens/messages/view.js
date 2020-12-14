@@ -1,9 +1,11 @@
 function messageListGetScreenHtml() {
+    
     var b = "";
     b += '<div class="bodyBG" style="background-image:' + top.BG_IMG + '">';
     b += '<div id="globalChannelZapper" class="globalChannelZapper"></div>';
     b += '<div class="header">';
     b += '<div id="globalLogo" class="globalLogo" style=""></div>';
+    b += '<div id="homeweather" class="homeweather"></div>';
     //b += '<div id="globalLogoRight" class="globalLogoRight"></div>';
     b += '<div id="globalClock" class="globalClock"></div>';
     b += menuGetMenuListHtml();
@@ -15,7 +17,8 @@ function messageListGetScreenHtml() {
     b += '<div id="messageDetailContainer" class="messageDetailContainer"></div>';
     b += "</div>";
     b += '<div class="footer">';
-    b += '<div class="newsFooter" id="newsFooter"><div class="newsFooterTitle" id="promotion_id">Promotions</div><div class="newsFooterText" id="newsFooterText"><div class="scrollInput" id="messages_promotion_text"></div></div></div>';
+    //b += '<div class="newsFooter" id="newsFooter">';
+    //b += '<div class="newsFooterTitle" id="promotion_id">Promotions</div></div>';
     //b += '<div id="ticker_tape_messages" class="ticker_tape_messages"><div id="promotion_id" class="newsFooterTitle">Promotions</div><p class="scrollInput" id="messages_promotion_text"></p></div>';
     b += '<div id="footerContainer" class="footerContainer">' + showMessageFooter() + "</div>";
     b += "</div>";
@@ -46,20 +49,21 @@ function messageListRestListDisplayItem(index, position, selected) {
     var item = this.getItem(index);
     if (item) {
         if (item.image && item.image != "") {
-            html += '<div class="messageListRestListItem">' + this.eval(item, "date", "") + " : " + this.eval(item, "message", "") + "</div>"
+            html += '<div class="messageListRestListItem" id="'+item.id+'">' + this.eval(item, "date", "") + " : " + this.eval(item, "message", "") + "</div>"
         } else {
             m = (item.message.length > 70) ? item.message.substr(0, 70) + "....." : item.message;
             if (item.status == 0) {
+                
                 if (top.DEFAULT_DIRECTION == "rtl") {
-                    html += '<div class="messageListRestListItem"><b>' + m + " : " + this.eval(item, "date", "") + "</b></div>"
+                    html += '<div class="messageListRestListItem active" id="'+item.id+'"><b>' + m + " : " + this.eval(item, "date", "") + "</b></div>"
                 } else {
-                    html += '<div class="messageListRestListItem"><b>' + this.eval(item, "date", "") + " : " + m + "</b></div>"
+                    html += '<div class="messageListRestListItem active" id="'+item.id+'"><b>' + this.eval(item, "date", "") + " : " + m + "</b></div>"
                 }
             } else {
                 if (top.DEFAULT_DIRECTION == "rtl") {
-                    html += '<div class="messageListRestListItem">' + m + " : " + this.eval(item, "date", "") + "</div>"
+                    html += '<div class="messageListRestListItem" id="'+item.id+'">' + m + " : " + this.eval(item, "date", "") + "</div>"
                 } else {
-                    html += '<div class="messageListRestListItem">' + this.eval(item, "date", "") + " : " + m + "</div>"
+                    html += '<div class="messageListRestListItem" id="'+item.id+'">' + this.eval(item, "date", "") + " : " + m + "</div>"
                 }
             }
         }

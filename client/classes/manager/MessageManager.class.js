@@ -21,11 +21,15 @@ var MessageManager = {
             top.kwConsole.print("MESSAGE_LOAD_ERROR");
         }
     },
+    displayMessage: function () {
+        this.messageShow(1);
+    },
     getMessages: function (a) {
         try {
             if (a && a.length > 0) {
                 a = (typeof a === "object") ? a : eval(a);
                 this.messageArray = a;
+                this.displayMessage();
                 top.kwConsole.print("MESSAGE_LOADED");
             }
         } catch (e) {
@@ -45,12 +49,21 @@ var MessageManager = {
     },
     messageShow: function (b) {
         try {
-            if (b) {
+            if (b == 1 && this.msgIsInfobarHidden == true) {
                 if (top.getFrameDocument().getElementById("messageBlock")) {
+                    top.CURRENT_MESSAGE_ID = this.messageArray[0].id;
+                    var messageSpan = "";
+                    messageSpan += '<div id="messageContent" class="messageContent">';
+                    // messageSpan += '<span id="messageTitle">You have recieved a new Message</span>';
+                    messageSpan += '<p id="messageBody">'+this.messageArray[0].message+'</p>';
+                    // messageSpan += '<span id="messageExit">Press F4 Key to Exit</span>';
+                    messageSpan += '</div>';
+                    top.getFrameDocument().getElementById("messageBlock").innerHTML = messageSpan;
                     top.getFrameDocument().getElementById("messageBlock").style.visibility = "visible";
                     this.msgIsInfobarHidden = false;
                 }
-            } else {
+            } else if (b == 0 && this.msgIsInfobarHidden == false){
+                //alert(b+"---"+this.msgIsInfobarHidden);
                 if (top.getFrameDocument().getElementById("messageBlock")) {
                     top.getFrameDocument().getElementById("messageBlock").style.visibility = "hidden";
                     this.msgIsInfobarHidden = true;

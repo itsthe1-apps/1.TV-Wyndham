@@ -13,7 +13,8 @@ function chListEventHandler(d) {
     var c = true;
     switch (d.code) {
         case"INIT_SCREEN":
-            top.changeBackgroundImg('TV');
+            // top.changeBackgroundImg('TV');
+            top.BG_IMG = 'url(' + top.IMAGES_PREFIX + 'BGS/' + top.BACKGROUND_ARRAY['TV'] + ')';
             initChListVars();
             chListInitScreen(d.args);
             top.switchMuteDisplay(top.Player.isMute);
@@ -50,13 +51,28 @@ function chListSubMenuEventHandler(d) {
             var correct_menu_id = top.PRV_MENU_ID - top.CURRENT_MENU_ID;
             if (correct_menu_id != 0) {
                 menuMainList.scrollDown(correct_menu_id);
+            }else if (correct_menu_id == 0) {
+
+                var prev_menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID];
+                var prev_class = prev_menu_id.className;
+                prev_class = prev_class.replace('Semi_selected', '');
+                prev_menu_id.className = prev_class;
+
+
+                var menu_id = document.getElementsByClassName("menuMainListItem")[top.CURRENT_MENU_ID]; //
+                var current_class = menu_id.className;
+                var new_class = current_class + "Selected";
+                menu_id.className = new_class;
             }
+
             break;
         case"KEY_LEFT":
-            chListSubMenuList.scrollUp();
+            (top.DEFAULT_DIRECTION == "ltr") ? chListSubMenuList.scrollUp() : chListSubMenuList.scrollDown();
+            //chListSubMenuList.scrollUp();
             break;
         case"KEY_RIGHT":
-            chListSubMenuList.scrollDown();
+            (top.DEFAULT_DIRECTION == "ltr") ? chListSubMenuList.scrollDown() : chListSubMenuList.scrollUp();
+            //chListSubMenuList.scrollDown();
             break;
         case"KEY_DOWN":
             top.State.setState(top.State.CH_LIST_MAIN);
@@ -168,13 +184,15 @@ function chListMainEventHandler(h) {
             if (chListChannelList.getItem()) {
                 top.kwConsole.print("Full Screen Mode"+":::::::::::::Channel Number -");
                 top.SCREEN_MODE = 1;
+
+                document.getElementById("bodyBG").style.visibility = "hidden";
                 document.getElementById("bodyBG").style.visibility = "hidden";
                 document.getElementById("header").style.visibility = "hidden";
                 document.getElementById("footer").style.visibility = "hidden";
                 document.getElementById("chListChannelListHighlight").style.visibility = "hidden";
                 top.Player.setFullScreen();
                 top.Player.setAlphaLevel(top.TRANSPARENCY_LEVEL);
-                top.switchMuteDisplay(top.Player.isMute)
+                top.switchMuteDisplay(top.Player.isMute);
             }
             break;
         case"EIT_LOADED":
@@ -205,7 +223,12 @@ function chListInitScreen(b) {
     top.CURRENT_MENU_ID = 0;
     clearInterval(top.GLOBAL_SLIDER_INTERVAL);
     clearInterval(top.GLOBAL_PROMOTION_INTERVAL);
-    chListInitSubMenuList();
+    if (top.DEFAULT_LANGUAGE == 'en') {
+        chListInitSubMenuList();
+    }
+    if (top.DEFAULT_LANGUAGE == 'ar') {
+        chListInitSubMenuList_R();
+    }
     chListInitMainList();
 
     this.setCurrentChannelItem();
@@ -216,6 +239,21 @@ function chListInitScreen(b) {
     getTVPromotionData();
 
 }
+
+
+function chListInitSubMenuList_R() {
+    chListSubMenuList = new top.List(top.ListType.BLOCK, chListGetSubMenuData_R(), 0, 0, 0, 3, document.getElementById("chListSubMenuListContainer"));
+    chListSubMenuList.displayItem = chListSubMenuListDisplayItem;
+    chListSubMenuList.initList()
+}
+function chListGetSubMenuData_R() {
+    var b = [];
+    b.push({"class": "chSubMenuAllIcon", "txtLabel": "كل القنوات ", target: "CH_LIST", args: {type: "all"}});
+    b.push({"class": "chSubMenuGenreIcon", "txtLabel": "قنوات مصنفة حسب النوع  ", target: "CH_CHOOSER", args: {type: "genre"}});
+    b.push({"class": "chSubMenuAlphabetIcon", "txtLabel": "قنوات مفضلة ", target: "CH_CHOOSER", args: {type: "alpha"}});
+    return b
+}
+//Added by Lakshan - 2017-09-12
 function chListInitSubMenuList() {
     chListSubMenuList = new top.List(top.ListType.BLOCK, chListGetSubMenuData(), 0, 0, 0, 3, document.getElementById("chListSubMenuListContainer"));
     chListSubMenuList.displayItem = chListSubMenuListDisplayItem;
@@ -287,16 +325,24 @@ function cfsvChangeChannel(c) {
             top.ChannelManager.channelUp(true);
             top.Player.stop();
             top.Player.stop();
-            //alert(top.ChannelManager.getCurrentChannel().url);
+            // alert(top.ChannelManager.getCurrentChannel().url);
+            // alert(top.SCREEN_MODE);
             top.Player.play(top.ChannelManager.getCurrentChannel().url);
+            top.Player.setFullScreen();
+            top.Player.setAlphaLevel(top.TRANSPARENCY_LEVEL);
+            top.switchMuteDisplay(top.Player.isMute);
             showChannel();
             break;
         case"KEY_CHANNEL_DOWN":
+            showChannel();
             top.ChannelManager.channelDown(true);
             top.Player.stop();
             top.Player.stop();
             //alert(top.ChannelManager.getCurrentChannel().url);
             top.Player.play(top.ChannelManager.getCurrentChannel().url);
+            top.Player.setFullScreen();
+            top.Player.setAlphaLevel(top.TRANSPARENCY_LEVEL);
+            top.switchMuteDisplay(top.Player.isMute);
             showChannel();
             break
     }
@@ -346,7 +392,7 @@ function highlight_menu_tv() {
     var selected_menu_id = top.PRV_MENU_ID;
     var menu_id = document.getElementsByClassName("menuMainListItem")[selected_menu_id]; //
     var current_class = menu_id.className;
-    var new_class = current_class + "Selected";
+    var new_class = current_class + "Semi_selected";
     var prev_menu_id = document.getElementsByClassName("menuMainListItem")[current_menu_id];
     var prev_class = prev_menu_id.className;
     prev_class = prev_class.replace('Selected', '');
@@ -357,8 +403,8 @@ function highlight_menu_tv() {
 
 //TV Promotions
 function getTVPromotionData() {
-    var json_url = top.TICKER_MEDIA_URL + "en/format/json";
-    top.kwUtils.kwXMLHttpRequest("GET", json_url, true, this, myFunctionTV);
+    // var json_url = top.TICKER_MEDIA_URL + "en/format/json";
+    // top.kwUtils.kwXMLHttpRequest("GET", json_url, true, this, myFunctionTV);
 }
 
 function myFunctionTV(jsonString) {
@@ -388,4 +434,6 @@ function exit_from_screen(){
         top.Player.setClipScreen(top.CLIP_Y, top.CLIP_X, top.CLIP_W, top.CLIP_H);
     }
 }
+
+
 //End Of TV promotions

@@ -11,7 +11,12 @@ function restrntListGetScreenHtml() {
     //var sample_desc = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries,";
     //var sample_heading = "Information Heading";
 
-    var b = "";
+     var promotionText = "Promotions";
+    if (top.DEFAULT_LANGUAGE == "ar") {
+        promotionText = " إعلانات وعروض خاصة ";
+    }
+
+    b = "";
     b += '<div class="bodyBG" style="background-image:' + top.BG_IMG + '">';
     b += '<div id="messageBlock" class="messageBlock"></div>';
     b += '<div id="globalChannelZapper" class="globalChannelZapper"></div>';
@@ -22,12 +27,15 @@ function restrntListGetScreenHtml() {
     b += '<div id="globalClock" class="globalClock"></div>';
     b += "</div>";
     b += menuGetMenuListHtml();
+    if (top.HIDE_SLIDER == 'YES') {
+        b += '<div id="restrntListRestInfo" class="restrntListRestInfo"><img id="restImage" class="restImage" style="display:none;" /></div>';
+    }
     b += '<div id="restrntListRestInfo" class="restrntListRestInfo"><img id="restImage" class="restImage" /></div>';
     b += '<div id="restrntListRestListHighlight" class="restrntListRestListHighlight globalRestListHighlight"></div>';
     b += '<div id="restrntListRestListContainer" class="restrntListRestListContainer"></div>';
     b += "</div>";
     b += '<div id="restaurant_information" class="restaurant_information"></div>';
-    b += '<div id="ticker_tape_restaurent" class="ticker_tape_restaurent"><div id="promotion_id">Promotions</div><p id="restaurent_promotion_text"></p></div>';
+    b += '<div id="ticker_tape_restaurent" class="ticker_tape_restaurent"><div id="promotion_id">'+promotionText+'</div><p id="restaurent_promotion_text"></p></div>';
     b += '<div class="footer">';
     b += '<div id="footerContainer" class="footerContainer">' + showRestFooter() + "</div>";
     b += "</div>";
@@ -35,8 +43,11 @@ function restrntListGetScreenHtml() {
 }
 
 function showRestFooter() {
-    var a = top.globalGetLabel("RC_MENU"); //+ top.globalGetLabel("REST_OK")
-    return a
+    var menu = top.globalGetLabel("RC_MENU");
+    if (top.DEFAULT_LANGUAGE == 'ar') {
+         menu = "<div class=footerImage><img src=images/rc/menu-button.jpg  /></div><div class=footerText> القائمة الفرعية  </div>";
+    }
+    return menu;
 }
 
 function restrntListRestListHideHighlight() {
@@ -100,7 +111,8 @@ function restrntListRestListOnIndexChanged(c, i) {
 
     var k = this.getSelected();
     var element = document.getElementsByClassName("restrntListRestListItem")[k];
-    element.style.backgroundColor = "#B78D49";
+    //element.style.backgroundColor = "#B78D49";
+    element.className += " active";
 
 
 }

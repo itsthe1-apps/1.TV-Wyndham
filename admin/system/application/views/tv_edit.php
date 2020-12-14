@@ -7,14 +7,14 @@ $upload_file = !empty($upload_file_error) ? $upload_file_error : "";
 $attributes = array('name' => 'myform','autocomplete'=>'off');
 echo form_open_multipart(uri_string(),$attributes);
 
-$data_chName		= array('name'=>'name','id'=>'name','size'=> 25);
-$data_chNum			= array('name'=>'ChNum','id'=>'ChNum','size'=> 25);
+$data_chName		= array('name'=>'name','id'=>'name','class'=>'form-control','size'=> 25);
+$data_chNum			= array('name'=>'ChNum','id'=>'ChNum','class'=>'form-control','size'=> 25);
 //$data_prNum			= array('name'=>'prLevel','id'=>'prLevel','size'=> 25);
 //$data_prNam 		= array('name'=>'prName','id'=>'prName','size'=> 25);
 //$data_eitxml		= array('name'=>'eitxml','id'=>'eitxml','size'=>25);
 //$data_epgxml		= array('name'=>'epgxml','id'=>'epgxml','size'=>25);
-$data_path			= array('name'=>'path','id'=>'path','size'=> 25);
-$data_icon			= array('name'=> 'icon','id'=> 'icon');
+$data_path			= array('name'=>'path','id'=>'path','class'=>'form-control','size'=> 25);
+$data_icon			= array('name'=> 'icon','id'=> 'icon','class'=>'form-control');
 //$data_description 	= array('name'=>'description','id'=>'description','rows'=> 5, 'cols'=>'40');
 $data_language		= $this->config->item('languages');
 
@@ -28,7 +28,7 @@ if($category['logo']!="")
 $file = basename($category['logo']);
 print form_input(array('name'=>'file_img_name','type'=>'hidden', 'value'=>$file));
 
-$table="<table width='100%' border='0' cellpadding='5' cellspacing='0'>";
+$table="<table width='100%' border='0' cellpadding='5' cellspacing='0' class='table'>";
 
 $table.="<tr>";
 $table.="<td width='25%'><label for='name'>Channel Name</label><span class='star'> * </span></td>";
@@ -99,7 +99,7 @@ $table.="</tr>";
 $table.="<tr>";
 $table.="<td width='130'><label for='icon'>Icon (Width=".$image_width_tv.", Height=".$image_height_tv.") </label><span class='star'> * </span></td>";
 $table.="<td width='30'>:</td>";
-$table.="<td width='250'>".form_upload($data_icon)."&nbsp;&nbsp;<img  width='50' src='".base_url()."icons/TV/".$file."' align='right'></td>";
+$table.="<td width='250'>".form_upload($data_icon)."&nbsp;&nbsp;<img  width='120' src='".base_url()."icons/TV/".$file."' align='right'></td>";
 $table.="<td><span id='error'>$upload_file</span></td>";
 $table.="</tr>";
 
@@ -118,7 +118,8 @@ $table.="<td><span id='error'>".form_error('language')."</span></td>";
 $table.="</tr>";
 
 $table.="<tr>";
-$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="positive"><img src="'.base_url().'images/cross.png" alt=""/>Back</button><button type="submit" class="positive" name="submit"><img src="'.base_url().'images/apply2.png" alt=""/>Update TV</button></div></td>';
+$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="btn btn-danger">Back</button>
+&nbsp;&nbsp;<button type="submit" class="btn btn-primary" name="submit">Update TV</button></div></td>';
 $table.="</tr>";
 
 $fields = array('type'=>'hidden', 'name'=>'genreName', 'id'=>'genreName');

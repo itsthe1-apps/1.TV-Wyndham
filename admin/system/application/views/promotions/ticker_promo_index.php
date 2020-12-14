@@ -1,7 +1,7 @@
 <table width="99%" cellpadding="0" cellspacing="0" style="margin-bottom:8px;">
     <tr>
         <td align="left" valign="top"><h1><?php echo $title; ?></h1></td>
-        <td align="right" valign="top"><?= $this->TVclass->language_dp('language', $this->session->userdata($session_keyword), "onChange='language_change(this.value,\"$session_keyword\")'") ?><div class="buttons" style="float:right; margin-top:0px;"><a href="<?= base_url() ?>index.php/promotions/add_ticker_promo" class="positive"><img src="<?= base_url() ?>images/apply2.png" alt=""/>ADD PROMOTIONS</a></div></td>
+        <td align="right" valign="middle"><?= $this->TVclass->language_dp('language', $this->session->userdata($session_keyword), "onChange='language_change(this.value,\"$session_keyword\")'") ?><div class="buttons" style="float:right; margin-top:0px;"><a href="<?= base_url() ?>index.php/promotions/add_ticker_promo" class="btn btn-success"><span class="glyphicon glyphicon-plus-sign" style="padding-right:10px;"></span>ADD PROMOTIONS</a></div></td>
     </tr>
 </table>
 <?php
@@ -11,20 +11,15 @@ if ($this->session->flashdata('promotion_message')) {
     print "</div>";
 }
 ?>
-<div class="roundedcornr_box_main_tv" style="width:99%; background: #600;">
-    <div class="roundedcornr_top_main_tv"><div></div></div>
-    <div class="roundedcornr_content_main_tv" style="padding-left:10px;">
-        <table border='0' cellspacing='0' cellpadding='0' width='99%'>
-            <tr>
-                <th width="25%" style="border-right:1px #FFF solid;">Restaurant</th>
-                <th width="25%" style="border-right:1px #FFF solid;">Promotion Text</th>
-                <th width="10%">Actions</th>
-            </tr>
-        </table>
-    </div>
-    <div class="roundedcornr_bottom_main_tv"><div></div></div>
-</div><br />
-<table border='0' cellspacing='0' cellpadding='3' width='99%' id="table_form">
+<table border='0' cellspacing='0' cellpadding='0' width='99%' class="table table-bordered table-hover">
+    <thead>
+        <tr class="success">
+          <th width="25%" style="border-right:1px #FFF solid;">Restaurant</th>
+          <th width="25%" style="border-right:1px #FFF solid;">Promotion Text</th>
+          <th width="10%">Actions</th>
+       </tr>
+    </thead>
+<tbody>
     <?php
     $options = $this->config->item('ticker_promo_menu');
     if (count($ticker_promos) > 0) {
@@ -77,5 +72,6 @@ if ($this->session->flashdata('promotion_message')) {
       }
      * * */
     ?>
+    </tbody>
 </table>
 <div id="page" align="center"><?= $pagination; ?></div>

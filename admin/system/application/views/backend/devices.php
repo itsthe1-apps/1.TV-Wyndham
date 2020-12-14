@@ -194,16 +194,31 @@
             }
         });
 
-        var attempts = "<?=$attempts;?>";
-        if (attempts == 1) {
+        // var attempts = "<?=$attempts;?>";
+        // if (attempts == 1) {
+        //     setInterval(function () {
+        //         window.location.href = window.location.href + "/1";
+        //     }, 30000);
+        // } else {
+        //     setInterval(function () {
+        //         window.location.reload();
+        //     }, 60000);
+        // }
+
+        var $attempts = "<?=$attempts;?>";
+        var $offset = "<?=$offset;?>";
+        var $base_url = "<?=$base_url;?>";
+        if ($attempts == 1) {
             setInterval(function () {
-                window.location.href = window.location.href + "/1";
+                var page_url = $base_url + $offset + "/1";
+                window.location.href = page_url;
             }, 30000);
         } else {
             setInterval(function () {
                 window.location.reload();
             }, 60000);
         }
+
 
     });
 

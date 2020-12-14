@@ -13,6 +13,8 @@ var Player = {
     winMode: 0, //0 - Graphic, 1 - Video
     init: function () {
         try {
+            gSTB.SetWakeUpSources([6]);
+            gSTB.StandByMode = 1;
             gSTB.InitPlayer();
             gSTB.SetVolume(top.CURRENT_VOLUME);
             gSTB.SetBufferSize(4000, 2000000);
@@ -50,11 +52,52 @@ var Player = {
         }
     },
     powerToggle: function () {
+
+    	if(top.MessageManager.msgIsInfobarHidden == false){
+            top.MessageManager.messageShow(0);
+            top.MessageManager.setMessageRead(top.CURRENT_MESSAGE_ID);
+            top.CURRENT_MESSAGE_ID = null;
+        }
+
         p = gSTB.GetStandByStatus();
         top.kwConsole.print("GetStandByStatus :" + p);
-        p = (p) ? false : true;
-        top.kwConsole.print("Set StandBy :" + p);
-        gSTB.StandBy(p);
+        var tvStatus = gSTB.GetHDMIConnectionState();
+        if ((tvStatus == 0) && (p == true) && (top.STANDBY_HOLD == false)) {
+            //HDMI connected to TV, but not in active state e.i. standby mode, TV is off
+            gSTB.StandBy(false);
+            top.STANDBY_HOLD = true;
+            //Init Live Channel
+            if (top.LIVE_CHANNEL != null) {
+                top.ChannelManager.setCurrentChannel(top.LIVE_CHANNEL);
+                top.ScreenManager.deleteHistory();
+                top.globalChannelApproved = false;
+                top.ScreenManager.load("FSV");
+            }else{
+                if(top.MessageManager.msgIsInfobarHidden == true){
+                    top.ScreenManager.load("MENU");
+                }
+            }
+            setTimeout(function(){ 
+            top.STANDBY_HOLD = false;
+            }, 10000);
+
+        }else if((tvStatus == 2) && (p == false) && (top.STANDBY_HOLD == false)){
+            if (top.SCREEN_MODE == 1) {
+                var udpChannel = top.ChannelManager.getCurrentChannel();
+                top.LIVE_CHANNEL = udpChannel;
+            }
+            else if (top.SCREEN_MODE == 0 && gSTB.IsPlaying() == true) {
+                var udpChannel = top.ChannelManager.getCurrentChannel();
+                top.LIVE_CHANNEL = udpChannel;
+            }else{
+                top.LIVE_CHANNEL = null;
+            }
+            gSTB.StandBy(true);
+            top.STANDBY_HOLD = true;
+            setTimeout(function(){ 
+            top.STANDBY_HOLD = false;
+            }, 15000);
+        }
     },
     setVolume: function (b) {
         try {
@@ -277,6 +320,9 @@ var Player = {
     setClipScreen: function () {
         try {
             this.toggleWinMode("clip");
+            if(top.DEFAULT_LANGUAGE == 'ar'){
+                top.CLIP_X = 60;
+            }
             gSTB.SetViewport(top.CLIP_W, top.CLIP_H, top.CLIP_X, top.CLIP_Y);
             top.kwConsole.print("Player.setClipScreen() done");
         } catch (a) {
@@ -342,7 +388,10 @@ var Player = {
     reboot: function () {
         try {
             top.kwConsole.print("reboot init");
-            gSTB.LoadURL("http://" + top.ip + "/client/index.html");
+            // gSTB.LoadURL("http://" + top.ip + "/client/index.html");
+            top.UserManager.setRestart();
+            gSTB.ExecAction('reboot');
+
         } catch (a) {
             top.kwConsole.print(a.message);
         }

@@ -8,7 +8,8 @@ function serviceListEventHandler(d) {
     var c = true;
     switch (d.code) {
         case "INIT_SCREEN":
-            top.changeBackgroundImg('SERVICES');
+            //top.changeBackgroundImg('SERVICES');
+            top.BG_IMG = 'url(' + top.IMAGES_PREFIX + 'BGS/' + top.BACKGROUND_ARRAY['SERVICES'] + ')';
             initInfoVars();
             serviceListInitScreen(d.args);
             break;

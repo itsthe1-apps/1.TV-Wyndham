@@ -46,8 +46,8 @@ define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
 
 
 //Define STB limitations and allowed roomt
-define('ALLOWED_ROOMS', 100);
-define('DEVICE_LIMIT', 275);
+define('ALLOWED_ROOMS', 500);
+define('DEVICE_LIMIT', 500);
 define("STB_RANGE", serialize(array("00181c", "000000", "0016e8", "0026aa", "a00abf", "000202", "001a79", "3d13e4", "cc6ea4", "c808e9")));
 define("MAC_LEN", 6);  //we need to check maximum 11 charactors from left of macaddress
 define("BLOCKED_MODULES", serialize(array("MyAuth2")));
@@ -65,14 +65,14 @@ define('TV_PATH', './icons/TV/');
 define('MOVIE_PATH', './icons/VOD/');
 define('RESTAURANT_PATH', './icons/RESTAURANT/');
 define('EXIT_PATH', './icons/EXIT/');
-define('HOTEL_NAME', 'Elite Byblos');
+define('HOTEL_NAME', 'Wyndham Hotel');
 
 //License
 define("APP_HASLIFE", (int)true);//enable / disable DEMO script.
-define("BLK_MSG", (int)true);//enable / disable msg box
+define("BLK_MSG", (int)false);//enable / disable msg box
 define("BLK_ADMIN", (int)false);//enable / disable access to the admin if license expired.
 define("BLK_CLIENT", (int)true);//enable / disable access to the client if license expired.
-define("EXPIRE_DATE", "2020-04-10");//product expire date.
+define("EXPIRE_DATE", "2020-12-31");//product expire date.
 define("CHECK_EXPIRE", "-1 months");//-1 days,-2 weeks
 
 /* End of file constants.php */

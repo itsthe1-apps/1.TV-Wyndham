@@ -1,56 +1,37 @@
  [
    {
       "id": "1",
-      "service_type": "ROOM SERVICE",
-      "image": "roomservice.png",
-      "description": "Indulge in our diverse Room Service menu. We’ve designed our menu so that there is something for everyone, with plenty of healthy choices and tasty treats for good measure.",
-      "telephone": "Dial Telephone Extension: 5",
+      "service_type": "SCREEN MIRRORING",
+      "image": "screen_mirror.png",
+      "description": "Screen mirroring or screen casting allows you to mirror your mobile device's content to your TV screen. <br/>Screen mirroring technology has changed substantially over recent years and the best method to mirror your screen will differ depending on the age, model and manufacturer of your smartphone, tablet and TV.<br/>A lot of apps, such as Netflix and Youtube now have a screen mirroring function built in.",
+      "navigation": "A",
+      "nav_image": "Press_A.png",
       "date_added": "2016-10-24 02:18:22",
       "language":"en"
    },
    {
       "id": "2",
-      "service_type": "LAUNDRY SERVICE",
-      "image": "laundry.png",
-      "description": "Mafraq Hotel and Resorts offers laundry, dry cleaning and pressing services to our guests.",
-      "telephone": "Dial Telephone Extension: 8",
+      "service_type": "BLUETOOTH MUSIC PLAY",
+      "image": "bluetooth.png",
+      "description": "An amplifier and loudspeaker with Bluetooth wireless connectivity that is paired (pre-associated) with one or more smartphones, tablets, iPods or computers.",
+      "navigation": "C",
+      "nav_image": "Press_C.png",
       "date_added": "2016-10-24 02:18:22",
       "language":"en"
    },
    {
       "id": "3",
-      "service_type": "HOUSEKEEPING",
-      "image": "housekeeping.png",
-      "description": "Our Housekeeping make sure that rooms are clean, tidy and you have a comfortable stay.",
-      "telephone": "Dial Telephone Extension: 7",
-      "date_added": "2016-10-24 02:18:22",
-      "language":"en"
-   },
-   {
-      "id": "4",
-      "service_type": "CONCIERGE",
-      "image": "concierge.png",
-      "description": "The Concierge staff Mafraq Hotel are available 24 hours a day, and will be happy to assist you in any way they can. Talk to them about your car rentals, ticket confirmation, limousine services, luggage and storage, and valet parking services.",
-      "telephone": "Dial Telephone Extension: 6",
-      "date_added": "2016-10-24 02:18:22",
-      "language":"en"
-   },
-   {
-      "id": "5",
-      "service_type": "RECREATION",
-      "image": "reception.png",
-      "description": "The newly renovated recreation center at Mafraq Hotel offers state-of-the-art equipment from Life Fitness for c. 500 active users.  The building has a built-up-area of 12,309 square feet and includes a mixed-gym and a dedicated gym for ladies.  Fitness Zone provides a full suite of activities for members and day-users.",
-      "telephone": "Dial Telephone Extension: 705 /703(Ladies)",
-      "date_added": "2016-10-24 02:18:22",
-      "language":"en"
-   },
-   {
-      "id": "6",
-      "service_type": "TEL. OPERATOR",
-      "image": "telephone.png",
-      "description": "Although the majority of hotel services are made possible to dial directly, if required any assistance of a telephone operator.",
-      "telephone": "Dial Telephone Extension: 0",
+      "service_type": "CAST",
+      "image": "youtube_cast.png",
+      "description": "YouTube app then press the cast button and select your chromecast device select.<br/> a video then press play and the video will play on your TV with chromecast you can control playback adjust. the volume or browse YouTube right from your device.",
+      "navigation": "D",
+      "nav_image": "Press_D.png",
       "date_added": "2016-10-24 02:18:22",
       "language":"en"
    }
 ]
+
+
+
+
+

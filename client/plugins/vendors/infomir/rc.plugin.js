@@ -47,6 +47,12 @@ function pluginKeyHandler(g) {
     } catch (d) {
         //
     }
+    if(top.MessageManager.msgIsInfobarHidden == false){
+       if(f != 115 && f != 85){
+            e = null;
+            f = null;
+        }
+    }
     top.globalFireEvent(new Event(e, {
         value: f
     }));

@@ -3,11 +3,11 @@
 $text_area_length = 250;
 print form_open('newsmenu/addnews');
 
-$title = array('name' => 'title', 'id' => 'title', 'size' => 25, 'value' => $this->input->post('title'));
+$title = array('name' => 'title', 'id' => 'title','class' => 'form-control', 'size' => 25, 'value' => $this->input->post('title'));
 $summary = array('name' => 'summary', 'id' => 'summary', 'rows' => 6, 'cols' => 60, 'value' => $this->input->post('summary'), 'maxlength' => $text_area_length, 'onkeyup' => 'return ismaxlength(this)');
-$full_news = array('name' => 'fullnews', 'id' => 'fullnews', 'rows' => 10, 'cols' => 60, 'value' => $this->input->post('fullnews'));
+$full_news = array('name' => 'fullnews', 'id' => 'fullnews','class' => 'form-control', 'rows' => 10, 'cols' => 60, 'value' => $this->input->post('fullnews'));
 
-$table = "<table width='100%' border='0' cellpadding='5' cellspacing='0'>";
+$table = "<table width='100%' border='0' cellpadding='5' cellspacing='0' class='table'>";
 
 $table.="<tr>";
 $table.="<td width='20%'><label for='name'>Language </label><span class='star'> * </span></td>";
@@ -40,7 +40,8 @@ $table.="<td valign='top'><span id='error'>" . form_error('fullnews') . "</span>
 $table.="</tr>";
 
 $table.="<tr>";
-$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="positive"><img src="' . base_url() . 'images/cross.png" alt=""/>Back</button><button type="submit" class="positive" name="submit"><img src="' . base_url() . 'images/apply2.png" alt=""/>Create News</button></div></td>';
+$table.='<td colspan="4"><br/><div class="buttons"><button onclick="history.back();return false;" class="btn btn-danger">Back</button>
+&nbsp;&nbsp;<button type="submit" class="btn btn-success" name="submit">Create News</button></div></td>';
 $table.="</tr>";
 
 $table.= "</table>";

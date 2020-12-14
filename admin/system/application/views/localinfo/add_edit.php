@@ -51,7 +51,7 @@ if (isset($edit_data['image'])) {
 ?>
 
 
-<table width="100%" border="0" cellpadding="5" cellspacing="0">
+<table width="100%" border="0" cellpadding="5" cellspacing="0" class="table">
     <tr>
         <td width="30%" valign="top"><label for="name">Language</label><span class="star"> * </span></td>
         <td width="10%" valign="top">:</td>
@@ -61,7 +61,7 @@ if (isset($edit_data['image'])) {
     <tr>
         <td valign="top"><label for="name">Name</label><span class="star"> * </span></td>
         <td valign="top">:</td>
-        <td valign="top"><?= form_input('name', isset($edit_data['name']) ? $edit_data['name'] : $this->input->post('name'), 'maxlength=100') ?></td>
+        <td valign="top"><?= form_input('name', isset($edit_data['name']) ? $edit_data['name'] : $this->input->post('name'), 'maxlength=100 class="form-control"') ?></td>
         <td align="left" valign="top"><span id="error"><?= form_error('name') ?></span></td>
     </tr>
     <tr>
@@ -90,11 +90,11 @@ if (isset($edit_data['image'])) {
     <tr>
         <td colspan="4" align="left"><br/>
             <div class="buttons">
-                <button onclick="history.back();return false;" class="positive"><img src="<?= base_url() ?>images/cross.png" alt=""/>Back</button>
+                <button onclick="history.back();return false;" class="btn btn-danger">Back</button>
                 <?php if (isset($edit_data['id'])) { ?>
-                    <button type="submit" class="positive" name="update"><img src="<?= base_url() ?>images/apply2.png" alt=""/>Update</button>
+                    <button type="submit" class="btn btn-primary" name="update">Update</button>
                 <?php } else { ?>
-                    <button type="submit" class="positive" name="submit"><img src="<?= base_url() ?>images/apply2.png" alt=""/>Create</button>
+                    <button type="submit" class="btn btn-success" name="submit">Create</button>
                     <?php } ?>
             </div>
         </td>

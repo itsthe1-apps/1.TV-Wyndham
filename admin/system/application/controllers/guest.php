@@ -45,7 +45,7 @@ class Guest extends Controller {
 
         $data['subscribers'] = $this->Subscribers->get_all($offset, $row_count, $data['session_keyword'])->result();
         //print_r($data);
-        $p_config['base_url'] = base_url() . 'index.php/backend/language/';
+        $p_config['base_url'] = base_url() . 'index.php/guest';
         $p_config['uri_segment'] = 3;
         $p_config['num_links'] = 2;
         $p_config['total_rows'] = $this->Subscribers->get_all(false, false, $data['session_keyword'])->num_rows();

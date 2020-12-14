@@ -3,7 +3,7 @@
 class WebService extends Model
 {
 
-    function WebService()
+    public function WebService()
     {
         parent::Model();
         $this->load->database();
@@ -78,7 +78,7 @@ class WebService extends Model
         $this->CI = &get_instance();
     }
 
-    function get_user_by_username($mac_address, $serial_number)
+    public function get_user_by_username($mac_address, $serial_number)
     {
         $this->db->where('mac_address', $mac_address);
         // $this->db->where('serial_number', $serial_number);
@@ -86,7 +86,7 @@ class WebService extends Model
         return $query->num_rows();
     }
 
-    function get_flag_api()
+    public function get_flag_api()
     {
         $data = array();
         // $this->db->select('*');
@@ -105,7 +105,7 @@ class WebService extends Model
     /* XML JSON API */
 
     // Get permission query
-    function get_permission_value($role_id)
+    public function get_permission_value($role_id)
     {
         $this->db->where_in('role_id', $role_id);
         $query = $this->db->get($this->channel_permissions);
@@ -119,7 +119,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_newsflag_api()
+    public function get_newsflag_api()
     {
         $data = array();
         //$this->db->select('flag');
@@ -135,7 +135,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_channels_api($u_id = 0, $g_id = 0)
+    public function get_channels_api($u_id = 0, $g_id = 0)
     {
         $data = array();
         //$Q2 = $this->db->query("");
@@ -149,8 +149,10 @@ class WebService extends Model
             $this->db->join($this->itvtv_bygenre, $this->itvtv_bygenre . '.TVChannelId=' . $this->channel . '.id', 'left');
             $this->db->where($this->itvtv_bygenre . '.TVGenreID', $g_id);
         }
+        if ($u_id > 0) {
+            $this->db->where($this->room_guest . '.guest_id', $u_id);
+        }
 
-        $this->db->where($this->room_guest . '.guest_id', $u_id);
         //$this->db->group_by($this->channel_permissions.'.data');
         $this->db->group_by($this->channel . '.id');
         $this->db->orderby($this->channel . '.number', 'asc');
@@ -163,12 +165,13 @@ class WebService extends Model
                 $data[] = $row;
             }
         }
-        //print_r($this->db->last_query());
+//        print_r($this->db->last_query());
+//        die();
         $Q->free_result();
         return $data;
     }
 
-    function get_restaurants_api($l)
+    public function get_restaurants_api($l)
     {
         $data = array();
 
@@ -199,7 +202,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_spa_api()
+    public function get_spa_api()
     {
         $data = array();
         $this->db->from($this->spa);
@@ -213,7 +216,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_experience_api()
+    public function get_experience_api()
     {
         $data = array();
         $this->db->from($this->experience);
@@ -229,7 +232,7 @@ class WebService extends Model
 
     /* XML JSON API */
 
-    function get_movies_api($gid = false)
+    public function get_movies_api($gid = false)
     {
         $data = array();
         //$this->db->select('');
@@ -249,7 +252,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_restmenutype_api()
+    public function get_restmenutype_api()
     {
         $data = array();
         $this->db->from($this->rest_menutype);
@@ -265,7 +268,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_programs_api()
+    public function get_programs_api()
     {
         $data = array();
         $this->db->select('');
@@ -282,7 +285,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_genres_api()
+    public function get_genres_api()
     {
         $data = array();
         $this->db->select('');
@@ -299,7 +302,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_parentals_api()
+    public function get_parentals_api()
     {
         $data = array();
         $this->db->select('');
@@ -316,7 +319,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_news_api($l)
+    public function get_news_api($l)
     {
         $data = array();
         $this->db->select('');
@@ -335,7 +338,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_tickertape_api($l)
+    public function get_tickertape_api($l)
     {
         $rss = "";
         $this->db->select('');
@@ -353,14 +356,14 @@ class WebService extends Model
         // print_r($this->db->last_query());
         $Q->free_result();
         $this->load->library('rssparser');
-        $this->rssparser->set_feed_url($rss);  // get feed
-        $this->rssparser->set_cache_life(30);                       // Set cache life time in minutes
+        $this->rssparser->set_feed_url($rss); // get feed
+        $this->rssparser->set_cache_life(30); // Set cache life time in minutes
         $rss2 = $this->rssparser->getFeed(6);
         //print_r($rss2);
         return $rss2;
     }
 
-    function get_xmltvlist_api()
+    public function get_xmltvlist_api()
     {
         $data = array();
         $this->db->select('channel, path as eitXML');
@@ -377,9 +380,9 @@ class WebService extends Model
         return $data;
     }
 
-    function getAllowedChannelGroups($mac_address, $serial_number)
+    public function getAllowedChannelGroups($mac_address, $serial_number)
     {
-        $result = NULL;
+        $result = null;
         //$Q = $this->db->query("select data from channel_role_permissions where channel_role_permissions.role_id = (SELECT role_id FROM users where mac_address='$mac_address' and serial_number='$serial_number')");
         //$Q = $this->db->query("select data from ".$this->channel_role_permissions." where ".$this->channel_role_permissions.".role_id = (SELECT role_id FROM ".$this->users." where mac_address='$mac_address')");
 
@@ -396,15 +399,16 @@ class WebService extends Model
         return $result;
     }
 
-    function getUserMessage($user_id)
+    public function getUserMessage($user_id)
     {
+
         $this->db->where('user', $user_id);
         $this->db->where('status', 0);
         $Q = $this->db->get($this->usermessage);
         return $Q->num_rows();
     }
 
-    function getUserAlarm($user_id)
+    public function getUserAlarm($user_id)
     {
         $data = array();
         $this->db->where('guest', $user_id);
@@ -423,7 +427,7 @@ class WebService extends Model
         return $data;
     }
 
-    function checkUser($mac_address, $serial_number)
+    public function checkUser($mac_address, $serial_number)
     {
         $data = "no";
         //$Q = $this->db->query("SELECT * FROM users where mac_address='$mac_address' and serial_number='$serial_number' limit 1");
@@ -441,7 +445,7 @@ class WebService extends Model
         return $data;
     }
 
-    function getUserMessages($user_id)
+    public function getUserMessages($user_id)
     {
         $data = array();
         $this->db->select($this->usermessage . '.id as id, ' . $this->message . '.message as message, ' . $this->message . '.date_added as date, ' . $this->usermessage . '.status as status');
@@ -449,6 +453,8 @@ class WebService extends Model
         $this->db->where($this->usermessage . '.user', $user_id);
         $this->db->order_by($this->usermessage . '.date_added', 'desc');
         $Q = $this->db->get($this->usermessage);
+//        print_r($this->db->last_query());
+//        die();
         if ($Q->num_rows() > 0) {
             foreach ($Q->result_array() as $row) {
                 $data[] = $row;
@@ -458,9 +464,9 @@ class WebService extends Model
         return $data;
     }
 
-    function getChannelsforGroups($groups)
+    public function getChannelsforGroups($groups)
     {
-        $result = NULL;
+        $result = null;
         // take $groups as package id
         if (!empty($groups)) {
             $groups = implode(",", $groups);
@@ -476,7 +482,7 @@ class WebService extends Model
         return $result;
     }
 
-    function getAllowedChannels($groups)
+    public function getAllowedChannels($groups)
     {
         $data = array();
         if (!empty($groups)) {
@@ -499,7 +505,7 @@ class WebService extends Model
         return $result;
     }
 
-    function get_skins_api()
+    public function get_skins_api()
     {
         $data = array();
         //$this->db->select('');
@@ -516,7 +522,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_language_api()
+    public function get_language_api()
     {
         $data = array();
         //$this->db->select('');
@@ -533,7 +539,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_devices_api()
+    public function get_devices_api()
     {
         $data = array();
         //$this->db->select('');
@@ -550,7 +556,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_devices_type_api()
+    public function get_devices_type_api()
     {
         $data = array();
         //$this->db->select('');
@@ -567,7 +573,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_devices_groups_api()
+    public function get_devices_groups_api()
     {
         $data = array();
         //$this->db->select('');
@@ -584,7 +590,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_guest_api()
+    public function get_guest_api()
     {
         $data = array();
         //$this->db->select('');
@@ -601,7 +607,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_rooms_api()
+    public function get_rooms_api()
     {
         $data = array();
         //$this->db->select('');
@@ -618,7 +624,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_greeting_api()
+    public function get_greeting_api()
     {
         $data = array();
         //$this->db->select('');
@@ -636,7 +642,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_occation_api()
+    public function get_occation_api()
     {
         $data = array();
         //$this->db->select('');
@@ -653,7 +659,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_message_api()
+    public function get_message_api()
     {
         $data = array();
         //$this->db->select('');
@@ -670,7 +676,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_itvgenre_api()
+    public function get_itvgenre_api()
     {
         $data = array();
         //$this->db->select('');
@@ -687,7 +693,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_packages_api()
+    public function get_packages_api()
     {
         $data = array();
         //$this->db->select('');
@@ -704,7 +710,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_parental_api()
+    public function get_parental_api()
     {
         $data = array();
         //$this->db->select('');
@@ -721,7 +727,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_user_roles_api()
+    public function get_user_roles_api()
     {
         $data = array();
         //$this->db->select('');
@@ -738,7 +744,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_users_api()
+    public function get_users_api()
     {
         $data = array();
         //$this->db->select('');
@@ -756,7 +762,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_favourites_api($fav_id = 0)
+    public function get_favourites_api($fav_id = 0)
     {
         $data = array();
         $Q = $this->db->query("SELECT * FROM " . $this->channel . " as c where id in (SELECT fav_channel_id FROM " . $this->favourites . " as f where f.fav_user=$fav_id group by fav_channel_id) order by c.number");
@@ -772,11 +778,11 @@ class WebService extends Model
         return $data;
     }
 
-    function favourite_insert_data($u, $c)
+    public function favourite_insert_data($u, $c)
     {
         $data = array(
             'fav_user' => $u,
-            'fav_channel_id' => $c
+            'fav_channel_id' => $c,
         );
         $this->db->where('fav_user', $u);
         $this->db->where('fav_channel_id', $c);
@@ -787,7 +793,7 @@ class WebService extends Model
         $Q->free_result();
     }
 
-    function favourite_remove_data($u, $c)
+    public function favourite_remove_data($u, $c)
     {
         $this->CI->load->model('mtv');
         $d = $this->CI->mtv->getTvByNumber($c);
@@ -798,7 +804,7 @@ class WebService extends Model
         }
     }
 
-    function get_vod_api()
+    public function get_vod_api()
     {
         $data = array();
         $this->db->select('');
@@ -816,14 +822,42 @@ class WebService extends Model
     }
 
     /**
+     * get_user_lang_bymac
+     * Added by Yesh
+     */
+    public function get_user_lang_bymac($mac_address)
+    {
+        $this->db->select($this->room_guest . '.language_id');
+        $this->db->join($this->room_device, $this->devices . '.id=' . $this->room_device . '.device_id', 'left');
+        $this->db->join($this->room_guest, $this->room_device . '.room_id=' . $this->room_guest . '.room_id', 'left');
+        $this->db->where($this->devices . '.mac_address', $mac_address);
+        $query = $this->db->get($this->devices);
+        $result = $query->row();
+        $language_id = 0;
+        if (isset($result->language_id)) {
+            $language_id = $result->language_id;
+        }
+        return $language_id;
+        //echo $this->db->last_query();
+        //die();
+    }
+
+    /**
      * get_user_api
      * @param int $id
      * @return array
      */
-    function get_user_api($id = 0)
+    public function get_user_api($id = 0, $userLangId = 1)
     {
         $data = array();
         //$mac_address == true ? $this->db->where('mac_address', $mac_address) : "";
+
+        //Checking for available Guest
+        $guest_status = $this->check_guest_available_for_device($id);
+//        echo "<pre>";
+//        print_r($guest_status);
+//        echo "</pre>";
+//        die();
         $this->db->join($this->room_device, $this->room_device . '.device_id=' . $this->devices . '.id', 'left');
         $this->db->join($this->room, $this->room . '.id=' . $this->room_device . '.room_id', 'left');
         $this->db->join($this->device_types, $this->device_types . '.id=' . $this->devices . '.device_type', 'left');
@@ -835,35 +869,66 @@ class WebService extends Model
         $this->db->join($this->settings, $this->settings . '.se_id=' . $this->settings . '.se_id', 'left');
         $this->db->join($this->group_room, $this->group_room . '.gr_room_id=' . $this->room . '.id', 'left');
         $this->db->join($this->group_module, $this->group_module . '.group_id=' . $this->group_room . '.gr_group_id', 'left');
-
+        //Update By Lakshan
+        $this->db->join($this->guest_name, $this->guest_name . '.guest_id =' . $this->guest . '.id' . ' AND ' . $this->guest_name . '.language = ' . $this->detail_greeting . '.greeting_language', 'left');
         $this->db->limit(1);
-        if ($id > 0)
-            $this->db->where($this->devices . '.id=' . $id, NULL, FALSE);
-        $this->db->select('*,' . $this->guest . '.title as saluation');
+        if ($id > 0) {
+            $this->db->where($this->devices . '.id=' . $id, null, false);
+        }
+        $language = "en";
+        if ($userLangId == 2) {
+            $language = "ar";
+        }
+        $this->db->select('*,' . $this->guest . '.title as saluation,' . $this->guest . '.name as guest_name,' . $this->guest . '.surname as guest_surname,' . $this->guest . '.id as guest_id,');
+        //Removed Where clause and Joined to ---- AND '.$this->detail_greeting.'.greeting_language = '.$this->guest_name.'.language'---
+        if ($guest_status['guest_id']) {
+            $this->db->where($this->detail_greeting . '.greeting_language', $language);
+        }
         $query = $this->db->get($this->devices);
-
 //        echo '<pre>';
 //        print_r($this->db->last_query());
 //        echo '</pre>';
 //        die();
-        $language = "en";
         if ($query->num_rows() > 0) {
             foreach ($query->result_array() as $row) {
-                $data['id'] = $row['guest_id'];
-                $data['title'] = "Welcome " . $row['saluation'] . "." . $row['name'] . " " . $row['surname'];
-                $data['theme'] = $row['th_folder'];
-                $data['welcome_msg'] = $row['greeting_desc'];
-                $data['logo'] = $this->config->item('logo_icon_url') . $row['se_logo'];
-                $data['device_id'] = $row['device_id'];
-
-                //Added by Yesh - 2017-JUL-12
+//                echo "<pre>";
+//                print_r($row);
+//                echo "</pre>";
+//                die();
+                //Added by Yesh - 25062019
+                $room_number = $row['room_number'];
                 $language_id = $row['language_id'];
                 if ($language_id == 2) {
                     $language = "ar";
                 }
                 $data['language'] = $language;
                 //Added by Yesh - 2017-JUL-12
-
+                $data['id'] = $row['guest_id'];
+                /**
+                 * request from coral to turn on TV when there is no Guest
+                 * Added by Yesh
+                 * 17072019
+                 */
+                $guest_name = strtolower(str_replace(' ', '', $row['guest_name']));
+                //echo $guest_name;
+                //die();
+                if ($guest_name == "elitebyblos") {
+                    $data['title'] = "Welcome " . HOTEL_NAME;
+                } else {
+                    $data['title'] = "Welcome " . $row['saluation'] . "." . $row['guest_name'] . " " . $row['guest_surname'];
+                    if ($language == 'ar') {
+                        $data['title'] = "أهلا بك" . $row['title2'] . "." . $row['name'] . " " . $row['surname'];
+                    }
+                }
+//                $data['title'] = "Welcome " . $row['saluation'] . "." . $row['guest_name'] . " " . $row['guest_surname'];
+//                if ($language == 'ar') {
+//                    $data['title'] = "أهلا بك" . $row['title2'] . "." . $row['name'] . " " . $row['surname'];
+//                }
+                $data['theme'] = $row['th_folder'];
+                $data['welcome_msg'] = $row['greeting_desc'];
+                $data['logo'] = $this->config->item('logo_icon_url') . $row['se_logo'];
+                $data['device_id'] = $row['device_id'];
+                //Added by Yesh - 2017-JUL-12
                 $data['device_type'] = $row['device_type'];
                 $data['mcast_prefix'] = $row['mcast_prefix'];
                 $data['transperancy_level'] = $row['transp_level'];
@@ -875,21 +940,18 @@ class WebService extends Model
                 $data['clip_y'] = $row['window_y'];
                 $data['clip_w'] = $row['window_width'];
                 $data['clip_h'] = $row['window_height'];
-                $data['room_number'] = $row['room_number'];
-
+                $data['room_number'] = $room_number;
                 $data['home'] = $row['home'];
                 $data['tv'] = $row['tv'];
                 $data['vod'] = $row['vod'];
                 $data['radio'] = $row['radio'];
                 $data['internet'] = $row['internet'];
                 $data['restaurant'] = $row['restaurant'];
-
                 $data['information'] = $row['information'];
                 $data['messages'] = $row['messages'];
                 $data['services'] = $row['services'];
                 $data['weather'] = $row['weather'];
                 $data['clock'] = $row['clock'];
-
                 $data['socket_enabled'] = $row['se_socket_enabled'];
                 $data['tapemarquee_enabled'] = $row['se_tapemarquee_enabled'];
                 $data['fakedata_enabled'] = $row['se_fakedata_enabled'];
@@ -900,22 +962,30 @@ class WebService extends Model
                 $data['tickertape_enabled'] = $row['tickertape_enabled'];
                 $data['chfavourite_enabled'] = $row['chfavourite_enabled'];
                 $data['se_guest_title'] = $row['se_guest_title'];
-
                 $data['tv_brand_folder'] = $row['tv_brand_folder'];
                 $data['view_type'] = $row['se_view_type'];
                 //$data['check_reboot'] = $row['check_reboot'];
             }
-            $data['background_array'] = $this->db->where('language', $language)->get($this->backgrounds)->result_array();
+            $bgArray = array();
+            $tmpData = $this->db->where('language', $language)->get($this->backgrounds)->result_array();
+            if (!empty($tmpData)) {
+                foreach ($tmpData as $row) {
+                    $bgArray[$row['background_module']] = $row['background_image'];
+                }
+            }
+            //$data['background_array'] = $this->db->where('language', $language)->get($this->backgrounds)->result_array();
+            $data['background_array'] = $bgArray;
+
         }
 //        echo '<pre>';
-//        print_r($data);
-//        echo '</pre>';
-//        die();
+//                print_r($data);
+//                echo '</pre>';
+//                die();
         $query->free_result();
         return $data;
     }
 
-    function updateMessage($id)
+    public function updateMessage($id)
     {
         $data = array('status' => 1);
         $this->db->where('id', $id);
@@ -928,7 +998,7 @@ class WebService extends Model
      * @param $id
      * @return array
      */
-    function get_device_api($id)
+    public function get_device_api($id)
     {
         $data = array();
         $this->db->where('id', $id);
@@ -943,7 +1013,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_localinfos_api($l)
+    public function get_localinfos_api($l)
     {
         $data = array();
         //$this->db->select('');
@@ -968,7 +1038,6 @@ class WebService extends Model
                     }
                 }
 
-
                 $data[] = $row;
                 $Q1->free_result();
                 //$Q2->free_result();
@@ -978,7 +1047,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_newsnpromos_api($l)
+    public function get_newsnpromos_api($l)
     {
         $data = array();
         //$this->db->select('');
@@ -1003,7 +1072,6 @@ class WebService extends Model
                     }
                 }
 
-
                 $data[] = $row;
                 $Q1->free_result();
                 //$Q2->free_result();
@@ -1013,7 +1081,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_localinfotypes_api()
+    public function get_localinfotypes_api()
     {
         $data = array();
         $this->db->order_by("id", "asc");
@@ -1027,7 +1095,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_settings_api()
+    public function get_settings_api()
     {
         $data = array();
         $Q = $this->db->query("SELECT s.se_logo as logo,t.th_name as theme, s.se_weather_rss as weather_rss FROM " . $this->settings . " as s left join " . $this->themes . " as t on s.se_current_theme=t.th_id limit 0,1");
@@ -1040,7 +1108,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_weather_api($l)
+    public function get_weather_api($l)
     {
         $data = array();
         $Q = $this->db->query("SELECT s.weather_url as weather_rss FROM " . $this->weather . " as s where language='$l' limit 0,1");
@@ -1054,7 +1122,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_style_api($id = 1)
+    public function get_style_api($id = 1)
     {
         $data = array();
         $this->db->where('theme', $id);
@@ -1072,24 +1140,24 @@ class WebService extends Model
     }
 
     /*
-      function get_radio_api() {
-      $data = array();
-      $this->db->order_by("ra_id", "asc");
+    function get_radio_api() {
+    $data = array();
+    $this->db->order_by("ra_id", "asc");
 
-      $Q = $this->db->get($this->radio);
-      if ($Q->num_rows() > 0) {
-      foreach ($Q->result_array() as $row) {
-      $row['ra_logo'] = $this->config->item('radio_icon_url') . $row['ra_logo'];
-      $data[] = $row;
-      }
-      }
-      $Q->free_result();
-      return $data;
-      }
+    $Q = $this->db->get($this->radio);
+    if ($Q->num_rows() > 0) {
+    foreach ($Q->result_array() as $row) {
+    $row['ra_logo'] = $this->config->item('radio_icon_url') . $row['ra_logo'];
+    $data[] = $row;
+    }
+    }
+    $Q->free_result();
+    return $data;
+    }
      */
 
 //flag services
-    function get_userflag_api($user_id)
+    public function get_userflag_api($user_id)
     {
         $data = array();
         $this->db->select('date_added');
@@ -1107,7 +1175,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_userprofileflag_api($user_id)
+    public function get_userprofileflag_api($user_id)
     {
         $data = array();
         $this->db->select('date_updated');
@@ -1124,7 +1192,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_movieflag_api()
+    public function get_movieflag_api()
     {
         $data = array();
         $this->db->select('vod');
@@ -1140,7 +1208,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_restflag_api()
+    public function get_restflag_api()
     {
         $data = array();
         $this->db->select('restaurant');
@@ -1157,23 +1225,23 @@ class WebService extends Model
     }
 
     /*
-      function get_radioflag_api() {
-      $data = array();
-      $this->db->select('radio');
-      $this->db->from($this->flag);
-      $this->db->limit(1);
-      $Q = $this->db->get();
-      if ($Q->num_rows() > 0) {
-      foreach ($Q->result_array() as $row) {
-      $data[] = $row;
-      }
-      }
-      $Q->free_result();
-      return $data;
-      }
+    function get_radioflag_api() {
+    $data = array();
+    $this->db->select('radio');
+    $this->db->from($this->flag);
+    $this->db->limit(1);
+    $Q = $this->db->get();
+    if ($Q->num_rows() > 0) {
+    foreach ($Q->result_array() as $row) {
+    $data[] = $row;
+    }
+    }
+    $Q->free_result();
+    return $data;
+    }
      */
 
-    function get_infoflag_api()
+    public function get_infoflag_api()
     {
         $data = array();
         $this->db->select('localinfo');
@@ -1189,7 +1257,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_channelflag_api()
+    public function get_channelflag_api()
     {
         $data = array();
         $this->db->select('tv');
@@ -1205,7 +1273,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_mediaflag_api()
+    public function get_mediaflag_api()
     {
         $data = array();
         $this->db->select('promotions');
@@ -1221,7 +1289,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_media_api($l)
+    public function get_media_api($l)
     {
         $data = array();
         $this->db->join($this->promotions, $this->promotions . '.pr_id=' . $this->promotions_language . '.promotion_id', 'left');
@@ -1245,11 +1313,11 @@ class WebService extends Model
         return $data;
     }
 
-    function get_ticker_promo()
+    public function get_ticker_promo()
     {
         $Q = $this->db->get($this->ticker_promo);
 //        print_r($this->db->last_query());
-//        die();
+        //        die();
         if ($Q->num_rows() > 0) {
             foreach ($Q->result_array() as $row) {
                 $options = $this->config->item('ticker_promo_menu');
@@ -1266,7 +1334,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_radioflag_api()
+    public function get_radioflag_api()
     {
         $data = array();
         $this->db->select('radio');
@@ -1282,7 +1350,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_internetflag_api()
+    public function get_internetflag_api()
     {
         $data = array();
         $this->db->select('internet');
@@ -1298,7 +1366,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_radios_api($u_id = 0, $g_id = 0)
+    public function get_radios_api($u_id = 0, $g_id = 0)
     {
         $data = array();
         $this->db->select($this->rchannel . '.*');
@@ -1320,7 +1388,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_rgenres_api()
+    public function get_rgenres_api()
     {
         $data = array();
         $this->db->select('');
@@ -1337,7 +1405,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_internets_api()
+    public function get_internets_api()
     {
         $data = array();
         $this->db->select('');
@@ -1355,7 +1423,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_rfavourites_api($fav_id = 0)
+    public function get_rfavourites_api($fav_id = 0)
     {
         $data = array();
         $Q = $this->db->query("SELECT * FROM " . $this->rchannel . " as c where id in (SELECT fav_channel_id FROM " . $this->rfavourites . " as f where f.fav_user=$fav_id group by fav_channel_id) order by c.number");
@@ -1371,11 +1439,11 @@ class WebService extends Model
         return $data;
     }
 
-    function rfavourite_insert_data($u, $c)
+    public function rfavourite_insert_data($u, $c)
     {
         $data = array(
             'fav_user' => $u,
-            'fav_channel_id' => $c
+            'fav_channel_id' => $c,
         );
         $this->db->where('fav_user', $u);
         $this->db->where('fav_channel_id', $c);
@@ -1386,7 +1454,7 @@ class WebService extends Model
         $Q->free_result();
     }
 
-    function rfavourite_remove_data($u, $c)
+    public function rfavourite_remove_data($u, $c)
     {
         $this->CI->load->model('rmtv');
         $d = $this->CI->mtv->getTvByNumber($c);
@@ -1397,17 +1465,17 @@ class WebService extends Model
         }
     }
 
-    function get_userlang_api($u, $l)
+    public function get_userlang_api($u, $l)
     {
         $data = array();
         /*
-          $this->db->join($this->greeting, $this->greeting . '.id=' . $this->detail_greeting . '.greeting_id', 'left');
-          $this->db->join($this->room_guest, $this->room_guest . '.greeting_id=' . $this->greeting . '.id', 'left');
-          $this->db->limit(1);
-          $this->db->where($this->detail_greeting . '.greeting_language', $l);
-          $this->db->where($this->room_guest . '.guest_id', $u);
-          $this->db->select('*,' . $this->detail_greeting . '.greeting_desc as welcome_msg');
-          $query = $this->db->get($this->detail_greeting);
+        $this->db->join($this->greeting, $this->greeting . '.id=' . $this->detail_greeting . '.greeting_id', 'left');
+        $this->db->join($this->room_guest, $this->room_guest . '.greeting_id=' . $this->greeting . '.id', 'left');
+        $this->db->limit(1);
+        $this->db->where($this->detail_greeting . '.greeting_language', $l);
+        $this->db->where($this->room_guest . '.guest_id', $u);
+        $this->db->select('*,' . $this->detail_greeting . '.greeting_desc as welcome_msg');
+        $query = $this->db->get($this->detail_greeting);
          */
         $this->db->select("$this->guest.title as te,$this->guest.name as ne,$this->guest.surname as se");
         $this->db->select("$this->guest_name.title as tol,$this->guest_name.name as nol,$this->guest_name.surname as sol");
@@ -1438,7 +1506,7 @@ class WebService extends Model
         return $data;
     }
 
-    function guestalarm_insert_data($u, $d, $at, $udp, $rt)
+    public function guestalarm_insert_data($u, $d, $at, $udp, $rt, $mac)
     {
         $data = array(
             'guest' => $u,
@@ -1446,26 +1514,66 @@ class WebService extends Model
             'status' => 0,
             'type' => $at,
             'udp' => $udp,
-            'tone' => $rt
+            'tone' => $rt,
+            'device_mac' => $mac
         );
+        //Check alarm if exist
+
+        $this->db->select('device_mac');
+        $this->db->where('device_mac', $mac);
+        $this->db->from($this->useralarm);
+        $result = $this->db->get();
+        if ($result->num_rows() > 0) {
+            //Update Alarm
+            $dataUpdate = array(
+                'guest' => $u,
+                'alarm_time' => $d,
+                'status' => 0,
+                'type' => $at,
+                'udp' => $udp,
+                'tone' => $rt
+            );
+            $this->db->where('device_mac', $mac);
+            $this->db->update($this->useralarm, $dataUpdate);
+        } else {
+            //Insert Alarm
+            $this->db->insert($this->useralarm, $data);
+        }
+
+
         // $this->db->where('fav_user', $u);
         // $this->db->where('fav_channel_id', $c);
         //  $Q = $this->db->get($this->favourites, 1, 0);
         //  if ($Q->num_rows() == 0) {
         //print $this->useralarm;
-        $this->db->insert($this->useralarm, $data);
+
 
         //$Q->free_result();
     }
 
-    function guestalarm_closedupdate_data($u)
+    public function get_current_alarm($mac)
+    {
+        $this->db->where('device_mac', $mac);
+        $query = $this->db->get($this->useralarm);
+        $result = $query->result();
+        return $result;
+    }
+
+
+    public function remove_current_alarm($mac)
+    {
+        $this->db->where('device_mac', $mac);
+        $this->db->delete($this->useralarm);
+    }
+
+    public function guestalarm_closedupdate_data($u)
     {
         $data = array(
-            'status' => 2
+            'status' => 2,
         );
         //$this->db->where('guest', $u);
         $w = $this->useralarm . '.guest=' . $u . ' and ' . $this->useralarm . '.alarm_time<=NOW() and ' . $this->useralarm . '.status=1';
-        $this->db->where($w, NULL, FALSE);
+        $this->db->where($w, null, false);
         $this->db->update($this->useralarm, $data);
         //$this->db->insert($this->useralarm, $data);
         $this->db->update($this->useralarm, $data);
@@ -1473,17 +1581,19 @@ class WebService extends Model
         //$Q->free_result();
     }
 
-    function get_configmail($t)
+    public function get_configmail($t)
     {
         $to_mail = "";
-        if ($t == 'wakeup')
+        if ($t == 'wakeup') {
             $this->db->select("$this->settings.se_wakeup_call as mail");
-        else if ($t == 'taxi')
+        } else if ($t == 'taxi') {
             $this->db->select("$this->settings.se_order_taxi as mail");
-        else if ($t == 'room')
+        } else if ($t == 'room') {
             $this->db->select("$this->settings.se_room_service as mail");
-        else if ($t == 'laundry')
+        } else if ($t == 'laundry') {
             $this->db->select("$this->settings.se_laundery_request as mail");
+        }
+
         $this->db->from($this->settings);
         $this->db->limit(1);
         $Q = $this->db->get();
@@ -1496,11 +1606,11 @@ class WebService extends Model
         return $to_mail;
     }
 
-    function getRoomExit()
+    public function getRoomExit()
     {
         $data = array();
         $w = $this->exit . '.status>0';
-        $this->db->where($w, NULL, FALSE);
+        $this->db->where($w, null, false);
         $this->db->select($this->exit . '.*,');
         $this->db->limit(1);
         $Q = $this->db->get($this->exit);
@@ -1514,7 +1624,7 @@ class WebService extends Model
         return $data;
     }
 
-    function get_exitdata($r)
+    public function get_exitdata($r)
     {
         $data = array();
 
@@ -1549,18 +1659,37 @@ class WebService extends Model
      * @param $user_id
      * @param $language
      */
-    function change_user_lang($user_id, $language)
+    public function change_user_lang($user_id, $language)
     {
         $data = array(
-            'language_id' => $language
+            'language_id' => $language,
         );
         $this->db->where('guest_id', $user_id);
         $this->db->update($this->room_guest, $data);
 //        echo '<pre>';
-//        print_r($this->db->last_query());
-//        echo '</pre>';
-//        die();
+        //        print_r($this->db->last_query());
+        //        echo '</pre>';
+        //        die();
         return true;
+    }
+
+    public function check_guest_available_for_device($device_id)
+    {
+        $result = null;
+        $this->db->select($this->devices . '.id,' . $this->room_guest . '.guest_id');
+        $this->db->join($this->room_device, $this->room_device . '.device_id= ' . $this->devices . '.id', 'left');
+        $this->db->join($this->room_guest, $this->room_guest . '.room_id= ' . $this->room_device . '.room_id', 'left');
+        $this->db->where($this->devices . '.id=' . $device_id, null, false);
+        $this->db->limit(1);
+        $query = $this->db->get($this->devices);
+        if ($query->num_rows() > 0) {
+            foreach ($query->result_array() as $row) {
+                $result['device_id'] = $row['id'];
+                $result['guest_id'] = $row['guest_id'];
+            }
+        }
+        return $result;
+
     }
 
 }

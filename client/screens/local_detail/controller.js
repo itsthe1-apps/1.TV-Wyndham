@@ -7,7 +7,8 @@ function localDetailEventHandler(e) {
     d = top.State.getState();
     switch (e.code) {
         case "INIT_SCREEN":
-            top.changeBackgroundImg('INFO');
+            // top.changeBackgroundImg('INFO');
+            top.BG_IMG = 'url(' + top.IMAGES_PREFIX + 'BGS/' + top.BACKGROUND_ARRAY['INFO'] + ')';
             initLocalDetailVars();
             localDetailInitScreen(e.args);
             break;
