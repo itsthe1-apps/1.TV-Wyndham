@@ -379,7 +379,7 @@ function menuGetMenuListData() {
     if (top.NEWSNPROMO) {
         a.push({
             "class": "menuNewsnpromoIcon",
-            "txtLabel": "ATTRACTIONS",
+            "txtLabel": "SPECIAL OFFERS",
             target: "NEWSNPROMO"
         });
         menus++;
