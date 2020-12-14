@@ -1,0 +1,7 @@
+*.mp4
+*.avi
+*.zip
+*.DS_Store
+*.idea/
+.idea/*
+INSTALL.md
