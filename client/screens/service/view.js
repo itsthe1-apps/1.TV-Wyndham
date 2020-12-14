@@ -114,9 +114,9 @@ function serviceDisplayRestInfo(c) {
             document.getElementById("serviceInfoContainerTitle").innerHTML = ""; //"Taxi Request Service"
             
             if (top.DEFAULT_LANGUAGE == 'ar') {
-                backgroundImg.style.backgroundImage = "url('images/1080/coraldubai_en/service/Taxi_ar.jpg')";
+                backgroundImg.style.backgroundImage = "url('images/1080/wyndham_en/service/Taxi_ar.jpg')";
             }else{
-                backgroundImg.style.backgroundImage = "url('images/1080/coraldubai_en/service/Taxi.jpg')";
+                backgroundImg.style.backgroundImage = "url('images/1080/wyndham_en/service/Taxi.jpg')";
             }
             hideAlarmTime();
         } else {
@@ -151,23 +151,23 @@ function serviceDisplayRestInfo(c) {
 
                 
                 if (top.DEFAULT_LANGUAGE == 'ar') {
-                    backgroundImg.style.backgroundImage = "url('images/1080/coraldubai_en/service/Alarm_ar.jpg')";
+                    backgroundImg.style.backgroundImage = "url('images/1080/wyndham_en/service/Alarm_ar.jpg')";
                 }else{
-                    backgroundImg.style.backgroundImage = "url('images/1080/coraldubai_en/service/Alarm.jpg')";
+                    backgroundImg.style.backgroundImage = "url('images/1080/wyndham_en/service/Alarm.jpg')";
                 }
             } else {
                 if (c.target == "laundry") {
                     document.getElementById("serviceInfoContainerTitle").innerHTML = ""; //Laundry Service Request
                      if (top.DEFAULT_LANGUAGE == 'ar') {
-                        backgroundImg.style.backgroundImage = "url('images/1080/coraldubai_en/service/Laundry_ar.jpg')";
+                        backgroundImg.style.backgroundImage = "url('images/1080/wyndham_en/service/Laundry_ar.jpg')";
                     }else{
-                        backgroundImg.style.backgroundImage = "url('images/1080/coraldubai_en/service/Laundry.jpg')";
+                        backgroundImg.style.backgroundImage = "url('images/1080/wyndham_en/service/Laundry.jpg')";
                     }
                     
 
                     //Set loading png
-                    var html_text_en = "<div id='loading_img'><img src='images/1080/coraldubai_en/service/loading.gif'/><p id='loading_text'>Processing Your Request<br/>Please Wait...</p></div>"; 
-                    var html_text_ar = "<div id='loading_img'><img src='images/1080/coraldubai_en/service/loading.gif'/><p id='loading_text'>... لمعالجة طلبك يرجى الانتظار  </p></div>";
+                    var html_text_en = "<div id='loading_img'><img src='images/1080/wyndham_en/service/loading.gif'/><p id='loading_text'>Processing Your Request<br/>Please Wait...</p></div>";
+                    var html_text_ar = "<div id='loading_img'><img src='images/1080/wyndham_en/service/loading.gif'/><p id='loading_text'>... لمعالجة طلبك يرجى الانتظار  </p></div>";
                     var loadingHTML = html_text_en;
                     if (top.DEFAULT_LANGUAGE == "ar") {
                         loadingHTML = html_text_ar;
@@ -181,9 +181,9 @@ function serviceDisplayRestInfo(c) {
                     if (c.target == "room") {
                         document.getElementById("serviceInfoContainerTitle").innerHTML = ""; //Room Service Request
                         if (top.DEFAULT_LANGUAGE == 'ar') {
-                            backgroundImg.style.backgroundImage = "url('images/1080/coraldubai_en/service/Roomservice_ar.jpg')";
+                            backgroundImg.style.backgroundImage = "url('images/1080/wyndham_en/service/Roomservice_ar.jpg')";
                         }else{
-                            backgroundImg.style.backgroundImage = "url('images/1080/coraldubai_en/service/Roomservice.jpg')";
+                            backgroundImg.style.backgroundImage = "url('images/1080/wyndham_en/service/Roomservice.jpg')";
                         }
                         hideAlarmTime();
                     }
