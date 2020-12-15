@@ -31,12 +31,12 @@
 .bodyBG {
     border: 0 solid;
     top: 0;
-    width: 1920px;
+    width: 1850px;
     height: 1080px;
     position: absolute;
     background-color: transparent;
     left: 0;
-
+    background-size: cover;
 }
 
 .information {
@@ -46,17 +46,18 @@
     left: 60px;
     position: absolute;
     top: 365px;
-    width: 860px;
+    width: 780px;
     border: 2px solid #E5B368;
 }
+
 .restaurant_information, .localListDescription, .spaListDescription, .expListDescription, .newsnpromoListDescription {
-    background-color: rgba(235,235,234,0.85);
+    background-color: rgba(235, 235, 234, 0.85);
     color: #555555;
     height: 500px;
     left: 60px;
     position: absolute;
     top: 365px;
-    width: 870px;
+    width: 780px;
 }
 
 .chListSubMenuListContainer, .vodListSubMenuListContainer, .restrntListRestListContainer, .spaListContainer, .expListContainer, .localListContainer, .newsnpromoListContainer, .radioListSubMenuListContainer {
@@ -72,7 +73,7 @@
     height: 60px;
     line-height: 60px;
     text-align: center;
-    width: 298px;
+    width: 278px;
     min-width: auto;
     padding: 0 30px;
     border-right: 3px solid #efefef;
@@ -84,9 +85,9 @@
 .restrntListRestListItem.active, .spaListItem.active, .expListItem.active, .localListItem.active, .newsnpromoListItem.active, .chSubMenuListItem.active, .vodSubMenuListItem.active {
     color: #fff;
     background-color: #E5B368;
-    -webkit-transform: scale(1.1);  /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: scale(1.1);  /* IE 9 */
-    transform: scale(1.1);  /* Firefox 16+, IE 10+, Opera */
+    -webkit-transform: scale(1.1); /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: scale(1.1); /* IE 9 */
+    transform: scale(1.1); /* Firefox 16+, IE 10+, Opera */
     border-right: none;
     font-weight: bold;
 }
@@ -110,7 +111,7 @@
     position: absolute;
     right: 60px;
     top: 365px;
-    width: 870px;
+    width: 780px;
     /* border: 5px solid #055e32; */
 }
 
@@ -124,7 +125,7 @@
 }
 
 .restrntListRestListItem {
-    width: 388px;
+    width: 368px;
 }
 
 img {
@@ -294,10 +295,10 @@ body {
 
 .header {
     position: absolute;
-    width: 1920px;
+    width: 1850px;
     height: 165px;
     border: 0 solid;
-    background-color: rgba(255,255,255,0.9);
+    background-color: rgba(255, 255, 255, 0.9);
     /*background-color: rgba(0,0,0,0.3);*/
     background-repeat: no-repeat;
     background-position: right center;
@@ -307,7 +308,7 @@ body {
 
 .footer {
     position: absolute;
-    width: 1920px;
+    width: 1850px;
     height: 120px;
     bottom: 0;
     border: 0 solid;
@@ -353,6 +354,7 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 .globalClock {
     color: #fff;
     font-size: 24px;
@@ -579,7 +581,7 @@ body {
     float: left;
     font-size: 32px;
     max-height: 60px;
-    min-width: 211.7px;
+    min-width: 199.7px;
     min-height: 60px;
     padding: 0 30px;
     text-align: center;
@@ -611,9 +613,9 @@ body {
 .menuTvIconSelected, .menuVodIconSelected, .menuBrowserIconSelected, .menuRadioIconSelected, .menuInternetIconSelected, .menuMessageIconSelected, .menuServiceIconSelected, .menuLocalIconSelected, .menuKeeperIconSelected, .menuRestrntIconSelected, .menuSpaIconSelected, .menuExperienceIconSelected, .menuNewsnpromoIconSelected, .menuScheduleIconSelected, .menuHomeIconSelected, .menuLanguageIconASelected, .menuLanguageIconESelected, .menuNewsnpromoIconSelected {
     color: #fff;
     background-color: #E5B368;
-    -webkit-transform: scale(1.1);  /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: scale(1.1);  /* IE 9 */
-    transform: scale(1.1);  /* Firefox 16+, IE 10+, Opera */
+    -webkit-transform: scale(1.1); /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: scale(1.1); /* IE 9 */
+    transform: scale(1.1); /* Firefox 16+, IE 10+, Opera */
     border-right: none;
     font-weight: bold;
 }
@@ -621,9 +623,9 @@ body {
 .menuTvIconSemi_selected, .menuVodIconSemi_selected, .menuBrowserIconSemi_selected, .menuRadioIconSemi_selected, .menuInternetIconSemi_selected, .menuMessageIconSemi_selected, .menuServiceIconSemi_selected, .menuLocalIconSemi_selected, .menuKeeperIconSemi_selected, .menuRestrntIconSemi_selected, .menuSpaIconSemi_selected, .menuExperienceIconSemi_selected, .menuNewsnpromoIconSemi_selected, .menuScheduleIconSemi_selected, .menuHomeIconSemi_selected, .menuLanguageIconASemi_selected, .menuLanguageIconESemi_selected, .menuNewsnpromoIconSemi_selected {
     color: #fff;
     background-color: #E5B368;
-    -webkit-transform: scale(1);  /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: scale(1);  /* IE 9 */
-    transform: scale(1);  /* Firefox 16+, IE 10+, Opera */
+    -webkit-transform: scale(1); /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: scale(1); /* IE 9 */
+    transform: scale(1); /* Firefox 16+, IE 10+, Opera */
     border-right: 3px solid #efefef;
     font-weight: normal;
 }
@@ -699,7 +701,7 @@ body {
 }
 
 .chListChannelListItem {
-    background-color: rgba(235,235,234,1);
+    background-color: rgba(235, 235, 234, 1);
     color: #fff;
     float: left;
     height: 120px;
@@ -718,7 +720,7 @@ img.chListChannelIMG {
 }
 
 .chChooserChannelListItem {
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     color: #555555;
     float: left;
     height: 120px;
@@ -751,9 +753,9 @@ img.chListChannelIMG {
 .chSubMenuAllIconSelected, .chSubMenuGenreIconSelected, .chSubMenuAlphabetIconSelected {
     color: #fff;
     background-color: #E5B368;
-    -webkit-transform: scale(1.1);  /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: scale(1.1);  /* IE 9 */
-    transform: scale(1.1);  /* Firefox 16+, IE 10+, Opera */
+    -webkit-transform: scale(1.1); /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: scale(1.1); /* IE 9 */
+    transform: scale(1.1); /* Firefox 16+, IE 10+, Opera */
     border-right: none;
     font-weight: bold;
 }
@@ -781,9 +783,10 @@ img.chListChannelIMG {
     margin-right: 0;
     position: absolute;
     text-align: center;
-    width: 870px;
+    width: 780px;
     line-height: 28px;
 }
+
 .favInfobarContainer {
     border: 0 solid;
     position: absolute;
@@ -1516,7 +1519,7 @@ img.restDetailRestInfoPicture {
     font-size: 12px;
     left: 0;
     position: absolute;
-    width: 1920px
+    width: 1850px
 }
 
 .footerContainer {
@@ -1826,7 +1829,7 @@ img.restDetailRestInfoPicture {
     border: 0 solid;
     bottom: 40px;
     position: absolute;
-    width: 1920px;
+    width: 1850px;
     height: 60px;
 }
 
@@ -1838,11 +1841,11 @@ img.restDetailRestInfoPicture {
     bottom: 70px;
     height: 60px;
     position: absolute;
-    width: 1920px;
+    width: 1850px;
     left: 0;
 }
 
-#tv_promotion_text, #local_promotion_text, #restaurent_promotion_text, #newsnpromo_promotion_text, #messages_promotion_text  {
+#tv_promotion_text, #local_promotion_text, #restaurent_promotion_text, #newsnpromo_promotion_text, #messages_promotion_text {
     color: #6b493f;
     font-size: 24px;
     font-weight: bold;
@@ -1852,7 +1855,7 @@ img.restDetailRestInfoPicture {
 
 }
 
-#promotion_id{
+#promotion_id {
     color: #e81c1b;
     float: left;
     font-size: 36px;
@@ -2163,19 +2166,22 @@ h1, h2, h3, h4 {
     z-index: 10;
     left: 572px;
 }
+
 .servicemsg {
     border: 0 solid;
     width: 640px;
     height: 139px;
     color: #fff;
-    background-color: #DF1820;
+    background-color: #DF1850;
 }
+
 #serviceNotificationTitle {
     font-size: 30px;
     text-align: center;
     position: relative;
     top: 30px;
 }
+
 #serviceNotificationBody {
     font-size: 28px;
     text-align: center;
@@ -2379,9 +2385,10 @@ h1, h2, h3, h4 {
     height: 520px;
     position: absolute;
     right: 60px;
-    width: 870px;
+    width: 780px;
     background-image: url(images/1080/wyndham_en/service/Alarm.jpg);
 }
+
 .serviceInfoContainerTitle {
     border: 0 solid;
     color: #86868A;
@@ -2399,6 +2406,7 @@ h1, h2, h3, h4 {
     top: 30px;
     position: relative;
 }
+
 .serviceorderAlarmTime {
     border: 0 solid;
     width: 400px;
@@ -2562,7 +2570,6 @@ h1, h2, h3, h4 {
     padding: 0 0 7px 193px
 }*/
 
-
 /*New Alarm Layout Styles*/
 .alarmRowItemLable {
     width: 160px;
@@ -2573,25 +2580,29 @@ h1, h2, h3, h4 {
     color: #86868A;
     text-align: right;
 }
+
 #serviceorderAlarmHour {
     width: 40px;
     font-size: 30px;
     float: left;
     text-align: center;
-    color: #DF1820;
+    color: #DF1850;
 }
-.serviceorderAlarmHour_selected{
+
+.serviceorderAlarmHour_selected {
     color: #f7941d !important;
 }
+
 #serviceorderAlarmMinute {
     font-size: 30px;
     width: 40px;
     float: left;
     text-align: center;
-    color: #DF1820;
+    color: #DF1850;
     margin-right: 60%;
 }
-.serviceorderAlarmMinute_selected{
+
+.serviceorderAlarmMinute_selected {
     color: #f7941d !important;
 }
 
@@ -2600,8 +2611,9 @@ h1, h2, h3, h4 {
     float: left;
     width: 10px;
     text-align: center;
-    color: #DF1820;
+    color: #DF1850;
 }
+
 .alarmRowItemDateLable {
     font-size: 30px;
     float: left;
@@ -2610,18 +2622,21 @@ h1, h2, h3, h4 {
     text-align: right;
     color: #86868A;
 }
+
 #serviceorderAlarmDate {
     width: 300px;
     float: left;
     text-align: left;
     font-size: 30px;
     margin-left: 10px;
-    color: #DF1820;
+    color: #DF1850;
     margin-right: 40%;
 }
-.serviceorderAlarmDate_selected{
+
+.serviceorderAlarmDate_selected {
     color: #f7941d !important;
 }
+
 .alarmRowItemTypeLable {
     float: left;
     font-size: 30px;
@@ -2630,8 +2645,9 @@ h1, h2, h3, h4 {
     line-height: 50px;
     text-transform: uppercase;
     margin-top: 25px;
-    color: #DF1820;
+    color: #DF1850;
 }
+
 #serviceorderAlarmType {
     float: left;
     font-size: 30px;
@@ -2646,9 +2662,11 @@ h1, h2, h3, h4 {
     color: #86868A;
     margin-right: 25%;
 }
-.serviceorderAlarmType_selected{
+
+.serviceorderAlarmType_selected {
     color: #f7941d !important;
 }
+
 .alarmRowItemChannelLable {
     float: left;
     font-size: 30px;
@@ -2657,8 +2675,9 @@ h1, h2, h3, h4 {
     line-height: 50px;
     text-transform: uppercase;
     margin-top: 20px;
-    color: #DF1820;
+    color: #DF1850;
 }
+
 #serviceorderAlarmUDPNumber {
     float: left;
     font-size: 30px;
@@ -2673,10 +2692,12 @@ h1, h2, h3, h4 {
     color: #86868A;
     margin-right: 25%;
 }
-.serviceorderAlarmUDPNumber_selected{
+
+.serviceorderAlarmUDPNumber_selected {
     color: #f7941d !important;
 }
-.alarmRowItemRingtoneLable{
+
+.alarmRowItemRingtoneLable {
     float: left;
     font-size: 30px;
     margin-left: 40px;
@@ -2684,9 +2705,10 @@ h1, h2, h3, h4 {
     line-height: 50px;
     text-transform: uppercase;
     margin-top: 20px;
-    color: #DF1820;
+    color: #DF1850;
 }
-#serviceorderAlarmRingTone{
+
+#serviceorderAlarmRingTone {
     float: left;
     font-size: 30px;
     height: 46px;
@@ -2700,9 +2722,11 @@ h1, h2, h3, h4 {
     color: #86868A;
     margin-right: 25%;
 }
-.serviceorderAlarmRingTone_selected{
+
+.serviceorderAlarmRingTone_selected {
     color: #f7941d !important;
 }
+
 #serviceorderAlarmSubmit {
     width: 250px;
     height: 50px;
@@ -2716,8 +2740,9 @@ h1, h2, h3, h4 {
     color: #fff;
     text-transform: uppercase;
 }
-.serviceorderAlarmSubmit_selected{
-    background-color: #DF1820 !important;
+
+.serviceorderAlarmSubmit_selected {
+    background-color: #DF1850 !important;
 }
 
 #serviceorderAlarmList {
@@ -2734,8 +2759,9 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
     position: absolute;
 }
-.serviceorderAlarmList_selected{
-    background-color: #DF1820 !important;
+
+.serviceorderAlarmList_selected {
+    background-color: #DF1850 !important;
 }
 
 #activeAlarmTime {
@@ -2753,7 +2779,7 @@ h1, h2, h3, h4 {
 }
 
 #activeAlarmTimeContainer {
-    color: #DF1820;
+    color: #DF1850;
 }
 
 #showAlarmContainer {
@@ -2775,8 +2801,9 @@ h1, h2, h3, h4 {
     font-size: 30px;
     width: 100%;
     position: relative;
-    color: #DF1820;
+    color: #DF1850;
 }
+
 /*Taxi ***********************************/
 
 .alarmRowItemTaxiLable {
@@ -2788,27 +2815,29 @@ h1, h2, h3, h4 {
     text-align: right;
     width: 225px;
 }
-#serviceorderTaxiHour{
+
+#serviceorderTaxiHour {
     width: 40px;
     font-size: 30px;
     float: left;
     text-align: center;
-    color: #DF1820;
+    color: #DF1850;
 }
 
-.serviceorderTaxiHour_selected{
+.serviceorderTaxiHour_selected {
     color: #f7941d !important;
 }
 
-#serviceorderTaxiMinute{
+#serviceorderTaxiMinute {
     font-size: 30px;
     width: 40px;
     float: left;
     text-align: center;
-    color: #DF1820;
+    color: #DF1850;
     margin-right: 45%;
 }
-.serviceorderTaxiMinute_selected{
+
+.serviceorderTaxiMinute_selected {
     color: #f7941d !important;
 }
 
@@ -2821,20 +2850,22 @@ h1, h2, h3, h4 {
     color: #86868A;
     width: 225px;
 }
-#serviceorderDate{
+
+#serviceorderDate {
     width: 300px;
     float: left;
     text-align: left;
     font-size: 30px;
     margin-left: 10px;
-    color: #DF1820;
+    color: #DF1850;
     margin-right: 30%;
 }
-.serviceorderDate_selected{
+
+.serviceorderDate_selected {
     color: #f7941d !important;
 }
 
-.alarmRowItemTaxiGuestLable{
+.alarmRowItemTaxiGuestLable {
     float: left;
     font-size: 30px;
     margin-left: 40px;
@@ -2842,10 +2873,10 @@ h1, h2, h3, h4 {
     line-height: 50px;
     text-transform: uppercase;
     margin-top: 25px;
-    color: #DF1820;
+    color: #DF1850;
 }
 
-#serviceorderGuest{
+#serviceorderGuest {
     float: left;
     font-size: 30px;
     height: 46px;
@@ -2859,11 +2890,12 @@ h1, h2, h3, h4 {
     color: #86868A;
     margin-right: 25%;
 }
-.serviceorderGuest_selected{
+
+.serviceorderGuest_selected {
     color: #f7941d !important;
 }
 
-#serviceorderTaxiSubmit{
+#serviceorderTaxiSubmit {
     width: 250px;
     height: 50px;
     line-height: 50px;
@@ -2877,11 +2909,11 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
 }
 
-.serviceorderTaxiSubmit_selected{
-    background-color: #DF1820 !important;
+.serviceorderTaxiSubmit_selected {
+    background-color: #DF1850 !important;
 }
 
-.alarmRowItemServiceLable{
+.alarmRowItemServiceLable {
     font-size: 30px;
     float: left;
     margin-left: 40px;
@@ -2891,30 +2923,32 @@ h1, h2, h3, h4 {
     width: 225px;
 }
 
-#serviceorderHour{
+#serviceorderHour {
     width: 40px;
     font-size: 30px;
     float: left;
     text-align: center;
-    color: #DF1820;
+    color: #DF1850;
 }
-.serviceorderHour_selected{
+
+.serviceorderHour_selected {
     color: #f7941d !important;
 }
 
-#serviceorderMinute{
+#serviceorderMinute {
     font-size: 30px;
     width: 40px;
     float: left;
     text-align: center;
-    color: #DF1820;
+    color: #DF1850;
     margin-right: 45%;
 }
-.serviceorderMinute_selected{
+
+.serviceorderMinute_selected {
     color: #f7941d !important;
 }
 
-#serviceorderSubmit{
+#serviceorderSubmit {
     width: 250px;
     height: 50px;
     line-height: 50px;
@@ -2927,15 +2961,16 @@ h1, h2, h3, h4 {
     color: #fff;
     text-transform: uppercase;
 }
-.serviceorderSubmit_selected{
-    background-color: #DF1820 !important;
+
+.serviceorderSubmit_selected {
+    background-color: #DF1850 !important;
 }
 
 /*View Bill*/
 
 #guest_bill {
     position: absolute;
-    width: 870px;
+    width: 780px;
     top: -292px;
     height: 385px;
 }
@@ -2947,7 +2982,7 @@ h1, h2, h3, h4 {
     font-size: 35px;
     text-align: center;
     text-transform: uppercase;
-    color: #DF1820;
+    color: #DF1850;
 }
 
 #guest_info {
@@ -2970,7 +3005,7 @@ h1, h2, h3, h4 {
     margin-top: 100px;
     margin-left: 190px;
     position: absolute;
-    border: 3px solid #DF1820;
+    border: 3px solid #DF1850;
     padding: 27px;
 }
 
@@ -2981,7 +3016,6 @@ h1, h2, h3, h4 {
 #bill_total_amount {
     float: left;
 }
-
 
 /*Ends Here*/
 
@@ -3539,7 +3573,6 @@ img.radioChannelIMG {
 #menuMainListContainer .menuMainListItem:last-child {
     border-right: medium none
 }
-
 
 #loading_img {
     top: 100px;
