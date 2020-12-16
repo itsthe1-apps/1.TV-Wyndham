@@ -10,7 +10,8 @@ function chChooserGetScreenHtml() {
     }
    
     var b = "";
-    b += '<div class="bodyBG" style="background-image:' + top.BG_IMG + '">';
+    //b += '<div class="bodyBG" style="background-image:' + top.BG_IMG + '">';
+    b += '<div class="bodyBG">';
     b += '<div id="messageBlock" class="messageBlock"></div>';
     b += '<div class="header">';
     b += '<div class="headerLeft"></div><div class="headerRight"></div>';

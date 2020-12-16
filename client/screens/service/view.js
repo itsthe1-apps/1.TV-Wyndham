@@ -32,7 +32,7 @@ function serviceGetScreenHtml() {
     b += '<div id="serviceInfoContainerContent" class="serviceInfoContainerContent">';
     b += "</div></div>";
     b += '<div id="ticker_tape_services" class="ticker_tape_services"><div id="promotion_id">'+promotionText+'</div><p id="services_promotion_text"></p></div>';
-    b += '<div class="footer">';
+    b += '<div class="services footer">';
     b += '<div id="footerContainer" class="footerContainer">' + showServiceOrderFooter() + "</div>";
     b += "</div>";
     return b

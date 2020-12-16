@@ -65,7 +65,7 @@ define('TV_PATH', './icons/TV/');
 define('MOVIE_PATH', './icons/VOD/');
 define('RESTAURANT_PATH', './icons/RESTAURANT/');
 define('EXIT_PATH', './icons/EXIT/');
-define('HOTEL_NAME', 'Wyndham Hotel');
+define('HOTEL_NAME', 'To WYNDHAM DUBAI MARINA, UAE');
 
 //License
 define("APP_HASLIFE", (int)true);//enable / disable DEMO script.

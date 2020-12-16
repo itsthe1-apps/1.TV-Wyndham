@@ -13,7 +13,8 @@ function chListGetScreenHtml() {
 
 
     var a = "";
-    a += '<div class="bodyBG" id="bodyBG" style="background-image:' +  top.BG_IMG + '">';
+    //a += '<div class="bodyBG" id="bodyBG" style="background-image:' +  top.BG_IMG + '">';
+    a += '<div class="bodyBG" id="bodyBG">';
     a += '<div id="globalChannelZapper" class="globalChannelZapper"></div>';
     a += '<div id="globalVolumeBar" class="globalVolumeBar"></div>';
     a += '<div id="globalMute" class="globalMute"></div>';

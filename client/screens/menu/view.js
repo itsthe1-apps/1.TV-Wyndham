@@ -107,7 +107,7 @@ function showUserTitle() {
     if(top.CHECKED_OUT == true){
         c = "Welcome to Elite Byblos Hotel"+"<br/>";
     }else{
-        c = c + "<span class='guestWelcome'>" + top.WELCOME_MSG + "</span>";
+        //c = c + "<span class='guestWelcome'>" + top.WELCOME_MSG + "</span>";
     }
     return c;
 }

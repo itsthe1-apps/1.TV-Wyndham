@@ -1,5 +1,5 @@
 var ip = "10.0.1.137/1.TV-Wyndham";
-var HOTEL_NAME = "Wyndham HOTEL";
+var HOTEL_NAME = "WYNDHAM DUBAI MARINA, UAE";
 var APPNAME = "admin";
 var SHOW_GUEST_TITLE = 1;
 var REQUEST_TOKEN_ATTEMP = 0;
